@@ -1,0 +1,5 @@
+export const GET_COMPONENTS = "GET_COMPONENTS"
+export const GET_BY_NAME = "GET_BY_NAME"
+export const POST_COMPONENTS = "POST_COMPONENTS"
+export const PAGINATE = "PAGINATE"
+export const DETAIL = "DETAIL"
