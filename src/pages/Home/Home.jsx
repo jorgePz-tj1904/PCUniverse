@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Slider from 'react-slick';
 import logo from "../../assets/logo.png";
@@ -125,3 +126,4 @@ const Home = () => {
 };
 
 export default Home;
+
