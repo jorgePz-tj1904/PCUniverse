@@ -35,6 +35,7 @@ const URL = "http://localhost:3001"
         return async function (dispatch) {
             try {
                 const response = await axios.post(`${URL}/components`, data)
+                console.log(response)
                 alert("Componente Creado Correctamente");
                 return dispatch({
                     type: POST_COMPONENTS,
