@@ -1,7 +1,6 @@
 
 import React from 'react';
 import Slider from 'react-slick';
-import logo from "../../assets/logo.png";
 import './styles.css';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css"; 
@@ -30,34 +29,6 @@ const Home = () => {
     
   return (
     <div>
-      {/* Barra de navegación superior */}
-      <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
-      <div className="navbar">
-      <img src={logo} alt="Logo" className="logo" />
-      <div className="navbar-search">
-        <input type="text" placeholder="Buscar..." />
-          <i class='bx bx-search-alt'></i>
-      </div>
-      <button className="navbar-button">
-        <i class='bx bxs-cart'></i>
-      </button>
-      <button className="navbar-button">
-      <i class='bx bxs-log-in'></i>
-      </button>
-        {/* Agrega aquí el formulario de inicio de sesión */}
-      </div>
-
-      {/* Barra de navegación */}
-      <nav className="main-nav">
-        <ul>
-          <li><a href="#">PRODUCTOS</a></li>
-          <li><a href="#">ARMÁ TU PC</a></li>
-          <li><a href="#">AYUDA</a></li>
-          <li><a href="#">CONTACTANOS</a></li>
-          <li><a href="#">OFERTAS</a></li>
-          <li><a href="#">¿QUIENES SOMOS?</a></li>
-        </ul>
-      </nav>
       <div className="carousel-container">
         <Slider {...settings}>
           {/* Imagen 1 */}
