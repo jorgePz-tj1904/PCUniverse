@@ -27,3 +27,5 @@ function reducer(state = initailState, {type, payload}) {
         default: return {...state};
     }
 }
+
+export default reducer;

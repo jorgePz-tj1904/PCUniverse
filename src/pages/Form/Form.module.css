@@ -1,0 +1,50 @@
+.conteiner {
+  text-align: center;
+}
+
+.timeline {
+  display: flex;
+  align-items: center;
+}
+
+.botonesArmado {
+  all: unset;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.lineas {
+  background-color: rgb(170, 0, 255);
+  width: 100px;
+  height: 5px;
+  flex-grow: 1;
+}
+
+.botonesArmado:not(:last-child) {
+  margin-right: 5px;
+}
+
+.lineas:not(:last-child) {
+  margin-right: 10px;
+}
+
+
+.cardConteiner{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 100px;
+    margin-right: 100px;
+    height: 400px;
+}
+.card{
+    font-size: 10px;
+    padding: 10px;
+    border: 2px solid rgb(157, 157, 157);
+    border-radius: 4px;
+    box-shadow: 0px 0px 27px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 0px 0px 27px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 27px 0px rgba(0,0,0,0.75);
+}
