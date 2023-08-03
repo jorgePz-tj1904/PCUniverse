@@ -1,9 +1,14 @@
-import React, { useState } from "react";
-import { componentes } from "./componentes";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import style from './Form.module.css'
+import { getComponents } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const Form = () => {
-  const [componentsToShow, setComponentsToShow] = useState([]);
+
+  const allComponents = useSelector((state)=> state.allComponents);
+  const dispatch = useDispatch();
+
   const [total, setTotal] = useState(0);
   const [computer, setComputer] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState({
@@ -16,11 +21,10 @@ const Form = () => {
   });
 
 useEffect(()=>{
-  setComponentsToShow(componentes.cpus)
-},[]);
+  dispatch(getComponents());
+},[dispatch]);
 
-  const componentsHandler = (event) => {
-    const componente = event.target.value.toLowerCase();
+  const componentsHandler = (componente) => {
     switch (componente) {
       case "procesador":
         setComponentsToShow(componentes.cpus);
@@ -44,7 +48,7 @@ useEffect(()=>{
         break;
     }
   };
-//////////////cambiar component por component.id
+
   const addToComputer = (component) => {
     const isComponentAlreadyAdded = computer.some((comp) => comp.id === component.id);
   if (isComponentAlreadyAdded) {
@@ -82,26 +86,45 @@ useEffect(()=>{
   };
     
     return(
-        <div>
+        <div className={style.conteiner}>
             <h1>Arma tu pc</h1>
             <p>Tu procesador es la pieza central del rendimiento de los programas. Para saber si un procesador es potente lo que tenés que medir es la frecuencia, el ancho de bus, la memoria caché y los núcleos e hilos de procesamiento.</p>
-            <div>
-                <button onClick={componentsHandler} value='procesador'>procesador</button>
-                <button onClick={componentsHandler} value='mother'>mother</button>
-                <button onClick={componentsHandler} value='ram'>ram</button>
-                <button onClick={componentsHandler} value='grafica'>grafica</button>
-                <button onClick={componentsHandler} value='disco'>disco</button>
-                <button onClick={componentsHandler} value='fuente'>fuente</button>
+            <div className={style.timeline}>
+              <button className={style.botonesArmado} onClick={() => componentsHandler('procesador')}>
+                <img width={65} src="https://i.ibb.co/nBh57qj/icons8-procesador-80.png" alt="icons8-procesador-80" border="0"/>
+              </button>
+              <div className={style.lineas}></div>
+              <button className={style.botonesArmado} onClick={() => componentsHandler('mother')}>
+                <img width={60} src="https://i.ibb.co/K619VYR/icons8-placa-base-96.png" alt="icons8-placa-base-96" border="0"/>
+              </button>
+              <div className={style.lineas}></div>
+              <button className={style.botonesArmado} onClick={() => componentsHandler('ram')}>
+                <img src="https://i.ibb.co/qxcnBTZ/icons8-ram-64.png" alt="icons8-ram-64" border="0"/>
+              </button>
+              <div className={style.lineas}></div>
+              <button className={style.botonesArmado} onClick={() => componentsHandler('grafica')}>
+                <img src="https://i.ibb.co/LCsVcqf/icons8-tarjeta-de-video-80.png" alt="icons8-tarjeta-de-video-80" border="0"/>
+              </button>
+              <div className={style.lineas}></div>
+              <button className={style.botonesArmado} onClick={() => componentsHandler('disco')}>
+                <img src="https://i.ibb.co/d4Grr6K/icons8-disco-duro-64.png" alt="icons8-disco-duro-64" border="0"/>
+              </button>
+              <div className={style.lineas}></div>
+              <button className={style.botonesArmado} onClick={() => componentsHandler('fuente')}>
+                <img src="https://i.ibb.co/DVm3BTv/icons8-power-supply-62.png" alt="icons8-power-supply-62" border="0"/>
+              </button>
             </div>
-            <div>
-              {componentsToShow.map(component => (
-              <div key={component.modelo}>
+            <hr />
+            <div className={style.cardConteiner}>
+              {allComponents.map(component => (
+              <div className={style.card} key={component.modelo}>
               <h1 onClick={() => addToComputer(component)}>{component.modelo}</h1>
+              <h3>{component.precio} $</h3>
             </div>
         ))}
-        <hr />
       </div>
       <div>
+        <hr />
         {computer.length > 0 && (
           <div>
             <h2>Componentes seleccionados:</h2>
