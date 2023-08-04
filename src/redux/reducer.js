@@ -5,14 +5,14 @@ const initailState = {
     componentsP: []
 }
 
-function reducer(state = initailState, {type, payload}) {
+function reducer(state = initailState, action) {
     const iTEMS_PER_PAGE = 10;
 
-    switch (type) {
+    switch (action.type) {
         case GET_COMPONENTS:
             return {
                 ...state,
-                allComponents: payload,
+                allComponents: action.payload,
                 componentsP: [...payload].splice(0, iTEMS_PER_PAGE)
             };
 

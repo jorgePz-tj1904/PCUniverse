@@ -1,17 +1,16 @@
 .conteiner {
   text-align: center;
 }
+.conteiner h1{
+  margin-top: 40px;
+}
+#titulo{
+  font-size: 40px;
+}
 
 .timeline {
   display: flex;
   align-items: center;
-}
-
-.botonesArmado {
-  all: unset;
-  cursor: pointer;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 .lineas {
@@ -19,16 +18,8 @@
   width: 100px;
   height: 5px;
   flex-grow: 1;
+  transition: background-color 0.6s ease-in-out;
 }
-
-.botonesArmado:not(:last-child) {
-  margin-right: 5px;
-}
-
-.lineas:not(:last-child) {
-  margin-right: 10px;
-}
-
 
 .cardConteiner{
     display: flex;
@@ -44,7 +35,100 @@
     padding: 10px;
     border: 2px solid rgb(157, 157, 157);
     border-radius: 4px;
-    box-shadow: 0px 0px 27px 0px rgba(0,0,0,0.75);
--webkit-box-shadow: 0px 0px 27px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 0px 27px 0px rgba(0,0,0,0.75);
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+.card img{
+  width: 200px;
+}
+.card h3{
+  font-size: 15px;
+}
+.productos{
+  border-bottom: 2px solid #aa00ff;
+  margin-top: 10px;
+}
+#ul{
+  all: unset;
+  text-align: start;
+}
+#delete{
+  float: right;
+  margin-top: -10px;
+}
+#carrito{
+  all: unset;
+}
+button {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: black;
+  
+  padding: 1em 2em;
+  border: none;
+  border-radius: .6rem;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+button span:not(:nth-child(6)) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 30px;
+  width: 30px;
+  background-color: #aa00ff;
+  border-radius: 50%;
+  transition: .6s ease;
+}
+
+button span:nth-child(6) {
+  position: relative;
+}
+
+button span:nth-child(1) {
+  transform: translate(-3.3em, -4em);
+}
+
+button span:nth-child(2) {
+  transform: translate(-6em, 1.3em);
+}
+
+button span:nth-child(3) {
+  transform: translate(-.2em, 1.8em);
+}
+
+button span:nth-child(4) {
+  transform: translate(3.5em, 1.4em);
+}
+
+button span:nth-child(5) {
+  transform: translate(3.5em, -3.8em);
+}
+
+button:hover span:not(:nth-child(6)) {
+  transform: translate(-50%, -50%) scale(4);
+  transition: 1.5s ease;
+}
+.footer {
+  position: relative;
+  bottom: -100px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  background-color: #aa00ff;
+  font-family: 'Montserrat', sans-serif !important;
+  z-index: 100;
+  margin: 0;
+}
+
+.footer p {
+  color: #fff;
+  margin: 10px;
+}
+

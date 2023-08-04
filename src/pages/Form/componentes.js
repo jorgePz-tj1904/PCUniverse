@@ -11,7 +11,8 @@ export const componentes = {
       tdp: "125 W",
       socket: "LGA1200",
       precio: 499.99,
-      categoria: 'cpu'
+      categoria: 'cpu',
+      img: 'https://www.maximus.com.ar/Temp/App_WebSite/App_PictureFiles/Items/BX8070811900K_800.jpg'
     },
     {
       id: 2,
@@ -24,7 +25,8 @@ export const componentes = {
       tdp: "105 W",
       socket: "AM4",
       precio: 699.99,
-      categoria: 'cpu'
+      categoria: 'cpu',
+      img: 'https://www.tecnoxd.com.ar/thumb/000000000001448945917compragamer-Imganen-general-22303-Procesador-AMD-Ryzen-9-5950X-4.9GHz-Turbo-AM4---No-incluye-Cooler-7f7a1aa7-grn_800x800.jpg'
     },
     {
       id: 3,
@@ -37,7 +39,8 @@ export const componentes = {
       tdp: "125 W",
       socket: "LGA1200",
       precio: 399.99,
-      categoria: 'cpu'
+      categoria: 'cpu',
+      img: 'https://www.qloud.ar/SITES/IMG/m-y-m-computacion-06-2020/0000000000005032037214964_2.jpg'
     },
     // ... (otros componentes)
   ],
@@ -52,7 +55,8 @@ export const componentes = {
       ranurasPCIe: 3,
       ranurasM2: 2,
       precio: 299.99,
-      categoria: 'mother'
+      categoria: 'mother',
+      img:'https://www.digitarinformatica.com.ar/wp-content/uploads/2021/12/Placa-madre-Asus-Rog-Strix-Z590-E-Gaming-Wifi-s1200-1.jpg'
     },
     {
       id: 102,
@@ -64,7 +68,8 @@ export const componentes = {
       ranurasPCIe: 2,
       ranurasM2: 2,
       precio: 179.99,
-      categoria: 'mother'
+      categoria: 'mother',
+      img: 'https://s3-sa-east-1.amazonaws.com/saasargentina/s3sQZEADUACB9sEM5jEK/imagen'
     },
     {
       id: 103,
@@ -76,7 +81,8 @@ export const componentes = {
       ranurasPCIe: 2,
       ranurasM2: 2,
       precio: 199.99,
-      categoria: 'mother'
+      categoria: 'mother',
+      img:'https://www.venex.com.ar/products_images/1593490177_11.jpg'
     },
     // ... (otros componentes)
   ],
@@ -90,7 +96,8 @@ export const componentes = {
       latencia: "16-18-18-36",
       voltaje: "1.35 V",
       precio: 89.99,
-      categoria: 'ram'
+      categoria: 'ram',
+      img:'https://http2.mlstatic.com/D_NQ_NP_841009-MLA32170216547_092019-O.webp'
     },
     {
       id: 202,
@@ -101,7 +108,8 @@ export const componentes = {
       latencia: "18-22-22-42",
       voltaje: "1.35 V",
       precio: 159.99,
-      categoria: 'ram'
+      categoria: 'ram',
+      img:'https://d22fxaf9t8d39k.cloudfront.net/31e434b3a2f0615cc4012e85c405c2260f12af960b117d1bb45f1f479616156d55142.jpeg'
     },
     {
       id: 203,
@@ -112,7 +120,8 @@ export const componentes = {
       latencia: "16-18-18",
       voltaje: "1.2 V",
       precio: 49.99,
-      categoria: 'ram'
+      categoria: 'ram',
+      img:'https://compraloencuotas.com.ar/aplicacion_agro_filedata/siga_webturismo/ecommerce_pictures/3379/degoogle.jpg'
     },
     // ... (otros componentes)
   ],
@@ -127,7 +136,7 @@ export const componentes = {
       consumoEnergia: "320 W",
       tipoConector: "PCI Express 4.0",
       precio: 999.99,
-      categoria: 'graficas'
+      categoria: 'grafica'
     },
     {
       id: 302,
@@ -139,7 +148,7 @@ export const componentes = {
       consumoEnergia: "300 W",
       tipoConector: "PCI Express 4.0",
       precio: 799.99,
-      categoria: 'graficas'
+      categoria: 'grafica'
     },
     {
       id: 303,
@@ -151,7 +160,7 @@ export const componentes = {
       consumoEnergia: "220 W",
       tipoConector: "PCI Express 4.0",
       precio: 599.99,
-      categoria: 'graficas'
+      categoria: 'grafica'
     },
     // ... (otros componentes)
   ],
