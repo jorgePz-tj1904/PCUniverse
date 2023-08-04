@@ -2,7 +2,8 @@ import { GET_COMPONENTS, GET_BY_NAME, POST_COMPONENTS, PAGINATE, DETAIL } from '
 
 const initailState = {
     allComponents: [],
-    componentsP: []
+    componentsP: [],
+    detail:[]
 }
 
 function reducer(state = initailState, action) {
@@ -19,9 +20,16 @@ function reducer(state = initailState, action) {
             case GET_BY_NAME:
                 return{
                     ...state,
-                    allComponents:payload,
-                    componentsP: [...payload]
+                    allComponents:action.payload,
+                    componentsP: [...action.payload]
                 }
+
+                case DETAIL:
+                    return {
+                      ...state,
+                      detail: action.payload
+                    };
+            
     
         default: return state;
     }

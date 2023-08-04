@@ -1,0 +1,32 @@
+.prueba {
+    background-color: red;
+}
+
+.navbarSearch {
+    flex: 1; /* Ocupa todo el espacio disponible */
+    max-width: 400px; /* Establece un ancho máximo */
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+/* Estilos para el campo de búsqueda */
+.navbarSearch input[type="text"] {
+    all: unset;
+    flex: 1;
+    padding: 8px;
+}
+.navbarButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff; /* Color de fondo transparente del botón de carrito */
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px; /* Espaciado interior del botón */
+  color: #aa00ff; /* Color del texto del botón */
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
