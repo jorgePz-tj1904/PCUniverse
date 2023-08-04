@@ -24,7 +24,7 @@ const Header=()=>{
       {/* Barra de navegación */}
       <nav className={style.mainNav}>
         <ul>
-          <li><NavLink>PRODUCTOS</NavLink></li>
+        <li><NavLink to='/componentes'>PRODUCTOS</NavLink></li>
           <li><NavLink to='/form'>ARMA TU PC</NavLink></li>
           <li><NavLink>AYUDA</NavLink></li>
           <li><NavLink>CONTACTANOS</NavLink></li>

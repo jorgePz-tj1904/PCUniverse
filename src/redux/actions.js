@@ -1,19 +1,20 @@
 import axios from 'axios'
 import { GET_COMPONENTS, GET_BY_NAME, POST_COMPONENTS, PAGINATE, DETAIL } from './actions-types'
 
-const URL = "http://localhost:3001"     
 
-    export const getComponents=()=> {
+    export function getComponents () {
         return async function(dispatch) {
             try {
                 const response = await axios.get(`http://localhost:3001/componentes`);
-                const allData = response.data;
-                 dispatch({
+                const data = response.data
+                console.log(data)
+                return dispatch({
                     type: GET_COMPONENTS,
-                    payload: allData,
+                    payload: data,
                 });
             } catch (error) {
-                console.error('error al obtener la data', error);
+                console.error("Error en acceder a get components")
+                console.log(error)
             }
         };
     };
@@ -22,7 +23,7 @@ const URL = "http://localhost:3001"
 
     export function getByName (name) {
         return async function(dispatch) {
-                const response = await axios.get(`${URL}/componentes/?name=${name}`);
+                const response = await axios.get(`http://localhost:3001/componentes?name=${name}`);
                 return dispatch({
                     type: GET_BY_NAME,
                     payload: response.data,
