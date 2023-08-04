@@ -29,7 +29,7 @@ const Header=()=>{
           <li><NavLink>AYUDA</NavLink></li>
           <li><NavLink>CONTACTANOS</NavLink></li>
           <li><NavLink>OFERTAS</NavLink></li>
-          <li><NavLink>¿QUIENES SOMOS?</NavLink></li>
+          <li><NavLink to='/nosotros'>¿QUIENES SOMOS?</NavLink></li>
         </ul>
       </nav>
     </div>
