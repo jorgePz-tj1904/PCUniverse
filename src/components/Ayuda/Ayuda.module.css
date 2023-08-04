@@ -1,0 +1,114 @@
+
+.ayuda-container {
+    display: sticky;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh; 
+    padding: 90px; 
+    background-color: #eee;
+    box-sizing: border-box; 
+    position: relative;
+    z-index: 1;
+    border-radius: 10px;
+  }
+  
+  .ayuda-container h1 {
+    margin: 350px;
+    align-self: flex-start; 
+    margin-bottom: 30px;
+    margin-top: 30px;
+    position: absolute; 
+    font-weight: 380;
+    top: 0;
+    z-index: 2;
+  }
+  
+  .ayuda-box {
+    width: 1300px; 
+    border: 1px solid rgba(0, 0, 0, 0.021); 
+    border-bottom: 1px solid rgba(182, 182, 182, 0.14); 
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff; 
+    margin-left: 350px;
+  }
+  
+  .ayuda-box h3 {
+    font-weight: normal;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+  }
+
+  .ayuda-box h3 .question {
+    color: #000000;
+  }
+  
+  .ayuda-box p.question-text {
+    color: #aa00ff;
+    font-weight: 500;
+  }
+  
+  .ayuda-content {
+    margin-top: 10px; 
+    max-height: 0;
+    overflow: hidden; 
+  }
+  
+  .ayuda-box.expanded .ayuda-content {
+    max-height: 500px; 
+    margin-top: 10px;
+    transition: max-height 4s ease; /* Cambiar el valor de 0.3s a 1s para hacerlo más lento */
+}
+
+  .ayuda-box.expanded .bx-chevron-down {
+    transform: rotate(180deg);
+  }
+  
+  .ayuda-box:last-child {
+    border-bottom: 1px solid rgba(182, 182, 182, 0.638); 
+  }
+  
+  .ayuda-box.expanded {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.193); 
+    margin-bottom: 13px; 
+  }
+  
+.additional-box {
+    margin-top: 80px;
+    background-color: #fff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.193); 
+  }
+
+  .additional-box h3 {
+    color: #aa00ff;
+    font-weight: 600;
+  }
+  
+  .additional-box .ayuda-content {
+    max-height: 500px;
+    transition: max-height 0.3s ease;
+    margin-top: -30px;
+  }
+
+  .log-box {
+    margin-right: -40px;
+    border: 1px solid #ccc; 
+    padding: 10px; 
+    background-color: #aa00ff; 
+    color: #333; 
+    font-size: 16px;
+    width: 190px; 
+    border-radius: 6px;
+  }
+  
+  .log-box span {
+    font-size: 20px;
+    font-weight: 50;
+    cursor: pointer;
+    color: #ffffff; 
+    margin-right: 10px; 
+    margin-top: -90px;
+  }
+

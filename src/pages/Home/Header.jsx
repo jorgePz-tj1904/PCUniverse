@@ -26,7 +26,7 @@ const Header=()=>{
         <ul>
         <li><NavLink to='/componentes'>PRODUCTOS</NavLink></li>
           <li><NavLink to='/form'>ARMA TU PC</NavLink></li>
-          <li><NavLink>AYUDA</NavLink></li>
+          <li><NavLink to='/ayuda'>AYUDA</NavLink></li>
           <li><NavLink>CONTACTANOS</NavLink></li>
           <li><NavLink>OFERTAS</NavLink></li>
           <li><NavLink>¿QUIENES SOMOS?</NavLink></li>
