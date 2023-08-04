@@ -6,14 +6,13 @@ const initailState = {
 }
 
 function reducer(state = initailState, action) {
-    const iTEMS_PER_PAGE = 10;
 
     switch (action.type) {
         case GET_COMPONENTS:
             return {
                 ...state,
+                componentsfilters: action.payload,
                 allComponents: action.payload,
-                componentsP: [...payload].splice(0, iTEMS_PER_PAGE)
             };
 
             //-------------------------------------------------------------------
@@ -24,7 +23,7 @@ function reducer(state = initailState, action) {
                     componentsP: [...payload]
                 }
     
-        default: return {...state};
+        default: return state;
     }
 }
 
