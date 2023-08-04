@@ -7,7 +7,7 @@ import { GET_COMPONENTS, GET_BY_NAME, POST_COMPONENTS, PAGINATE, DETAIL } from '
             try {
                 const response = await axios.get(`http://localhost:3001/componentes`);
                 const data = response.data
-                console.log(data)
+                // console.log(data)
                 return dispatch({
                     type: GET_COMPONENTS,
                     payload: data,
