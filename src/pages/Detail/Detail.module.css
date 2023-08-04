@@ -229,8 +229,8 @@
     border: 2px solid var(--color);
     border-radius: 6px;
     position: relative;
-    margin-left: 620px;
-    margin-top: 200px;
+    margin-left: 700px;
+    margin-top: 150px;
   }
   
   .back::before {
@@ -340,3 +340,46 @@
     margin-left: 650px;
     margin-top: -265px;
   }
+
+  .especificaciones {
+    border-top: solid 1px rgb(179, 179, 179); /* Grosor del borde superior */
+    border-right: solid 0px rgb(255, 255, 255); /* Sin borde en el lado derecho */
+    border-bottom: solid 1px rgb(117, 117, 117); /* Sin borde en la parte inferior */
+    border-left: solid 0px rgb(255, 255, 255); /* Sin borde en el lado izquierdo */
+    font-size: 15px;
+    margin-left: 350px;
+    width: 800px;
+    margin-top: 50px;
+  }
+
+.letrasEspe {
+  background-color: rgb(255, 255, 255);
+  font-size: 25px;
+  
+}
+
+.info {
+  background-color: rgba(199, 199, 199, 0.479);
+  font-size: 20px;
+    
+}
+
+.logo {
+  position: relative;
+  overflow: hidden;
+  margin-top: -400px;
+}
+
+.logo img {
+  position: relative;
+  width: 300px;
+  height: auto;
+  filter: blur(1px);
+  opacity: 0.10;
+  margin-top: -500;
+
+}
+
+.logo2 {
+  margin-left: 900px;
+}
