@@ -1,18 +1,19 @@
 import axios from 'axios'
 import { GET_COMPONENTS, GET_BY_NAME, POST_COMPONENTS, PAGINATE, DETAIL } from './actions-types'
 
-const URL = "http://localhost:3001"
+const URL = "http://localhost:3001"     
 
-    export function getComponents () {
+    export const getComponents=()=> {
         return async function(dispatch) {
             try {
-                const response = await axios.get(`${URL}/components`);
-                return dispatch({
+                const response = await axios.get(`http://localhost:3001/componentes`);
+                const allData = response.data;
+                 dispatch({
                     type: GET_COMPONENTS,
-                    payload: response.data,
+                    payload: allData,
                 });
             } catch (error) {
-                alert(error.response.data.error)
+                console.error('error al obtener la data', error);
             }
         };
     };
