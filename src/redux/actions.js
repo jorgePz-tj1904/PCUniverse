@@ -24,7 +24,28 @@ export function getComponents() {
   };
 }
 
+
 //---------------------------Por nombre---------------------------------
+
+    export function getComponents () {
+        return async function(dispatch) {
+            try {
+                const response = await axios.get(`http://localhost:3001/componentes`);
+                const data = response.data
+                // console.log(data)
+                return dispatch({
+                    type: GET_COMPONENTS,
+                    payload: data,
+                });
+            } catch (error) {
+                console.error("Error en acceder a get components")
+                console.log(error)
+            }
+        };
+    };
+
+    //------------------------------------------------------------
+
 
 export function getByName(name) {
   return async function (dispatch) {
