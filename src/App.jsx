@@ -5,6 +5,7 @@ import Form from './pages/Form/From';
 import Header from './pages/Home/Header';
 import Ayuda from './components/Ayuda/Ayuda';
 import Productos from './pages/Productos/Productos';
+import Nosotros from './pages/Nosotros/Nosotros';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
@@ -16,7 +17,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/form' element={<Form/>} />
-        <Route path='/detail/:id' element={<Detail/>} />
+        <Route path='/componentes/:id' element={<Detail/>} />
         <Route path='/componentes' element={<Productos/>} />
         <Route path='/ayuda' element={<Ayuda/>} />
       </Routes>

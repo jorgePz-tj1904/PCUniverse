@@ -2,16 +2,17 @@ import React from 'react';
 import style from './Header.module.css'
 import logo from "../../assets/logo.png";
 import { NavLink } from 'react-router-dom';
+import SearchBar from '../../components/SearchBar/SearchBar';
+
+//headerr
+
 const Header=()=>{
     return(
     <div>
       <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
       <div className={style.navbar}>
       <img src={logo} alt="Logo" className={style.logo} />
-      <div className={style.navbarSearch}>
-        <input type="text" placeholder="Buscar..." />
-          <i class='bx bx-search-alt'></i>
-      </div>
+        <SearchBar/>
       <button className={style.navbarButton}>
         <i class='bx bxs-cart'></i>
       </button>
@@ -29,7 +30,7 @@ const Header=()=>{
           <li><NavLink to='/ayuda'>AYUDA</NavLink></li>
           <li><NavLink>CONTACTANOS</NavLink></li>
           <li><NavLink>OFERTAS</NavLink></li>
-          <li><NavLink>¿QUIENES SOMOS?</NavLink></li>
+          <li><NavLink to='/nosotros'>¿QUIENES SOMOS?</NavLink></li>
         </ul>
       </nav>
     </div>
