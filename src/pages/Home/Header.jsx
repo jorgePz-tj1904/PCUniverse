@@ -11,7 +11,9 @@ const Header=()=>{
     <div>
       <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
       <div className={style.navbar}>
+      <NavLink to={'/'}>
       <img src={logo} alt="Logo" className={style.logo} />
+      </NavLink>
         <SearchBar/>
       <button className={style.navbarButton}>
         <i class='bx bxs-cart'></i>
