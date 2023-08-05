@@ -9,7 +9,7 @@ import Nosotros from './pages/Nosotros/Nosotros';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
-
+//rutas
 function App() {
   return (
     <div>

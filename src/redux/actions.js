@@ -6,7 +6,7 @@ import {
   PAGINATE,
   DETAIL,
 } from "./actions-types";
-
+//components
 export function getComponents() {
   return async function (dispatch) {
     try {
