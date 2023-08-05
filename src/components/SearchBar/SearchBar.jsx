@@ -14,7 +14,7 @@ const SearchBar = () => {
     event.preventDefault();
     dispatch(getByName(name));
   };
-
+//searchh
   return (
     <div className={style.navbarSearch}>
       <input

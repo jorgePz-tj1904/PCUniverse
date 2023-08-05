@@ -24,7 +24,7 @@ export function getComponents() {
   };
 }
 
-//------------------------------------------------------------
+//---------------------------Por nombre---------------------------------
 
 export function getByName(name) {
   return async function (dispatch) {

@@ -11,7 +11,7 @@ function Detail() {
   const data = useSelector((state) => state.detail);
   const { id } = useParams();
 
-  useEffect(() => {
+  useEffect(() => { //useeffect
     dispatch(getDetailById(id));
   }, [dispatch, id]);
 

@@ -19,9 +19,7 @@ function App() {
         <Route path='/form' element={<Form/>} />
         <Route path='/componentes/:id' element={<Detail/>} />
         <Route path='/componentes' element={<Productos/>} />
-        <Route path='/nosotros' element={<Nosotros/>} />
         <Route path='/ayuda' element={<Ayuda/>} />
-
       </Routes>
     </div>
   );

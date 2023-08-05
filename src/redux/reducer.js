@@ -16,7 +16,7 @@ function reducer(state = initailState, action) {
                 allComponents: action.payload,
             };
 
-            //-------------------------------------------------------------------
+            //----------------------------Por Nombre---------------------------------------
             case GET_BY_NAME:
                 return{
                     ...state,

@@ -4,6 +4,8 @@ import logo from "../../assets/logo.png";
 import { NavLink } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar/SearchBar';
 
+//headerr
+
 const Header=()=>{
     return(
     <div>
