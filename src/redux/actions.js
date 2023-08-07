@@ -12,7 +12,6 @@ export function getComponents() {
     try {
       const response = await axios.get(`http://localhost:3001/componentes`);
       const data = response.data;
-      console.log(data);
       return dispatch({
         type: GET_COMPONENTS,
         payload: data,
