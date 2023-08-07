@@ -3,8 +3,3 @@
         grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual tamaño */
         gap: 20px; /* Espacio entre las tarjetas */
 }
-
-.back {
-        text-decoration-line: none;
-      }
-   

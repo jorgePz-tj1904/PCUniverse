@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import style from './Form.module.css';
-import { getComponents } from "../../redux/actions";
+import { useEffect, useState } from "react";
+import style from './Form.module.css'
+import { getComponentsFinal } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
 
 const Form = () => {
 
-  const componentes = useSelector((state)=> state.allComponents);
+  const componentes = useSelector((state)=> state.allComponentsF);
   const dispatch = useDispatch();
 
   const [componentsToShow, setComponentsToShow] = useState([]);
@@ -20,6 +19,7 @@ const Form = () => {
   const [disco, setDisco]=useState(false);
   const [fuente, setFuente]=useState(false);
   const [counter, setCount] =useState(0);
+  const [cantidad,setCantidad]=useState({'memoria ram': 3, 'disco':1});
   const [selectedCategories, setSelectedCategories] = useState({
     procesador: false,
     mother: false,
@@ -31,38 +31,40 @@ const Form = () => {
   const categorias = ['procesador', 'placa madre', 'memoria ram', 'placa grafica', 'disco', 'fuente de poder']
 
 useEffect(()=>{
-  dispatch(getComponents());
+  dispatch(getComponentsFinal());
   componentsHandler(categorias[counter]);
-},[componentes]);
+},[componentes, counter]);
 
-const postPcfinal=(pc)=>{
-  try {
-    axios.post('http://localhost:3001/componentes/handlers/postPC',{
-      precio_total: total,
-      componentes: computer,
-    })
-  } catch (error) {
-    
-  }
-}
-const categoryHandler=(category)=>{
-  if(category === 'placa madre'){
-    if(procesador){
+// const categoryHandler=(category)=>{
+//   if(category === 'placa madre'){
+//     if(procesador){
+//       const socket = computer[0].especificaciones.socket;
+//       const mothers = componentes.filter((components)=> components.especificaciones.socket === socket && components.categoria==category);
+//     return setComponentsToShow(mothers);
+//     }
+//   }
+//   const comp = componentes.filter((components)=> components.categoria==category);
+//   return setComponentsToShow(comp);
+// }
+const categoryHandler = (category) => {
+  if (category === 'placa madre') {
+    if (procesador) {
       const socket = computer[0].especificaciones.socket;
-      const mothers = componentes.filter((components)=> components.especificaciones.socket === socket && components.categoria===category);
-    return setComponentsToShow(mothers);
+      const mothers = componentes.filter((components) => components.especificaciones.socket === socket && components.categoria == category);
+      return setComponentsToShow(mothers);
+    }
+    if (category === 'placa madre') {
+      if (procesador) {
+        const socket = computer[0].especificaciones.socket;
+        const mothers = componentes.filter((components) => components.especificaciones.socket === socket && components.categoria == category);
+        return setComponentsToShow(mothers);
+      }
     }
   }
-  if(category === 'placa grafica'){
-    if(mother){
-      const pciE = computer[1].especificaciones.pci_express;
-      const graphics = componentes.filter((components)=> components.especificaciones.pci_express === pciE && components.categoria===category);
-      return setComponentsToShow(graphics);
-    }
-  }
-  const comp = componentes.filter((components)=> components.categoria===category);
+  const comp = componentes.filter((components) => components.categoria == category);
   return setComponentsToShow(comp);
-}
+};
+
 
   const colorHandler=(component)=>{
     const category = component.categoria.toLowerCase();
@@ -149,14 +151,14 @@ const categoryHandler=(category)=>{
 
               
                 {
-                  procesador?
+                  procesador === true?
                    <img width={65} src="https://i.ibb.co/nBh57qj/icons8-procesador-80.png" alt="icons8-procesador-80" border="0"/> :
                    <img width={65} src="https://img.icons8.com/dotty/80/000000/processor.png" alt="processor"/>
                 }
               <div className={style.lineas} style={{ backgroundColor: procesador ? 'rgb(170, 0, 255)' : 'rgb(17,17,17)' }}></div>
 
                 {
-                  mother?
+                  mother ==true?
                   <img width={60} src="https://i.ibb.co/K619VYR/icons8-placa-base-96.png" alt="icons8-placa-base-96" border="0"/>:
                   <img width={60} src="https://img.icons8.com/external-goofy-line-kerismaker/96/000000/external-Motherboard-computer-hardware-goofy-line-kerismaker.png" alt="external-Motherboard-computer-hardware-goofy-line-kerismaker"/>
                 }
@@ -195,9 +197,7 @@ const categoryHandler=(category)=>{
             </div>
             <hr />
             {/* estas son las cards */}
-            {
-              computer.length<6?(
-                <div className={style.cardConteiner}>
+            <div className={style.cardConteiner}>
               {componentsToShow.map(component => (
               <div className={style.card} key={component.modelo} onClick={() => {addToComputer(component); colorHandler(component)}}>
                 <img src={component.img}/>
@@ -208,8 +208,6 @@ const categoryHandler=(category)=>{
                </div>
               ))}
            </div>
-              ): (<><h1>Listo!</h1> <img src="https://i.ibb.co/P51w3NG/icons8-hecho-96.png" alt="icons8-hecho-96" border="0"/></>)
-            }
            {/* componentes seleccionados */}
       <div>
         <hr />
@@ -221,22 +219,22 @@ const categoryHandler=(category)=>{
                 <img id={style.delete} width={30} src="https://img.icons8.com/ios-glyphs/30/FA5252/filled-trash.png" alt="filled-trash" onClick={() => removeFromComputer(component)}/>
                 <img id={style.imgSelected} src={component.img}/>
                 <p id={style.modelSelected}>{component.modelo}</p>
-                {/* {component.categoria === 'memoria ram'||component.categoria ==='disco'?
+                {component.categoria === 'memoria ram'||component.categoria ==='disco'?
                 (
                   <>
-                  <button onClick={()=>setCantidad(prev => prev - 1)}>-</button>
-                  {cantidad[component.categoria]}
-                  <button onClick={()=>setCantidad(prev => prev + 1)}>+</button>
+                  <button onClick={()=>setCantidad(cantidad[component.categoria]-1)}>-</button>
+                   {cantidad[component.categoria]}
+                  <button onClick={()=>setCantidad(cantidad[component.categoria]+1)}>+</button>
                   </>
                 ):null
-                } */}
+                }
               </div>
             ))}
           </div>
             )}
             <p id={style.total}>total: {total} $</p> 
             <button className={style.buy}>ir al carrito</button>
-        </div>
+          </div>
           <footer className="footer">
       <p>Si tenés sugerencias o comentarios</p>
       <a href="/contactanos">Contactanos</a>
