@@ -3,7 +3,7 @@ import { GET_COMPONENTS, GET_BY_NAME, POST_COMPONENTS, PAGINATE, DETAIL, GET_COM
 const initailState = {
     allComponents: [],
     componentsP: [],
-    allComponentsFcomponentsF: [],
+    allComponentsF: [],
     // componentsfilters: [],
     detail:[]
 }
