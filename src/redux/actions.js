@@ -3,15 +3,17 @@ import {
   GET_COMPONENTS,
   GET_BY_NAME,
   POST_COMPONENTS,
-  PAGINATE,
   DETAIL,
+  FILTER,
 } from "./actions-types";
 
-export function getComponents() {
+export function getComponents(page) {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`http://localhost:3001/componentes`);
-      const data = response.data;
+      const response = await axios.get(
+        `http://localhost:3001/componentes/paginado?page=${page}`
+      );
+      const data = response.data.data;
       return dispatch({
         type: GET_COMPONENTS,
         payload: data,
@@ -23,19 +25,24 @@ export function getComponents() {
   };
 }
 
-
 //---------------------------Por nombre---------------------------------
-
 
 export function getByName(name) {
   return async function (dispatch) {
-    const response = await axios.get(
-      `http://localhost:3001/componentes?name=${name}`
-    );
-    return dispatch({
-      type: GET_BY_NAME,
-      payload: response.data,
-    });
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/componentes/name?name=${name}`
+      );
+      return dispatch({
+        type: GET_BY_NAME,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error(
+        "Error al traer los componentes y periféricos por nombre",
+        error
+      );
+    }
   };
 }
 
@@ -76,4 +83,19 @@ export function postComponents(data) {
   };
 }
 
-//------------------------------------------------------
+//Filtros de Datos//
+export const filterData = () => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        "`http://localhost:3001/componentes/filter`"
+      );
+      return dispatch({
+        type: FILTER,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log("Error al filtrar los componentes ", error);
+    }
+  };
+};
