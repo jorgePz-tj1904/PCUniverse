@@ -14,7 +14,6 @@ export function getComponents(page) {
         `http://localhost:3001/componentes/paginado?page=${page}`
       );
       const data = response.data.data;
-
       return dispatch({
         type: GET_COMPONENTS,
         payload: data,

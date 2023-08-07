@@ -40,6 +40,7 @@
     margin-left: 100px;
     margin-right: 100px;
     min-height: 700px;
+
 }
 .card{
     font-size: 10px;
@@ -111,6 +112,7 @@
 
 .buy:hover {
   color: white;
+  cursor: pointer;
 }
 
 .buy:before {
