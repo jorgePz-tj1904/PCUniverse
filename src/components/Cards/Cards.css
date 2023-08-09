@@ -1,5 +1,13 @@
 .cards{
-        display: grid;
-        grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual tamaño */
-        gap: 20px; /* Espacio entre las tarjetas */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual tamaño */
+    gap: 20px; /* Espacio entre las tarjetas */
+}
+
+.boton {
+    margin-left: 100px;
+}
+
+.succes {
+    margin-left: 100px; 
 }
