@@ -6,6 +6,9 @@ import {
   PAGINATE,
   DETAIL,
   GET_COMPONENTS_FINAL,
+  ADD_TO_CART,
+  REMOVE_FOR_CART,
+  EMPTY_CART,
 } from "./actions-types";
 
 import { buildFilterQueryString } from "./actionUtils";
@@ -109,3 +112,27 @@ export function postComponents(data) {
 }
 
 //------------------------------------------------------
+
+// actions.js
+
+export const addToCart = (cardId) => {
+  return {
+    type: ADD_TO_CART,
+    payload: cardId,
+  };
+};
+
+//-----------------------------------------------------------
+
+export const removeFromCart = (cardId) => {
+  return {
+    type: REMOVE_FOR_CART,
+    payload: cardId,
+  };
+};
+
+ //--------------------------------------------------------
+
+ export const emptyCart = () => ({
+  type: EMPTY_CART,
+});

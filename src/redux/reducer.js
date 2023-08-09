@@ -1,11 +1,12 @@
-import { GET_COMPONENTS, GET_BY_NAME, POST_COMPONENTS, PAGINATE, DETAIL, GET_COMPONENTS_FINAL } from './actions-types'
+import { GET_COMPONENTS, GET_BY_NAME, POST_COMPONENTS, PAGINATE, DETAIL, GET_COMPONENTS_FINAL, ADD_TO_CART, REMOVE_FOR_CART, EMPTY_CART, } from './actions-types'
 
 const initailState = {
     allComponents: [],
     componentsP: [],
     allComponentsF: [],
     // componentsfilters: [],
-    detail:[]
+    detail:[],
+    cartItems: []
 }
 
 function reducer(state = initailState, action) {
@@ -42,8 +43,28 @@ function reducer(state = initailState, action) {
                       ...state,
                       detail: action.payload
                     };
-            
-    
+
+                    case ADD_TO_CART:
+                        const cardId = action.payload;
+                        const cardToAdd = state.allComponents.find((card) => card.id === cardId);
+                        return {
+                          ...state,
+                          cartItems: [...state.cartItems, cardToAdd],
+                        };
+
+                        case REMOVE_FOR_CART:
+                            const updatedCartItems = state.cartItems.filter((item) => item.id !== action.payload);
+                    return {
+                        ...state,
+                        cartItems: updatedCartItems,
+                    };
+
+                        case EMPTY_CART:
+                    return {
+                        ...state,
+                        cartItems: [],
+                    };
+                        
         default: return state;
     }
 }
