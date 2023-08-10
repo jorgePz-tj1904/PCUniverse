@@ -33,8 +33,10 @@ export function getComponentsFinal() {
 export function getComponents(page) {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`http://localhost:3001/componentes/paginado?page=${page}`);
-      const data = response.data.data; // Extrae los datos del objeto de respuesta
+      const response = await axios.get(
+        `http://localhost:3001/productos?page=${page}`
+      );
+      const data = response.data; // Extrae los datos del objeto de respuesta
 
       return dispatch({
         type: GET_COMPONENTS,
@@ -46,6 +48,7 @@ export function getComponents(page) {
     }
   };
 }
+
 
 // export function getByCategory(category) {
 //   return async function (dispatch) {
@@ -65,7 +68,7 @@ export function getComponents(page) {
 export function getByName(name) {
   return async function (dispatch) {
     const response = await axios.get(
-      `http://localhost:3001/componentes/name?name=${name}`
+      `http://localhost:3001/name?name=${name}`
     );
     return dispatch({
       type: GET_BY_NAME,
@@ -78,7 +81,7 @@ export function getDetailById(id) {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/componentes/${id}`
+        `http://localhost:3001/producto/${id}`
       );
       dispatch({
         type: DETAIL,

@@ -228,8 +228,8 @@
     border: 2px solid var(--color);
     border-radius: 6px;
     position: relative;
-    margin-left: 700px;
-    margin-top: 150px;
+    margin-left: 650px;
+    margin-top: 50px;
   }
   
   .back::before {
@@ -381,4 +381,13 @@
 
 .logo2 {
   margin-left: 900px;
+}
+
+.atras {
+  font-size: 50px;
+  text-decoration: none;
+  display: flex;
+  justify-content: end;
+  margin-right: 50px;
+  margin-top: 20px;
 }
