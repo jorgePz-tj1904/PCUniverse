@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getDetailById } from "../../redux/actions";
-import logo from "../../assets/logo.png";
 import style from "./Detail.module.css";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -19,6 +18,9 @@ function Detail() {
 
   return (
     <div className={style.contenedor}>
+           <NavLink className={style.atras} to='/componentes'>
+        <i className='bx bx-left-arrow-alt'></i>
+      </NavLink>
       {data && Object.keys(data).length > 0 ? (
         <div>
           <img
@@ -39,7 +41,6 @@ function Detail() {
             <i className="bx bx-check"> Stock Disponible</i>
             <i className="bx bx-shield-quarter"> Con garantias</i>
           </div>
-          <button className={style.buy}>Añadir al carrito</button>
           <p className={style.descripcion}>ESPECIFICACIONES: </p>
 
           <div className={style.especificaciones}>
@@ -50,12 +51,9 @@ function Detail() {
                 </h2>
               ))}
           </div>
-          <div className={style.logo}>
-            <img src={logo}  />
-            <img className={style.logo2} src={logo}/>
-          </div>
-          <NavLink className={style.back} to="/">
-            Home
+         
+          <NavLink className={style.back} to="/componentes">
+            Back
           </NavLink>
 
           <footer className="footer">

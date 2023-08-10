@@ -48,7 +48,7 @@ const Productos = () => {
   return (
     <div>
       <Cards components={components} />
-      <div>
+      <div className={style.botones}>
         <button onClick={handlePrevPage} disabled={currentPage === 1}>Prev</button>
         <button onClick={handleNextPage}>Next</button>
       </div>
