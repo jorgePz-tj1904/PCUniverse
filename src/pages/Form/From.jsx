@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import style from './Form.module.css';
 import { getAllComponents, postComponents, getAllPc} from "../../redux/actions";
@@ -21,6 +22,7 @@ const Form = () => {
   const [grafica, setGrafica]=useState(false);
   const [disco, setDisco]=useState(false);
   const [fuente, setFuente]=useState(false);
+
   const [perifericos, setPerifericos]=useState(false);
   const [counter, setCounter] =useState(-1);
   const [done, setDone]=useState(false)
@@ -68,7 +70,8 @@ const categoryHandler=(category)=>{
   }
   const comp = componentes.filter((components)=> components.categoria===category);
   return setComponentsToShow(comp);
-}
+};
+
 
 {/* --------------------manejar los colores de la barra de progreso----------------------------- */}
 
@@ -187,14 +190,14 @@ const categoryHandler=(category)=>{
 
             <div className={style.timeline}>
                 {
-                  procesador?
+                  procesador === true?
                    <img width={65} src="https://i.ibb.co/nBh57qj/icons8-procesador-80.png" alt="icons8-procesador-80" border="0"/> :
                    <img width={65} src="https://img.icons8.com/dotty/80/000000/processor.png" alt="processor"/>
                 }
               <div className={style.lineas} style={{ backgroundColor: procesador ? 'rgb(170, 0, 255)' : 'rgb(17,17,17)' }}></div>
 
                 {
-                  mother?
+                  mother ==true?
                   <img width={60} src="https://i.ibb.co/K619VYR/icons8-placa-base-96.png" alt="icons8-placa-base-96" border="0"/>:
                   <img width={60} src="https://img.icons8.com/external-goofy-line-kerismaker/96/000000/external-Motherboard-computer-hardware-goofy-line-kerismaker.png" alt="external-Motherboard-computer-hardware-goofy-line-kerismaker"/>
                 }
@@ -251,6 +254,7 @@ const categoryHandler=(category)=>{
 
             </div>
             <hr />
+
             {/* --------------------estas son las cards----------------------------- */}
             {counter<0&&(<> <p>Elija en orden los componentes con los que quiere que cuente su pc ideal.</p><br /><button className={style.botones} onClick={()=>setCounter(0)}>Empezar!</button></>)}
             {

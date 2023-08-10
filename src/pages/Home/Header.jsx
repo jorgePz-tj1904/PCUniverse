@@ -15,9 +15,11 @@ const Header=()=>{
       <img src={logo} alt="Logo" className={style.logo} />
       </NavLink>
         <SearchBar/>
-      <button className={style.navbarButton}>
-        <i class='bx bxs-cart'></i>
-      </button>
+        <NavLink className={style.nav} to='/carrito'>
+          <button className={style.navbarButton}>
+            <i class='bx bxs-cart'></i>
+          </button>
+        </NavLink>
       <button className={style.navbarButton}>
       <i class='bx bxs-log-in'></i>
       </button>
