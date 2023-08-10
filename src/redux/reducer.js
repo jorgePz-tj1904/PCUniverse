@@ -1,5 +1,7 @@
 import {
   GET_COMPONENTS,
+  ALL_PC,
+  ALL_COMPONENTS,
   GET_BY_NAME,
   POST_COMPONENTS,
   PAGINATE,
@@ -9,6 +11,7 @@ import {
 
 const initialState = {
   allComponents: [],
+  pcFinals: [],
   componentsP: [],
   detail: [],
   filteredComponents:[]
@@ -20,8 +23,18 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         componentsfilters: action.payload,
-        allComponents: action.payload,
+        allComponentsP: action.payload,
       };
+    case ALL_PC:
+      return{
+        state,
+        pcFinals: action.payload
+      }
+    case ALL_COMPONENTS:
+      return{
+        ...state,
+        allComponents: action.payload
+      }
 
     case GET_BY_NAME:
       return {

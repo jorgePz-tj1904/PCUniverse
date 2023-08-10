@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getComponents } from '../../redux/actions';
 import Cards from '../../components/Cards/Cards';
-import style from './Productos.module.css' 
+import style from './Productos.module.css'
 
 const Productos = () => {
   const dispatch = useDispatch();
-  const components = useSelector((state) => state.allComponents);
+  const components = useSelector((state) => state.allComponentsP);
 
   const [currentPage, setCurrentPage] = useState(1);
 

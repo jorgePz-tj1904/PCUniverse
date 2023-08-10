@@ -1,10 +1,12 @@
 import axios from "axios";
 import {
   GET_COMPONENTS,
+  ALL_PC,
   GET_BY_NAME,
   POST_COMPONENTS,
   DETAIL,
   FILTER,
+  ALL_COMPONENTS,
 } from "./actions-types";
 
 export function getComponents(page) {
@@ -23,7 +25,40 @@ export function getComponents(page) {
       console.log(error);
     }
   };
+};
+
+export function getAllComponents() {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/`
+      );
+      const data = response.data;
+      return dispatch({
+        type: ALL_COMPONENTS,
+        payload: data,
+      });
+    } catch (error) {
+      console.error("Error en acceder a get components");
+      console.log(error);
+    }
+  };
 }
+
+export function getAllPc(){
+  return async function(dispatch){
+    try {
+      const response = await axios.get('http://localhost:3001/pc');
+      return dispatch({
+        type: ALL_PC,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
 
 //---------------------------Por nombre---------------------------------
 
@@ -70,8 +105,8 @@ export function getDetailById(id) {
 export function postComponents(data) {
   return async function (dispatch) {
     try {
-      const response = await axios.post(`${URL}/components`, data);
-      console.log(response);
+      const response = await axios.post(`http://localhost:3001/postpc`, data);
+      console.log(data);
       alert("Componente Creado Correctamente");
       return dispatch({
         type: POST_COMPONENTS,

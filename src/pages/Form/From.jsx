@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from "react";
 import style from './Form.module.css';
-import { getComponents } from "../../redux/actions";
+import { getAllComponents, postComponents, getAllPc} from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
 
 const Form = () => {
-
   const componentes = useSelector((state)=> state.allComponents);
   const dispatch = useDispatch();
 
   const [componentsToShow, setComponentsToShow] = useState([]);
   const [total, setTotal] = useState(0);
-  const [computer, setComputer] = useState([]);
+  const [computer, setComputer] = useState({
+    precio_total: 0,
+    componentes: [],
+  });
   const [procesador, setProcesador]=useState(false)
   const [mother, setMother] = useState(false);
+  const [gabinete, setGabinete]=useState(false);
   const [ram, setRam]=useState(false);
   const [grafica, setGrafica]=useState(false);
   const [disco, setDisco]=useState(false);
   const [fuente, setFuente]=useState(false);
-  const [counter, setCount] =useState(0);
+  const [perifericos, setPerifericos]=useState(false);
+  const [counter, setCounter] =useState(-1);
+  const [done, setDone]=useState(false)
+  const [ventilador, setVentilador]=useState(false);
   const [selectedCategories, setSelectedCategories] = useState({
     procesador: false,
     mother: false,
@@ -28,49 +33,55 @@ const Form = () => {
     disco: false,
     fuente: false,
   });
-  const categorias = ['procesador', 'placa madre', 'memoria ram', 'placa grafica', 'disco', 'fuente de poder']
+  const categorias = ['procesador', 'placa madre','gabinete', 'refrigeracion', 'memoria ram', 'placa grafica', 'disco', 'fuente de poder','periferico']
 
 useEffect(()=>{
-  dispatch(getComponents());
+  dispatch(getAllComponents());
   componentsHandler(categorias[counter]);
-},[componentes]);
-
-const postPcfinal=(pc)=>{
-  try {
-    axios.post('http://localhost:3001/componentes/handlers/postPC',{
-      precio_total: total,
-      componentes: computer,
-    })
-  } catch (error) {
-    
+  if(computer.componentes.length === 0){
+    setDone(false);
   }
-}
+},[counter]);
+
+{/* --------------------manejar las compatibilidades y los componentes que se muestran----------------------------- */}
+
 const categoryHandler=(category)=>{
   if(category === 'placa madre'){
     if(procesador){
-      const socket = computer[0].especificaciones.socket;
+      const socket = computer.componentes[0].especificaciones.socket;
       const mothers = componentes.filter((components)=> components.especificaciones.socket === socket && components.categoria===category);
     return setComponentsToShow(mothers);
     }
   }
   if(category === 'placa grafica'){
     if(mother){
-      const pciE = computer[1].especificaciones.pci_express;
+      const pciE = computer.componentes[1].especificaciones.pci_express;
       const graphics = componentes.filter((components)=> components.especificaciones.pci_express === pciE && components.categoria===category);
       return setComponentsToShow(graphics);
     }
+  }
+  if(category === 'periferico'){
+
+    const perifericos = componentes.filter(c => c.categoria === 'periferico');
+    const monitor = componentes.filter(c => c.categoria === 'monitor');
+    return setComponentsToShow([...perifericos, ...monitor]);
   }
   const comp = componentes.filter((components)=> components.categoria===category);
   return setComponentsToShow(comp);
 }
 
-  const colorHandler=(component)=>{
-    const category = component.categoria.toLowerCase();
+{/* --------------------manejar los colores de la barra de progreso----------------------------- */}
+
+  const colorHandler=(category)=>{
     switch(category){
       case 'procesador':
         return setProcesador(true);
       case 'placa madre':
         return setMother(true);
+      case 'gabinete':
+        return setGabinete(true);
+      case 'refrigeracion':
+        return setVentilador(true);
       case 'memoria ram':
         return setRam(true);
       case 'placa grafica':
@@ -79,75 +90,102 @@ const categoryHandler=(category)=>{
         return setDisco(true);
       case 'fuente de poder':
         return setFuente(true);
+      case 'periferico':
+        return setPerifericos(true)
       default:
         break;
     }
   }
+
+  {/* --------------------manejar los componentes que se muestran----------------------------- */}
+
   const componentsHandler = (category) => {
     switch(category){
       case 'procesador':
       case 'placa madre':
+      case 'gabinete':
+      case 'refrigeracion':
       case 'memoria ram':
       case 'placa grafica':
       case 'disco':
       case 'fuente de poder':
+      case 'periferico' || 'monitor':
         return categoryHandler(category);
       default:
         break;
     }
   };
 
+  {/* --------------------add function----------------------------- */}
+
   const addToComputer = (component) => {
-    const isComponentAlreadyAdded = computer.some((comp) => comp.id === component.id);
-  if (isComponentAlreadyAdded) {
-    return alert("Ya contiene ese componente");
-  }
-  console.log(component.socket);
+    const isComponentAlreadyAdded = computer.componentes.some((comp) => comp.id === component.id);
+    if (isComponentAlreadyAdded) {
+      return alert("Ya contiene ese componente");
+    }
+  
     const category = component.categoria.toLowerCase();
     if (selectedCategories[category]) {
-      console.log(selectedCategories);
       return alert(`Ya seleccionaste un componente de la categoría "${category}".`);
     }
-
+  
     if (category === 'placa madre') {
-      const compatibleProcessor = computer.find((cpu) => cpu.especificaciones.socket === component.especificaciones.socket);
-      console.log(compatibleProcessor);
+      const compatibleProcessor = computer.componentes.find((cpu) => cpu.especificaciones.socket === component.especificaciones.socket);
       if (!compatibleProcessor) {
         return alert(`El procesador compatible no se encuentra para esta motherboard.`);
       }
     }
-    setCount(counter +1)
-    setComputer([...computer, component]);
-    setTotal(total + component.precio);
+
+    if(category === 'periferico'){
+      return setComputer([...computer, component]);
+    }
+
+    const updatedTotal = total + component.precio;
+    const updatedComputer = {
+      ...computer,
+      componentes: [...computer.componentes, component],
+      precio_total: updatedTotal
+    };
+
+    setCounter(counter+1)
+    setTotal(updatedTotal);
+    setComputer(updatedComputer);
     setSelectedCategories((prevCategories) => ({ ...prevCategories, [category]: true }));
-    counter<5?componentsHandler(counter):setFuente(true)
+    counter < 8 ? componentsHandler(counter) : setPerifericos(true);
   };
 
+{/* --------------------remove function----------------------------- */}
+
   const removeFromComputer = (component) => {
-    const removedComponent = computer.find((com) => com.modelo === component.modelo);
+    console.log(computer);
+    const removedComponent = computer.componentes.find((com) => com.modelo === component.modelo);
     if (!removedComponent) return;
 
-    const updatedComputer = computer.filter((com) => com.modelo !== component.modelo);
+    const updatedComputer = {...computer};
+
+    updatedComputer.componentes = updatedComputer.componentes.filter((com) => com.modelo !== component.modelo);
     setComputer(updatedComputer);
     setTotal(total - removedComponent.precio);
 
     console.log(selectedCategories);
     const category = removedComponent.categoria.toLowerCase();
     setSelectedCategories((prevCategories) => ({ ...prevCategories, [category]: false }));
-    setCount(counter-1)
+    setCounter(counter-1);
   };
     
     return(
         <div className={style.conteiner}>
+          {/* --------------------bienvenida----------------------------- */}
             <p id={style.titulo}>Armá tu pc</p>
-            <img onClick={()=>counter>0? setCount(counter-1):null} id={style.izquierda} className={style.navBtn} src="https://i.ibb.co/d0SYGLw/icons8-doble-izquierda-100.png" alt="icons8-doble-izquierda-100" border="0"/>
+            <img onClick={()=>counter>0? setCounter(counter-1):null} id={style.izquierda} className={style.navBtn} src="https://i.ibb.co/d0SYGLw/icons8-doble-izquierda-100.png" alt="icons8-doble-izquierda-100" border="0"/>
             
             <img width="50" height="50" src="https://img.icons8.com/ios/50/000000/down-squared--v2.png" alt="down-squared--v2"/>
-            <img onClick={counter<5? ()=>setCount(counter+1):null} id={style.derecha} className={style.navBtn} src="https://i.ibb.co/MZ6n2XG/icons8-doble-izquierda-100-1.png" alt="icons8-doble-izquierda-100-1" border="0"/>
+            <img onClick={counter<8? ()=>setCounter(counter+1):null} id={style.derecha} className={style.navBtn} src="https://i.ibb.co/MZ6n2XG/icons8-doble-izquierda-100-1.png" alt="icons8-doble-izquierda-100-1" border="0"/>
             <h2>{categorias[counter]}</h2>
-            <div className={style.timeline}>
 
-              
+            {/* ----------------barra de progreso------------------------*/}
+
+            <div className={style.timeline}>
                 {
                   procesador?
                    <img width={65} src="https://i.ibb.co/nBh57qj/icons8-procesador-80.png" alt="icons8-procesador-80" border="0"/> :
@@ -162,6 +200,18 @@ const categoryHandler=(category)=>{
                 }
               <div className={style.lineas} style={{ backgroundColor: mother ? 'rgb(170, 0, 255)' : 'rgb(17,17,17)' }}></div>
 
+               {
+                 gabinete?
+                 <img src="https://i.ibb.co/54Vq3Dk/icons8-pc-66.png" alt="icons8-pc-66" border="0"/>:
+                 <img width="66" height="66" src="https://img.icons8.com/external-smashingstocks-detailed-outline-smashing-stocks/66/external-PC-overclocking-smashingstocks-detailed-outline-smashing-stocks.png" alt="external-PC-overclocking-smashingstocks-detailed-outline-smashing-stocks"/>
+               }
+              <div className={style.lineas} style={{ backgroundColor: gabinete ? 'rgb(170, 0, 255)' : 'rgb(17,17,17)' }}></div>
+                {
+                  ventilador?
+                  <img width={60} src="https://i.ibb.co/bvP0XxB/icons8-ventilador-64.png" alt="icons8-ventilador-64" border="0"/>:
+                  <img width={60} src="https://img.icons8.com/external-icongeek26-outline-icongeek26/64/000000/external-fan-equipments-icongeek26-outline-icongeek26.png" alt="external-fan-equipments-icongeek26-outline-icongeek26"/>
+                }
+               <div className={style.lineas} style={{ backgroundColor: ventilador ? 'rgb(170, 0, 255)' : 'rgb(17,17,17)' }}></div>
                 {
                   ram?
                   <img src="https://i.ibb.co/qxcnBTZ/icons8-ram-64.png" alt="icons8-ram-64" border="0"/>:
@@ -192,50 +242,52 @@ const categoryHandler=(category)=>{
                   <img width="62" height="62" src="https://img.icons8.com/external-rabit-jes-detailed-outline-rabit-jes/62/external-power-supply-computer-hardware-rabit-jes-detailed-outline-rabit-jes.png" alt="external-power-supply-computer-hardware-rabit-jes-detailed-outline-rabit-jes"/>
                 }
 
+              <div className={style.lineas} style={{ backgroundColor: fuente ? 'rgb(170, 0, 255)' : 'rgb(17,17,17)' }}></div>
+                {
+                  perifericos?
+                  <img src="https://i.ibb.co/dkGnwMf/My-project-1.jpg" alt="My-project-1"  width={58} border="0"/>:
+                  <img src="https://i.ibb.co/60nX4nJ/My-project-1-1.jpg" alt="My-project-1-1" width={58}  border="0"/>
+                }
+
             </div>
             <hr />
-            {/* estas son las cards */}
+            {/* --------------------estas son las cards----------------------------- */}
+            {counter<0&&(<> <p>Elija en orden los componentes con los que quiere que cuente su pc ideal.</p><br /><button className={style.botones} onClick={()=>setCounter(0)}>Empezar!</button></>)}
             {
-              computer.length<6?(
+              !done?(
                 <div className={style.cardConteiner}>
-              {componentsToShow.map(component => (
-              <div className={style.card} key={component.modelo} onClick={() => {addToComputer(component); colorHandler(component)}}>
-                <img src={component.img}/>
-              <h3>{component.modelo}</h3>
-              <h4>stock</h4>
-              <h3>{component.precio} $</h3>
-              <NavLink id={style.detalle} to={`/detail/${component.id}`}>Detalles</NavLink>
-               </div>
-              ))}
+                  <div className={style.cardsWrapper}>
+                  {componentsToShow.map(component => (
+                  <div className={style.card} key={component.modelo} onClick={() => {addToComputer(component); colorHandler(component.categoria)}}>
+                    <img src={component.img}/>
+                  <h3>{component.modelo}</h3>
+                  <h4>stock</h4>
+                  <h3>{component.precio} $</h3>
+                  <NavLink id={style.detalle} to={`/detail/${component.id}`}>Detalles</NavLink>
+                  </div>))}
+  
+                  </div>
+                {counter>=0&&<button onClick={()=>setDone(true)} className={style.botones}>Listo?</button>}
            </div>
               ): (<><h1>Listo!</h1> <img src="https://i.ibb.co/P51w3NG/icons8-hecho-96.png" alt="icons8-hecho-96" border="0"/></>)
             }
-           {/* componentes seleccionados */}
+           {/* ------------------componentes seleccionados--------------------- */}
       <div>
         <hr />
-        {computer.length > 0 && (
+        {done && (
           <div className={style.componentesSelected}>
             <h2>Componentes seleccionados:</h2>
-            {computer.map((component) => (
+            {computer.componentes.map((component) => (
               <div className={style.conteinerProduct} key={component.id}>
                 <img id={style.delete} width={30} src="https://img.icons8.com/ios-glyphs/30/FA5252/filled-trash.png" alt="filled-trash" onClick={() => removeFromComputer(component)}/>
                 <img id={style.imgSelected} src={component.img}/>
                 <p id={style.modelSelected}>{component.modelo}</p>
-                {/* {component.categoria === 'memoria ram'||component.categoria ==='disco'?
-                (
-                  <>
-                  <button onClick={()=>setCantidad(prev => prev - 1)}>-</button>
-                  {cantidad[component.categoria]}
-                  <button onClick={()=>setCantidad(prev => prev + 1)}>+</button>
-                  </>
-                ):null
-                } */}
               </div>
             ))}
           </div>
             )}
             <p id={style.total}>total: {total} $</p> 
-            <button className={style.buy}>ir al carrito</button>
+            {done&&(<NavLink to='/pcs' className={style.botones} onClick={()=>dispatch(postComponents(computer))}>Builds</NavLink>)}
         </div>
           <footer className="footer">
       <p>Si tenés sugerencias o comentarios</p>
