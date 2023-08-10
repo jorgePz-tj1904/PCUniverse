@@ -1,4 +1,4 @@
-import { GET_COMPONENTS, GET_BY_NAME, POST_COMPONENTS, PAGINATE, DETAIL, GET_COMPONENTS_FINAL, ADD_TO_CART, REMOVE_FOR_CART, EMPTY_CART, } from './actions-types'
+import { GET_COMPONENTS, GET_BY_NAME, POST_COMPONENTS, PAGINATE, DETAIL, GET_COMPONENTS_FINAL, ADD_TO_CART, REMOVE_FOR_CART, EMPTY_CART,  ALL_PC, ALL_COMPONENTS, } from './actions-types'
 
 const initailState = {
     allComponents: [],
@@ -18,6 +18,17 @@ function reducer(state = initailState, action) {
                 componentsfilters: action.payload,
                 allComponents: action.payload,
             };
+         case ALL_PC:
+            return{
+                ...state,
+                pcFinals: action.payload
+             };
+         case ALL_COMPONENTS:
+            return{
+               ...state,
+                allComponents: action.payload
+             };
+        
             case GET_COMPONENTS_FINAL:
                 return {
                     ...state,

@@ -35,11 +35,11 @@
 .cardConteiner{
     display: flex;
     flex-wrap: wrap;
-    justify-content:start;
     align-items: center;
-    margin-left: 100px;
-    margin-right: 100px;
-    min-height: 700px;
+    margin-left: 50px;
+    margin-right: 50px;
+    min-height: 200px;
+    padding-bottom: 0;
 }
 .card{
     font-size: 10px;
@@ -51,6 +51,7 @@
     height: 270px;
     width: 150px;
     margin-right: 20px;
+    margin-top: 10px;
 }
 .card img{
   width: 100px;
@@ -61,6 +62,7 @@
 .card h4{
   color: green;
 }
+
 .productos{
   border-bottom: 2px solid #aa00ff;
   margin-top: 10px;
@@ -77,7 +79,8 @@
   all: unset;
 }
 
-.buy {
+.botones {
+  text-decoration: none;
   --color: #aa00ff;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
@@ -99,7 +102,7 @@
   transform: translate(-50%, -50%);
 }
 
-.buy::before {
+.botones::before {
   position: absolute;
   content: "";
   background: var(--color);
@@ -109,17 +112,17 @@
   border-radius: 20%;
 }
 
-.buy:hover {
+.botones:hover {
   color: white;
 }
 
-.buy:before {
+.botones:before {
   top: 100%;
   left: 100%;
   transition: .3s all;
 }
 
-.buy:hover::before {
+.botones:hover::before {
   top: -30px;
   left: -30px;
 }
@@ -165,8 +168,16 @@
 #total{
   margin-bottom: 100px;
 }
+.cardsWrapper {
+  display: flex; 
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row; 
+  width: 100%;
+}
+#done{
 
-
+}
 .footer {
   position: relative;
   bottom: -100px;
