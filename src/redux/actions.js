@@ -4,9 +4,8 @@ import {
   ALL_PC,
   GET_BY_NAME,
   POST_COMPONENTS,
-  PAGINATE,
   DETAIL,
-  FILTER,
+  // FILTER,
   ALL_COMPONENTS,
   GET_COMPONENTS_FINAL,
   ADD_TO_CART,
@@ -14,7 +13,7 @@ import {
   EMPTY_CART,
 } from "./actions-types";
 
-import { buildFilterQueryString } from "./actionUtils";
+// import { buildFilterQueryString } from "./actionUtils";
 
 export function getComponentsFinal() {
   return async function (dispatch) {
