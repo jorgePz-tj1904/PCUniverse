@@ -1,0 +1,180 @@
+/* Estilos CSS */
+.formTitle,
+.label,
+.formGroup,
+.submitContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  padding: .5rem 1.5rem;
+  background-color: #aa00ff;
+  color: #fff;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: background-color .3s;
+}
+
+.input {
+  line-height: 48px;
+  border: 2px solid transparent;
+  border-bottom-color: #777;
+  padding: 0.2rem 0;
+  outline: none;
+  background-color: transparent;
+  color: #0d0c22;
+  transition: 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.input:focus,
+.input:hover,
+.input:valid {    
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  border-color: #aa00ff;
+}
+
+.input::placeholder {
+  color: #777;
+  text-align: center;
+}
+
+.input:focus::placeholder {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.inlineForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.inlineForm .input {
+  margin-right: 10px;
+}
+
+.input1 {
+  align-items: center;
+  line-height: 48px;
+  border: 2px solid transparent;
+  border-bottom-color: #777;
+  padding: 0.2rem 0;
+  outline: none;
+  background-color: transparent;
+  color: #0d0c22;
+  width: 20%; /* O ajusta el valor según necesites */
+  transition: 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  margin: 10px;
+}
+
+.input1:focus,
+.input1:hover,
+.input1:valid {    
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  border-color: #aa00ff;
+}
+
+.input1::placeholder {
+  color: #777;
+  text-align: center;
+}
+
+.input1:focus::placeholder {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+  .datePicker {
+    align-items: center;
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+  .datePicker:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Estilos para el calendario emergente */
+  .react-datePicker {
+    font-family: inherit;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .react-datePicker::placeholderText {
+    text-align: center;
+  }
+  
+  .react-datePicker__header {
+    background-color: #f0f0f0;
+    border-bottom: none;
+    padding-top: 8px;
+    border-radius: 4px 4px 0 0;
+  }
+  
+  .react-datePicker__current-month {
+    color: #333;
+    font-size: 16px;
+  }
+  
+  .react-datePicker__day-name {
+    color: #333;
+  }
+  
+  .react-datePicker__day--selected {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .react-datePicker__day--keyboard-selected {
+    background-color: rgba(0, 123, 255, 0.5);
+  }
+  
+  .react-datePicker__day--in-range {
+    background-color: rgba(0, 123, 255, 0.2);
+  }
+  
+  .react-datepPicker__day--today {
+    font-weight: bold;
+  }
+  
+  .whyRegister h3 {
+    font-weight: 500;
+    text-align: center;
+    color: #aa00ff;
+  }
+  .whyRegister h4{
+    text-align: center;
+    font-weight: 300;
+  }
+
+  .error {
+    color: red;
+    font-size: 10px;
+    margin-left: 690px;
+    margin-top: -430px;
+  }
+  
+  .errorBelowInput1 {
+    margin-top: 4px; /* Ajusta este valor según necesites para controlar el espaciado */
+    text-align: center; /* Alinea el mensaje al centro */
+    margin-right: 100px;
+  }  

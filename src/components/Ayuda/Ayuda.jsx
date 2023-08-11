@@ -1,5 +1,5 @@
 // Ayuda.js
-
+import { NavLink } from 'react-router-dom';
 import React, { useState } from 'react';
 import styles from './ayuda.module.css'; // Importa los estilos CSS
 
@@ -59,15 +59,14 @@ const Ayuda = () => {
         </p>
         {/* Contenido adicional */}
         {expandedBox === null && (
-          <div className={styles['ayuda-content']}>
-            <p>
-              Para realizar una consulta es necesario que inicies sesión en tu cuenta.
-            </p>
-                <div className={styles['log-box']}>
-                    <span onClick={() => handleBoxClick(null)}><i class='bx bxs-user' ></i></span>
-                        <span>Iniciar Sesión</span>
-                    </div>
-            </div>
+          <div className={styles['log-box']}>
+          <NavLink to="/login" className={styles.navLink} style={{ textDecoration: 'none' }}>
+            <span onClick={() => handleBoxClick(null)}>
+              <i className='bx bxs-user'></i>
+            </span>
+            <span className={styles.linkText}>Iniciar Sesión</span>
+          </NavLink>
+        </div>
         )}
       </div>
     </div>
