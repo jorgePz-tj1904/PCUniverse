@@ -1,0 +1,27 @@
+.conteiner{
+    text-align: center;
+}
+.BuildsConteiner{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    min-height: 700px;
+    text-align: center;
+    padding-bottom: 0;
+}
+.cardBuild{
+    text-align: left;
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid rgb(157, 157, 157);
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 100px;
+    width: 350px;
+    margin-right: 20px;
+    border-bottom: 3px solid #aa00ff;
+}

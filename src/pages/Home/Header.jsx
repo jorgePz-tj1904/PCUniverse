@@ -11,7 +11,6 @@ const Header = () => {
   const handleLoginButtonClick = () => {
     setShowLoginForm(!showLoginForm);
   };
-  
 
   return (
     <div>
@@ -32,33 +31,33 @@ const Header = () => {
         </button>
         <NavLink className={style.nav} to='/carrito'>
           <button className={style.navbarButton}>
-            <i class='bx bxs-cart'></i>
+            <i className='bx bxs-cart'></i>
           </button>
         </NavLink>
       </div>
 
-      {/* Barra de navegación */}
       <nav className={style.mainNav}>
         <ul>
           <li><NavLink to='/componentes'>PRODUCTOS</NavLink></li>
           <li><NavLink to='/form'>ARMA TU PC</NavLink></li>
           <li><NavLink to='/ayuda'>AYUDA</NavLink></li>
-          <li><NavLink>CONTACTANOS</NavLink></li>
-          <li><NavLink>OFERTAS</NavLink></li>
+          <li><NavLink to='/contactanos'>CONTACTANOS</NavLink></li>
+          <li><NavLink to='/ofertas'>OFERTAS</NavLink></li>
           <li><NavLink to='/nosotros'>¿QUIENES SOMOS?</NavLink></li>
+          <li><NavLink to='/pcs'>BUILDS</NavLink></li>
         </ul>
       </nav>
 
-      {/* Mostrar el formulario de inicio de sesión si showLoginForm es verdadero */}
       {showLoginForm && (
-  <div className={style.loginOverlay}>
-    <div className={style.loginContainer}>
-      <LoginForm setShowLoginForm={setShowLoginForm} />
-    </div>
-  </div>
-)}
+        <div className={style.loginOverlay}>
+          <div className={style.loginContainer}>
+            <LoginForm setShowLoginForm={setShowLoginForm} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default Header;
+

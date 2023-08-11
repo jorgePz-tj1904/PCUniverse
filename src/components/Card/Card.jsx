@@ -1,21 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-const Card = ({ id, especificaciones, img, modelo, precio, categoria, tipo })   => {
+
+
+const Card = ({ id, img, modelo, precio }) => {
+
   return (
-    <div className="card">
-
-    <Link to={`/componentes/${id}`}>
-      <img src={img} alt={modelo} />
-      <h3>{modelo}</h3>
-    </Link>
-      <p></p>
-
-      <p>Precio: ${precio}</p>
-      <p>{especificaciones}</p>
-      <p>{categoria}</p>
-     { tipo && tipo.length?(<p>{tipo}</p>): ""}
-
+    <div className='card'>
+      <div>
+        <NavLink to={`/componentes/${id}`}>
+          <h3 >{modelo}</h3>
+          <img  src={img} alt={modelo} />
+          <p >Precio: ${precio}</p>
+        </NavLink>
+      </div>
     </div>
   );
 };
