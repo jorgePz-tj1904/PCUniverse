@@ -32,7 +32,7 @@ const Header=()=>{
         <li><NavLink to='/componentes'>PRODUCTOS</NavLink></li>
           <li><NavLink to='/form'>ARMÁ TU PC</NavLink></li>
           <li><NavLink to='/ayuda'>AYUDA</NavLink></li>
-          <li><NavLink>CONTACTANOS</NavLink></li>
+          <li><NavLink to='/contactanos'>CONTACTANOS</NavLink></li>    
           <li><NavLink>OFERTAS</NavLink></li>
           <li><NavLink to='/nosotros'>¿QUIENES SOMOS?</NavLink></li>
           <li><NavLink to='/pcs'>BUILDS</NavLink></li>
