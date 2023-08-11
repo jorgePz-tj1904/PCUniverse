@@ -92,12 +92,18 @@ const Carrito = () => {
           </div>
         )}
       </div>
-      <p className={style.precio}>Total: ${totalPrice.toFixed(2)}</p>
-      <button onClick={handleBuy}>Comprar</button>
-      {preferenceId && <Wallet initialization={{ preferenceId }} />}
-      <NavLink className={style.boton} to='/componentes'>
-        Seguir Comprando
-      </NavLink>
+      <div className={style.contenedorPrecio}>
+        <p className={style.precio}>Total: ${totalPrice.toFixed(2)}</p>
+      </div>
+      <div className={style.contenedorBuy}>
+          <button className={style.buy} onClick={handleBuy}>Comprar</button>
+          {preferenceId && <Wallet initialization={{ preferenceId }} />}
+      </div>
+      <div className={style.botonContenedor}>
+        <NavLink className={style.boton} to='/componentes'>
+          Seguir Comprando
+        </NavLink>
+      </div>
     </div>
   );
 };
