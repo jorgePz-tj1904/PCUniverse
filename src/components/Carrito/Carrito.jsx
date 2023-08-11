@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 
 const Carrito = () => {
-  
+
   const cartItems = useSelector((state) => state.cartItems);
   console.log(cartItems);
   const dispatch = useDispatch();
@@ -19,32 +19,37 @@ const Carrito = () => {
 
   const createPreference = async () => {
     try {
-      const items = cartItems.map((item) => ({
+      const componentes = cartItems.map((item) => ({
         title: item.modelo,
-        unit_price: item.precio * item.cantidad,
-        quantity: item.cantidad
+        unit_price:
+          Number(item.precio) /
+          cartItems.filter((cartItem) => cartItem.modelo === item.modelo)
+            .length,
+        quantity: cartItems.filter(
+          (cartItem) => cartItem.modelo === item.modelo
+        ).length,
       }));
-      
-
-      const response = await axios.post('http://localhost:3001/payment', {
-        items
-      });
-      
+      let objComp = {};
+      objComp.componentes = componentes;
+      console.log(objComp);
+      const response = await axios.post(
+        "http://localhost:3001/payment",
+        objComp
+      );
 
       const { id } = response.data;
+      console.log(id);
       return id;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
-
   const handleBuy  = async () => {
     const id = await createPreference();
     if (id) {
       setPreferenceId(id);
     }
   };
-
 
   const handleRemoveFromCart = (id) => {
     dispatch(removeFromCart(id));
