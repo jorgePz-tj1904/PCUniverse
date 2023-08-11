@@ -98,12 +98,16 @@ export function getAllPc(){
 
 //---------------------------Por nombre---------------------------------
 
-
-export function getByName(name) {
+export function getByName(name, page) {
   return async function (dispatch) {
-    const response = await axios.get(
-      `http://localhost:3001/name?name=${name}`
-    );
+    let response;
+
+    if (name === "") {
+      response = await axios.get(`http://localhost:3001/productos?page=${page}`);
+    } else {
+      response = await axios.get(`http://localhost:3001/name?name=${name}`);
+    }
+
     return dispatch({
       type: GET_BY_NAME,
       payload: response.data,
