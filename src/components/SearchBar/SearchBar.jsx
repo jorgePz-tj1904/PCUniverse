@@ -10,7 +10,7 @@ const SearchBar = () => {
   const handleInputChange = (event) => {
     const newName = event.target.value;
     setName(newName);
-    dispatch(getByName(newName, currentPage)); // Pasar currentPage como segundo argumento
+    dispatch(getByName(newName)); // Enviar la acción con el nuevo nombre
   };
 
   return (
