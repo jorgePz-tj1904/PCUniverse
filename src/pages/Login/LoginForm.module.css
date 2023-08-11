@@ -1,0 +1,117 @@
+/* LoginForm.module.css */
+
+.loginOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.618);
+  z-index: 999;
+}
+
+.loginContainer {
+  background-color: #fff;
+  width: 500px;
+  height: 400px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.299);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginHeading {
+  font-weight: 500;
+}
+
+.loginText {
+  font-size: 14px;
+  font-weight: 400;
+  color: #aa00ff;
+}
+
+.form {
+  text-align: center;
+}
+
+.formGroup {
+  text-align: center;
+  height: 30px;
+  margin: 30px 20px; /* Margen vertical de 40px y margen horizontal de 20px */
+}
+
+.label {
+  font-weight: bold;
+}
+
+.input {
+  height: 40px;
+  width: 100%; /* Ajusta el ancho al 100% para ocupar todo el espacio disponible */
+  border-radius: 8px;
+  border: 2px solid hsl(236, 92%, 66%);
+  outline: none;
+  transition: 200ms ease-in;
+  padding-left: 1rem;
+}
+.input:focus {
+  border-bottom: 4px solid hsl(236, 92%, 66%);
+  padding-top: 2px;
+}
+
+.input::placeholder {
+  color: hsl(236, 92%, 66%);
+  opacity: 0.5;
+}
+
+.loginButton {
+  margin-top: 50px;
+  width: 40%;
+  padding: 10px;
+  background-color: #aa00ff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.loginButton:hover {
+  background-color: #000000;
+}
+
+.loginTexting {
+  margin: 15px;
+  font-weight: 300;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #aaa;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s;
+  
+}
+
+.registerLink {
+  color: #000; /* Color azul similar al de un enlace */
+  text-decoration: none; /* Quitar el subrayado predeterminado */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el enlace */
+  transition: color 0.3s;
+  font-weight: 300;
+}
+
+.registerLink:hover {
+  color: #aa00ff; /* Cambiar el color al pasar el mouse sobre el enlace */
+}
