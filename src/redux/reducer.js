@@ -13,6 +13,7 @@ import {
   const initialState = {
     allComponents: [],
     componentsP: [],
+    pcFinals:[],
     allComponentsF: [],
     detail: [],
     cartItems: [],

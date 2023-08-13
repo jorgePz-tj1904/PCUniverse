@@ -23,7 +23,6 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getComponents } from '../../redux/actions';
 import Cards from '../../components/Cards/Cards';
-import  Pagination  from "../../components/Paginado/Paginado";
 
 const Productos = () => {
   const dispatch = useDispatch();

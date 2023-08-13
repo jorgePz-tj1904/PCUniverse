@@ -139,8 +139,13 @@ const categoryHandler=(category)=>{
       }
     }
 
-    if(category === 'periferico'){
-      return setComputer([...computer, component]);
+    if(category === 'periferico'|| category === 'monitor'){
+      const updatedComputer = {
+        ...computer,
+        componentes: [...computer.componentes, component],
+        precio_total: updatedTotal
+      };
+      return setComputer(updatedComputer);
     }
 
     const updatedTotal = total + component.precio;
@@ -154,7 +159,7 @@ const categoryHandler=(category)=>{
     setTotal(updatedTotal);
     setComputer(updatedComputer);
     setSelectedCategories((prevCategories) => ({ ...prevCategories, [category]: true }));
-    counter < 8 ? componentsHandler(counter) : setPerifericos(true);
+    counter < 7 ? componentsHandler(counter) : setPerifericos(true);
   };
 
 {/* --------------------remove function----------------------------- */}
@@ -267,7 +272,7 @@ const categoryHandler=(category)=>{
                   <h3>{component.modelo}</h3>
                   <h4>stock</h4>
                   <h3>{component.precio} $</h3>
-                  <NavLink id={style.detalle} to={`/detail/${component.id}`}>Detalles</NavLink>
+                  <NavLink id={style.detalle} to={`/componentes/${component.id}`}>Detalles</NavLink>
                   </div>))}
   
                   </div>
@@ -277,7 +282,7 @@ const categoryHandler=(category)=>{
             }
            {/* ------------------componentes seleccionados--------------------- */}
       <div>
-        <hr />
+        <hr/>
         {done && (
           <div className={style.componentesSelected}>
             <h2>Componentes seleccionados:</h2>

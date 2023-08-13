@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   GET_COMPONENTS,
   ALL_PC,
+  DELETE_PC,
   GET_BY_NAME,
   POST_COMPONENTS,
   DETAIL,
@@ -55,7 +56,7 @@ export function getAllComponents() {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/`
+        `http://localhost:3001/allproducts`
       );
       const data = response.data;
       return dispatch({
@@ -68,11 +69,23 @@ export function getAllComponents() {
     }
   };
 }
+export function deletePc(id){
+  return async function(dispatch){
+    console.log(id);
+    try {
+      await axios.delete(`http://localhost:3001/deletepc/${id}`);
+    
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
 
 export function getAllPc(){
   return async function(dispatch){
     try {
       const response = await axios.get('http://localhost:3001/pc');
+      console.log(response.data);
       return dispatch({
         type: ALL_PC,
         payload: response.data
@@ -141,7 +154,6 @@ export function postComponents(data) {
     try {
       const response = await axios.post(`http://localhost:3001/postpc`, data);
       console.log(data);
-      alert("Componente Creado Correctamente");
       return dispatch({
         type: POST_COMPONENTS,
         payload: "",

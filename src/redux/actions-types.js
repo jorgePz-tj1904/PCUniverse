@@ -1,5 +1,6 @@
 export const GET_COMPONENTS = "GET_COMPONENTS"
 export const ALL_PC = "ALL_PC"
+export const DELETE_PC = "DELETE_PC"
 export const ALL_COMPONENTS = "ALL_COMPONENTS"
 export const GET_BY_NAME = "GET_BY_NAME"
 export const POST_COMPONENTS = "POST_COMPONENTS"
