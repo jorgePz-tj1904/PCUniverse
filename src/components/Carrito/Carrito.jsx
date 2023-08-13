@@ -1,14 +1,55 @@
 import React from 'react';
+import axios from 'axios';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../Card/Card';
 import { removeFromCart, emptyCart } from '../../redux/actions';
 import style from './Carrito.module.css';
 import { NavLink } from 'react-router-dom';
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 
 const Carrito = () => {
+
   const cartItems = useSelector((state) => state.cartItems);
+  console.log(cartItems);
   const dispatch = useDispatch();
 
+  const [preferenceId, setPreferenceId] = useState(null)
+  initMercadoPago('TEST-0fbd33da-2e66-4c43-934e-20958a309dee');
+
+  const createPreference = async () => {
+    try {
+      const componentes = cartItems.map((item) => ({
+        title: item.modelo,
+        unit_price:
+          Number(item.precio) /
+          cartItems.filter((cartItem) => cartItem.modelo === item.modelo)
+            .length,
+        quantity: cartItems.filter(
+          (cartItem) => cartItem.modelo === item.modelo
+        ).length,
+      }));
+      let objComp = {};
+      objComp.componentes = componentes;
+      console.log(objComp);
+      const response = await axios.post(
+        "http://localhost:3001/payment",
+        objComp
+      );
+
+      const { id } = response.data;
+      console.log(id);
+      return id;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleBuy  = async () => {
+    const id = await createPreference();
+    if (id) {
+      setPreferenceId(id);
+    }
+  };
 
   const handleRemoveFromCart = (id) => {
     dispatch(removeFromCart(id));
@@ -51,10 +92,18 @@ const Carrito = () => {
           </div>
         )}
       </div>
-      <p className={style.precio}>Total: ${totalPrice.toFixed(2)}</p>
-      <NavLink className={style.boton} to='/componentes'>
-        Seguir Comprando
-      </NavLink>
+      <div className={style.contenedorPrecio}>
+        <p className={style.precio}>Total: ${totalPrice.toFixed(2)}</p>
+      </div>
+      <div className={style.contenedorBuy}>
+          <button className={style.buy} onClick={handleBuy}>Comprar</button>
+          {preferenceId && <Wallet initialization={{ preferenceId }} />}
+      </div>
+      <div className={style.botonContenedor}>
+        <NavLink className={style.boton} to='/componentes'>
+          Seguir Comprando
+        </NavLink>
+      </div>
     </div>
   );
 };

@@ -26,34 +26,24 @@ import Cards from '../../components/Cards/Cards';
 
 const Productos = () => {
   const dispatch = useDispatch();
-  const components = useSelector((state) => state.allComponentsP);
-
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     dispatch(getComponents(currentPage));
-  }, [dispatch, currentPage]);
+  }, [dispatch,currentPage]);
 
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
-  };
+  const handlePageChange = (newPage)=>{
+    setCurrentPage(newPage)
+  }
 
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+ 
 
   return (
     <div>
-      <Cards components={components} />
-      <div>
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>Prev</button>
-        <button onClick={handleNextPage}>Next</button>
-      </div>
+      <Cards  />
+      <Pagination currentPage={currentPage} onPageChange={handlePageChange} />
     </div>
   );
-};
-
+  }
 export default Productos;
 

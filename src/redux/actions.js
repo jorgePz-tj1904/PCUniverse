@@ -5,8 +5,8 @@ import {
   DELETE_PC,
   GET_BY_NAME,
   POST_COMPONENTS,
-  PAGINATE,
   DETAIL,
+  // FILTER,
   ALL_COMPONENTS,
   GET_COMPONENTS_FINAL,
   ADD_TO_CART,
@@ -14,7 +14,7 @@ import {
   EMPTY_CART,
 } from "./actions-types";
 
-import { buildFilterQueryString } from "./actionUtils";
+// import { buildFilterQueryString } from "./actionUtils";
 
 export function getComponentsFinal() {
   return async function (dispatch) {
@@ -36,8 +36,10 @@ export function getComponentsFinal() {
 export function getComponents(page) {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`http://localhost:3001/componentes/paginado?page=${page}`);
-      const data = response.data.data; // Extrae los datos del objeto de respuesta
+      const response = await axios.get(
+        `http://localhost:3001/productos?page=${page}`
+      );
+      const data = response.data; // Extrae los datos del objeto de respuesta
 
       return dispatch({
         type: GET_COMPONENTS,
@@ -94,6 +96,7 @@ export function getAllPc(){
   }
 }
 
+
 // export function getByCategory(category) {
 //   return async function (dispatch) {
 //     const response = await axios.get(
@@ -108,12 +111,16 @@ export function getAllPc(){
 
 //---------------------------Por nombre---------------------------------
 
-
-export function getByName(name) {
+export function getByName(name, page) {
   return async function (dispatch) {
-    const response = await axios.get(
-      `http://localhost:3001/componentes/name?name=${name}`
-    );
+    let response;
+
+    if (name === "") {
+      response = await axios.get(`http://localhost:3001/productos?page=${page}`);
+    } else {
+      response = await axios.get(`http://localhost:3001/name?name=${name}`);
+    }
+
     return dispatch({
       type: GET_BY_NAME,
       payload: response.data,
@@ -125,7 +132,7 @@ export function getDetailById(id) {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/componentes/${id}`
+        `http://localhost:3001/producto/${id}`
       );
       dispatch({
         type: DETAIL,
