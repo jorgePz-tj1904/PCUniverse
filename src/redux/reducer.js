@@ -1,5 +1,6 @@
 import {
     GET_COMPONENTS,
+    ALL_COMPONENTS,
     GET_BY_NAME,
     POST_COMPONENTS,
     PAGINATE,
@@ -12,6 +13,7 @@ import {
   
   const initialState = {
     allComponents: [],
+    componets: [],
     componentsP: [],
     pcFinals:[],
     allComponentsF: [],
@@ -21,6 +23,31 @@ import {
   
   function reducer(state = initialState, action) {
     switch (action.type) {
+      //lautaro
+      case ALL_COMPONENTS:
+        return {
+          ...state,
+          componets: action.payload,
+          allComponents: action.payload,
+        };
+        case 'FILTER_BY_CATEGORY':
+          const componets = state.componets
+          const statusFiltered  = action.payload === 'todos' ? componets : componets.filter(e=> e.categoria === action.payload)
+          return {
+            ...state,
+            allComponents: statusFiltered
+          }
+          case "APPLY_PRICE_ORDER":
+            const priceOrder =
+              action.payload === "asc"
+                ? state.allComponents.slice().sort((a, b) => parseFloat(a.precio) - parseFloat(b.precio))
+                : state.allComponents.slice().sort((a, b) => parseFloat(b.precio) - parseFloat(a.precio));
+      
+            return {
+              ...state,
+              allComponents: priceOrder,
+            };
+            //lautaro
       case GET_COMPONENTS:
         return {
           ...state,

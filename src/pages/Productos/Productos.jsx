@@ -19,31 +19,16 @@
 
 // export default Productos
 ////////////////////////////////////////////////////////////////////
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getComponents } from '../../redux/actions';
+import React from 'react';
 import Cards from '../../components/Cards/Cards';
 
 const Productos = () => {
-  const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(1);
-
-  useEffect(() => {
-    dispatch(getComponents(currentPage));
-  }, [dispatch,currentPage]);
-
-  const handlePageChange = (newPage)=>{
-    setCurrentPage(newPage)
-  }
-
- 
-
   return (
     <div>
-      <Cards  />
-      <Pagination currentPage={currentPage} onPageChange={handlePageChange} />
+      <Cards />
     </div>
   );
-  }
+};
+
 export default Productos;
 

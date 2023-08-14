@@ -15,6 +15,35 @@ import {
 } from "./actions-types";
 
 // import { buildFilterQueryString } from "./actionUtils";
+////////////////////////lautaro
+export function getAllComponents() {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/allproducts`
+      );
+      const data = response.data;
+      return dispatch({
+        type: ALL_COMPONENTS,
+        payload: data,
+      });
+    } catch (error) {
+      console.error("Error en acceder a get components");
+      console.log(error);
+    }
+  };
+}
+export function filterProductsByCategory(payload){
+  return{
+    type: 'FILTER_BY_CATEGORY',
+    payload
+  }
+}
+export const applyPriceOrder = (order) => ({
+  type: "APPLY_PRICE_ORDER",
+  payload: order,
+});
+//////////////////////lautaro
 
 export function getComponentsFinal() {
   return async function (dispatch) {
@@ -52,23 +81,7 @@ export function getComponents(page) {
   };
 };
 
-export function getAllComponents() {
-  return async function (dispatch) {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/allproducts`
-      );
-      const data = response.data;
-      return dispatch({
-        type: ALL_COMPONENTS,
-        payload: data,
-      });
-    } catch (error) {
-      console.error("Error en acceder a get components");
-      console.log(error);
-    }
-  };
-}
+
 export function deletePc(id){
   return async function(dispatch){
     console.log(id);

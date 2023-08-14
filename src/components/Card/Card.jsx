@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import './Card.css';
 
 
 const Card = ({ id, img, modelo, precio }) => {
 
   return (
-    <div className='card'>
+    <div className='cardd'>
       <div>
         <NavLink to={`/componentes/${id}`}>
           <h3 >{modelo}</h3>
