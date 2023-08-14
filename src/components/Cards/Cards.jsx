@@ -96,8 +96,6 @@ function handleFilterStatus(e) {
         ))}
       </div>
     </div>
-
-
       <div className='pagination'>
         <button className='button' onClick={() => changePage(currentPage - 1)} disabled={currentPage === 1}>
           <span className='text'>Anterior</span>
