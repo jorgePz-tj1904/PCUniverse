@@ -1,60 +1,55 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import styles from './RegistrationForm.module.css';
+import React, { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import styles from "./RegistrationForm.module.css";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../redux/actions";
 
 function RegistroFormulario() {
-  const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [city, setCity] = useState('');
-  const [postalCode, setPostalCode] = useState('');
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [city, setCity] = useState("");
+  const [postalCode, setPostalCode] = useState("");
   const [birthdate, setBirthdate] = useState(null);
-  const [passwordError, setPasswordError] = useState('');
-  const [firstNameError, setFirstNameError] = useState(''); // Agregado
-  const [lastNameError, setLastNameError] = useState(''); // Agregado
-  const [cityError, setCityError] = useState(''); // Agregado
+  const [passwordError, setPasswordError] = useState("");
+  const [firstNameError, setFirstNameError] = useState(""); // Agregado
+  const [lastNameError, setLastNameError] = useState(""); // Agregado
+  const [cityError, setCityError] = useState(""); // Agregado
 
-  const handleSubmit = (e) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isRegistered) {
+      setTimeout(() => {
+        // Realiza la redirección después de 3 segundos
+        window.location.href = "/componentes";
+      }, 1000);
+    }
+  }, [isRegistered]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validaciones de la contraseña
-    const uppercaseRegex = /[A-Z]/;
-    const lowercaseRegex = /[a-z]/;
-    const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-
-    if (
-      !uppercaseRegex.test(password) ||
-      !lowercaseRegex.test(password) ||
-      !specialCharRegex.test(password)
-    ) {
-      setPasswordError(
-        'La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un carácter especial.'
-      );
-      return;
-    }
-
-    // Validaciones para nombre, apellido y ciudad
-    const nameRegex = /^[A-Za-z]+$/;
-
-    if (!nameRegex.test(firstName)) {
-      setFirstNameError('El nombre debe contener solo letras.');
-      return;
-    }
-
-    if (!nameRegex.test(lastName)) {
-      setLastNameError('El apellido debe contener solo letras.');
-      return;
-    }
-
-    if (!nameRegex.test(city)) {
-      setCityError('La ciudad debe contener solo letras.');
-      return;
-    }
-
     // Lógica para registrar al usuario
-    console.log('Registrarse con:', firstName, lastName, city, postalCode, birthdate);
+    const userData = {
+      name: firstName,
+      last_name: lastName,
+      email,
+      password, // Agrega el nick_name si es necesario
+      city,
+      postal_code: postalCode,
+      date_of_birth: birthdate,
+    };
+    console.log(userData);
+    try {
+      await dispatch(registerUser(userData));
+      setIsRegistered(true);
+    } catch (error) {
+      console.error("Error en el registro:", error);
+    }
   };
 
   return (
@@ -64,9 +59,18 @@ function RegistroFormulario() {
         {/* Agregar sección de motivos para registrarse */}
         <div className={styles.whyRegister}>
           <h3>¿Por qué debería registrarme?</h3>
-            <h4>Para efectuar una compra en PC Universe es necesario el registro, así como datos de pago para una mayor seguridad.</h4>
-            <h4>Recomendamos registrarse también para poder hacer una review escrita de los productos vendidos.</h4>
-            <h4>Registrándote en PC Universe, vas a tener descuentos en productos destacados.</h4>
+          <h4>
+            Para efectuar una compra en PC Universe es necesario el registro,
+            así como datos de pago para una mayor seguridad.
+          </h4>
+          <h4>
+            Recomendamos registrarse también para poder hacer una review escrita
+            de los productos vendidos.
+          </h4>
+          <h4>
+            Registrándote en PC Universe, vas a tener descuentos en productos
+            destacados.
+          </h4>
         </div>
         <div className={styles.formGroup}>
           <label className={styles.label}></label>
@@ -133,15 +137,24 @@ function RegistroFormulario() {
             onChange={(date) => setBirthdate(date)}
             dateFormat="dd/MM/yyyy"
             className={styles.datePicker}
-            placeholderText="   Fecha de nacimiento"
+            placeholderText="  Fecha de nacimiento"
             required
           />
         </div>
         <div className={styles.submitContainer}>
-          <button type="submit" className={`${styles.button} ${styles.submitButton} input`}>
+          <button
+            onClick={handleSubmit}
+            type="submit"
+            className={`${styles.button} ${styles.submitButton} input`}
+          >
             Registrarse
           </button>
         </div>
+        {isRegistered && (
+          <p className={styles.registrationSuccess}>
+            Usuario creado exitosamente.
+          </p>
+        )}
       </div>
     </form>
   );
