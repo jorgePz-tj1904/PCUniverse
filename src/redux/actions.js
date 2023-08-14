@@ -12,38 +12,13 @@ import {
   ADD_TO_CART,
   REMOVE_FOR_CART,
   EMPTY_CART,
+  REGISTER_SUCCESS,
+  LOGIN_SUCCESS
 } from "./actions-types";
 
 // import { buildFilterQueryString } from "./actionUtils";
-////////////////////////lautaro
-export function getAllComponents() {
-  return async function (dispatch) {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/allproducts`
-      );
-      const data = response.data;
-      return dispatch({
-        type: ALL_COMPONENTS,
-        payload: data,
-      });
-    } catch (error) {
-      console.error("Error en acceder a get components");
-      console.log(error);
-    }
-  };
-}
-export function filterProductsByCategory(payload){
-  return{
-    type: 'FILTER_BY_CATEGORY',
-    payload
-  }
-}
-export const applyPriceOrder = (order) => ({
-  type: "APPLY_PRICE_ORDER",
-  payload: order,
-});
-//////////////////////lautaro
+
+
 
 export function getComponentsFinal() {
   return async function (dispatch) {
@@ -81,21 +56,67 @@ export function getComponents(page) {
   };
 };
 
+////////////////////////lautaro
+export function getAllComponents() {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/allproducts`
+      );
+      const data = response.data;
+      return dispatch({
+        type: ALL_COMPONENTS,
+        payload: data,
+      });
+    } catch (error) {
+      console.error("Error en acceder a get components");
+      console.log(error);
+    }
+  };
+}
+export function filterProductsByCategory(payload){
+  return{
+    type: 'FILTER_BY_CATEGORY',
+    payload
+  }
+}
+export const applyPriceOrder = (order) => ({
+  type: "APPLY_PRICE_ORDER",
+  payload: order,
+});
+//////////////////////lautaro
 
-export function deletePc(id){
-  return async function(dispatch){
+// export function getAllComponents() {
+//   return async function (dispatch) {
+//     try {
+//       const response = await axios.get(
+//         `http://localhost:3001/allproducts`
+//       );
+//       const data = response.data;
+//       return dispatch({
+//         type: GET_COMPONENTS,
+//         payload: data,
+//       });
+//     } catch (error) {
+//       console.error("Error en acceder a get components");
+//       console.log(error);
+//     }
+//   };
+// }
+export function deletePc(id) {
+  return async function (dispatch) {
     console.log(id);
     try {
       await axios.delete(`http://localhost:3001/deletepc/${id}`);
-    
+
     } catch (error) {
       console.log(error);
     }
   }
 }
 
-export function getAllPc(){
-  return async function(dispatch){
+export function getAllPc() {
+  return async function (dispatch) {
     try {
       const response = await axios.get('http://localhost:3001/pc');
       console.log(response.data);
@@ -197,8 +218,37 @@ export const removeFromCart = (cardId) => {
   };
 };
 
- //--------------------------------------------------------
+//--------------------------------------------------------
 
- export const emptyCart = () => ({
+export const emptyCart = () => ({
   type: EMPTY_CART,
 });
+
+export const registerUser = (userData) => {
+  return async (dispatch) => {
+    console.log(userData);
+    try {
+      const response = await axios.post(`http://localhost:3001/signup`, userData);
+      console.log(userData);
+
+      dispatch({ type: REGISTER_SUCCESS, payload: response.data });
+
+    } catch (error) {
+      console.error("Error en registerUser:", error);
+      throw error;
+    }
+  }
+};
+
+export const loginUser = (userData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`http://localhost:3001/login`, userData);
+      dispatch({ type: LOGIN_SUCCESS, payload: response.data })
+      return response.data
+    } catch (error) {
+      console.error("Error en loginUser:", error);
+      throw error;
+    }
+  }
+};

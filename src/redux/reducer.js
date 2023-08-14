@@ -1,37 +1,39 @@
 import {
-    GET_COMPONENTS,
-    ALL_COMPONENTS,
-    GET_BY_NAME,
-    POST_COMPONENTS,
-    PAGINATE,
-    DETAIL,
-    GET_COMPONENTS_FINAL,
-    ADD_TO_CART,
-    REMOVE_FOR_CART,
-    EMPTY_CART,
-  } from './actions-types';
-  
-  const initialState = {
-    allComponents: [],
-    componets: [],
-    componentsP: [],
-    pcFinals:[],
-    allComponentsF: [],
-    detail: [],
-    cartItems: [],
-  };
-  
-  function reducer(state = initialState, action) {
-    switch (action.type) {
-      //lautaro
-      case ALL_COMPONENTS:
+  GET_COMPONENTS,
+  ALL_COMPONENTS,
+  GET_BY_NAME,
+  POST_COMPONENTS,
+  PAGINATE,
+  DETAIL,
+  GET_COMPONENTS_FINAL,
+  ADD_TO_CART,
+  REMOVE_FOR_CART,
+  EMPTY_CART,
+  REGISTER_SUCCESS,
+  LOGIN_SUCCESS
+} from './actions-types';
+
+const initialState = {
+  allComponents: [],
+  components:[],
+  componentsP: [],
+  pcFinals: [],
+  allComponentsF: [],
+  detail: [],
+  cartItems: [],
+  users: []
+};
+
+function reducer(state = initialState, action) {
+  switch (action.type) {
+    case ALL_COMPONENTS:
         return {
           ...state,
-          componets: action.payload,
+          components: action.payload,
           allComponents: action.payload,
         };
         case 'FILTER_BY_CATEGORY':
-          const componets = state.componets
+          const componets = state.components
           const statusFiltered  = action.payload === 'todos' ? componets : componets.filter(e=> e.categoria === action.payload)
           return {
             ...state,
@@ -47,64 +49,73 @@ import {
               ...state,
               allComponents: priceOrder,
             };
-            //lautaro
-      case GET_COMPONENTS:
-        return {
-          ...state,
-          componentsP: action.payload,
-          allComponents: action.payload,
-        };
-      case GET_COMPONENTS_FINAL:
-        return {
-          ...state,
-          componentsP: action.payload,
-          allComponentsF: action.payload,
-        };
-      case GET_BY_NAME:
-        return {
-          ...state,
-          componentsP: action.payload,
-          allComponents: action.payload,
-        };
-      case POST_COMPONENTS:
-        return {
-          ...state,
-          // Update the state after adding a new component
-        };
-      case PAGINATE:
-        return {
-          ...state,
-          // Update the state after paginating
-        };
-      case DETAIL:
-        return {
-          ...state,
-          detail: action.payload,
-        };
-      case ADD_TO_CART:
-        const cardId = action.payload;
-        const cardToAdd = state.allComponents.find((card) => card.id === cardId);
-        return {
-          ...state,
-          cartItems: [...state.cartItems, cardToAdd],
-        };
-      case REMOVE_FOR_CART:
-        const updatedCartItems = state.cartItems.filter(
-          (item) => item.id !== action.payload
-        );
-        return {
-          ...state,
-          cartItems: updatedCartItems,
-        };
-      case EMPTY_CART:
-        return {
-          ...state,
-          cartItems: [],
-        };
-      default:
-        return state;
-    }
+    case GET_COMPONENTS:
+      return {
+        ...state,
+        componentsP: action.payload,
+        allComponents: action.payload,
+      };
+    case GET_COMPONENTS_FINAL:
+      return {
+        ...state,
+        componentsP: action.payload,
+        allComponentsF: action.payload,
+      };
+    case GET_BY_NAME:
+      return {
+        ...state,
+        componentsP: action.payload,
+        allComponents: action.payload,
+      };
+    case POST_COMPONENTS:
+      return {
+        ...state,
+        // Update the state after adding a new component
+      };
+    case PAGINATE:
+      return {
+        ...state,
+        // Update the state after paginating
+      };
+    case DETAIL:
+      return {
+        ...state,
+        detail: action.payload,
+      };
+    case ADD_TO_CART:
+      const cardId = action.payload;
+      const cardToAdd = state.allComponents.find((card) => card.id === cardId);
+      return {
+        ...state,
+        cartItems: [...state.cartItems, cardToAdd],
+      };
+    case REMOVE_FOR_CART:
+      const updatedCartItems = state.cartItems.filter(
+        (item) => item.id !== action.payload
+      );
+      return {
+        ...state,
+        cartItems: updatedCartItems,
+      };
+    case EMPTY_CART:
+      return {
+        ...state,
+        cartItems: [],
+      };
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        users: action.payload
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        users: action.payload
+      };
+
+    default:
+      return state;
   }
-  
-  export default reducer;
-  
+}
+
+export default reducer;
