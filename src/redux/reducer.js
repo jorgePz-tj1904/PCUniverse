@@ -10,7 +10,8 @@ import {
   REMOVE_FOR_CART,
   EMPTY_CART,
   REGISTER_SUCCESS,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  ALL_PC,
 } from './actions-types';
 
 const initialState = {
@@ -39,6 +40,11 @@ function reducer(state = initialState, action) {
             ...state,
             allComponents: statusFiltered
           }
+          case ALL_PC:
+        return{
+          ...state,
+          pcFinals: action.payload
+        }
           case "APPLY_PRICE_ORDER":
             const priceOrder =
               action.payload === "asc"
