@@ -150,7 +150,7 @@ export function getByName(name, page) {
     let response;
 
     if (name === "") {
-      response = await axios.get(`http://localhost:3001/productos?page=${page}`);
+      response = await axios.get(`http://localhost:3001/allproducts`); //devuelve todo los productos
     } else {
       response = await axios.get(`http://localhost:3001/name?name=${name}`);
     }
