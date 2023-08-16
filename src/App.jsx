@@ -11,6 +11,7 @@ import Carrito from "./components/Carrito/Carrito";
 import RegistrationForm from "./pages/Register/RegistrationForm";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import Admin from "./components/Admin/Admin";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/contactanos" element={<Contacto />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/registration" element={<RegistrationForm />} />
+        <Route path="/admin/*" element={<Admin/>} />
       </Routes>
     </div>
   );
