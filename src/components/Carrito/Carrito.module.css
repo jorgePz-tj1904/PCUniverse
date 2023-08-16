@@ -5,7 +5,7 @@
     width: auto;
     justify-items: center; /* Centrar horizontalmente */
     align-items: center; /* Centrar verticalmente */
-    border: 2px solid rgb(138, 2, 180);
+    border-bottom: 4px solid #aa00ff;
     margin-top: 30px;
     box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.1);
     

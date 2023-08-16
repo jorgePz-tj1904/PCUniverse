@@ -1,9 +1,11 @@
 .contact-form {
-    background-color: grey  ;
     padding: 40px;
     border-radius: 10px;
     width: 50%;
     margin: 0 auto;
+    border: 2px solid gray;
+    margin-top: 50px;
+    margin-bottom: 30px;
   }
   
   .contact-form label {
@@ -38,18 +40,19 @@
     border: none;
     border-radius: 5px;
     margin-bottom: 20px;
+    border: 2px solid gray;
   }
   
   .contact-form input:focus,
   .contact-form textarea:focus {
     outline: none;
-    box-shadow: 0 0 5px #ff6384;
+    box-shadow: 0 0 5px rgb(170, 0, 255);
     transform: scale(1.05);
     transition: transform 0.3s ease-in-out;
   }
   
   .contact-form button[type="submit"] {
-    background-color: #ff6384;
+    background-color: rgb(170, 0, 255);
     color: #fff;
     border: none;
     border-radius: 5px;

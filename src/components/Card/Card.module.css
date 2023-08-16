@@ -35,3 +35,7 @@
   .cardd .tipo {
     color: #888;
   }
+  .navlink{
+    text-decoration: none;
+    padding-left: 100%;
+  }

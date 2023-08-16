@@ -12,6 +12,8 @@ import {
   REGISTER_SUCCESS,
   LOGIN_SUCCESS,
   ALL_PC,
+  POST_COMENTARIO,
+  GET_COMENTARIOS
 } from './actions-types';
 
 const initialState = {
@@ -22,7 +24,9 @@ const initialState = {
   allComponentsF: [],
   detail: [],
   cartItems: [],
-  users: []
+  users: [],
+  review: [],
+  comments:[]
 };
 
 function reducer(state = initialState, action) {
@@ -61,6 +65,16 @@ function reducer(state = initialState, action) {
         componentsP: action.payload,
         allComponents: action.payload,
       };
+    case POST_COMENTARIO:
+      return{
+        ...state,
+        review: action.payload
+      }
+    case GET_COMENTARIOS:
+      return{
+        ...state,
+        comments: action.payload
+      }
     case GET_COMPONENTS_FINAL:
       return {
         ...state,
