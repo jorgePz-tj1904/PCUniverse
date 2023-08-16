@@ -1,393 +1,144 @@
-.imagen {
-  /* border: solid #aa00ff; */
-  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.1);
-  margin-left: 100px;
-  border: solid 1px rgb(117, 117, 117);
-  margin-top: 50px;
-  height: 400px;
-  width: 400px;
-}
-  /*  -------------------------Modelo------------------------- */
-
-.contenedorInfo h1 {
-    font-size: 25px;
-    /* border: solid 1px rgb(117, 117, 117); */
-    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
-    width: 600px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgb(0, 0, 0);
-    margin-top: 40px;
-}
-
-  /*  -------------------------Contendor de informacion------------------------- */
-
-.contenedorInfo{
-  height: 129px;
-  width: 650px;
-    margin-left: 620px;
-    margin-top: -395px;
-    border-top: solid 1px rgb(117, 117, 117); /* Grosor del borde superior */
-    border-right: solid 0px rgb(117, 117, 117); /* Sin borde en el lado derecho */
-    border-bottom: solid 1px rgb(117, 117, 117); /* Sin borde en la parte inferior */
-    border-left: solid 0px rgb(117, 117, 117); /* Sin borde en el lado izquierdo */    
-    /* box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.1); */
-    
-  }
-
-  /*  -------------------------Precio------------------------- */
-
-  .cartaPrecio {
-    height: 100px;
-    width: 650px;
-    margin-left: 620px;
-    border-top: solid 0px rgb(117, 117, 117); /* Grosor del borde superior */
-    border-right: solid 0px rgb(117, 117, 117); /* Sin borde en el lado derecho */
-    border-bottom: solid 1px rgb(117, 117, 117); /* Sin borde en la parte inferior */
-    border-left: solid 0px rgb(117, 117, 117); /* Sin borde en el lado izquierdo */
-    display: flex;
-    flex-direction: column;
-  }
-.letra{
-    /* box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.1); */
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgb(0, 0, 0);
-    /* border: solid 1px rgb(117, 117, 117); */
-    font-size: 20px;
-    margin-left: 65px;
-    margin-top: 15px;
-    color: #5d018b;
-
-}
-
-.precio {
-    font-size: 45px;
-    /* box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.1); */
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgb(0, 0, 0);
-    /* border: solid 1px rgb(117, 117, 117); */
-    margin-left: 30px;
-    margin-top: -20px;
-    color: #5d018b;
-}
-
-  /*  -------------------------Dimensiones------------------------- */
-
-  .cardDimesion {
-    margin-top: -150px;
-    width: 500px;
-    border-top: solid 1px rgb(117, 117, 117); /* Grosor del borde superior */
-    border-right: solid 0px rgb(255, 255, 255); /* Sin borde en el lado derecho */
-    border-bottom: solid 1px rgb(117, 117, 117); /* Sin borde en la parte inferior */
-    border-left: solid 0px rgb(255, 255, 255); /* Sin borde en el lado izquierdo */
-  }
-
-.dimensiones {
-    display: flex;
-    justify-content: end;
-    /* box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.1); */
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgb(0, 0, 0);
-    margin-top: -37px;
-    background-color: #ffffff;
-  
-}
-
-  /*  -------------------------Descpripcion------------------------- */
-  .tituloDescripcion{
-    margin-left: 650px;
-  }
-
-  .cardDescripcion {
- width: 500px;
- border-top: solid 1px rgb(117, 117, 117); /* Grosor del borde superior */
- border-right: solid 0px rgb(255, 255, 255); /* Sin borde en el lado derecho */
- border-bottom: solid 1px rgbrgb(117, 117, 117); /* Sin borde en la parte inferior */
- border-left: solid 0px rgb(255, 255, 255); /* Sin borde en el lado izquierdo */
- margin-left: 650px;
-  }
-
-.descripcion {
-    background-color: #aa00ff;
-    height: 50px;
-    font-size: 30px;
-    margin-top: 100px;
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgb(255, 255, 255);
-   
-}
-
-.desc {
-    font-size: 21px;
-    color: rgb(102, 102, 102);
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
-    border-top: solid 1px rgb(117, 117, 117); /* Grosor del borde superior */
-    border-right: solid 0px rgb(117, 117, 117); /* Sin borde en el lado derecho */
-    border-bottom: solid 1px rgb(117, 117, 117); /* Sin borde en la parte inferior */
-    border-left: solid 0px rgb(117, 117, 117); /* Sin borde en el lado izquierdo */
-    height: 150px;
-    
-  }
-
-  /*  -------------------------Boton añadir al carrito------------------------- */
-  
-/* .buy {
-    width: 15em;
-    height: 3em;
-    border-radius: 30em;
-    font-size: 15px;
-    font-family: inherit;
-    border: none;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    box-shadow: 6px 6px 12px #ffffff,
-                -6px -6px 12px #ffffff;
-                margin-left: 30px;
-                font-size: 20px;
-                box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.1);
-                font-family: Arial, Helvetica, sans-serif;
-              } */
-              
-
-
-   .buy {
-    --color: #aa00ff;
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 15em;
-    height: 3em;
-    line-height: 2.5em;
-    overflow: hidden;
-    margin: 20px;
-    font-size: 17px;
-    z-index: 1;
-    color: var(--color);
-    border: 2px solid var(--color);
-    border-radius: 6px;
-    position: relative;
-    margin-left: 800px;
-    margin-top: 20px;
-  }
-  
-  .buy::before {
-    position: absolute;
-    content: "";
-    background: var(--color);
-    width: 500px;
-    height: 400px;
-    z-index: -1;
-    border-radius: 20%;
-  }
-  
-  .buy:hover {
-    color: white;
-  }
-  
-  .buy:before {
-    top: 100%;
-    left: 100%;
-    transition: .3s all;
-  }
-  
-  .buy:hover::before {
-    top: -30px;
-    left: -30px;
-  }
-
-  /*  -------------------------Boton volver atras------------------------- */
-
-
-   .back {
-     text-decoration-line: none;
-   }
-
-
-   .back {
-    --color: #aa00ff;
-    font-family:Arial, Helvetica, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 6em;
-    height: 2.6em;
-    line-height: 2.5em;
-    overflow: hidden;
-    margin: 20px;
-    font-size: 17px;
-    z-index: 1;
-    color: var(--color);
-    border: 2px solid var(--color);
-    border-radius: 6px;
-    position: relative;
-    margin-left: 650px;
-    margin-top: 50px;
-  }
-  
-  .back::before {
-    position: absolute;
-    content: "";
-    background: var(--color);
-    width: 150px;
-    height: 200px;
-    z-index: -1;
-    border-radius: 50%;
-  }
-  
-  .back:hover {
-    color: white;
-  }
-  
-  .back:before {
-    top: 100%;
-    left: 100%;
-    transition: .3s all;
-  }
-  
-  .back:hover::before {
-    top: -30px;
-    left: -30px;
-  }
-
-  /*  -------------------------Beneficion------------------------- */
-
-
-  .garantias {
-    height: 130px;
-    width: 650px;
-    margin-left: 620px;
-    border-top: solid 0px rgb(117, 117, 117); /* Grosor del borde superior */
-    border-right: solid 0px rgb(117, 117, 117); /* Sin borde en el lado derecho */
-    border-bottom: solid 1px rgb(117, 117, 117); /* Sin borde en la parte inferior */
-    border-left: solid 0px rgb(117, 117, 117); /* Sin borde en el lado izquierdo */
-    display: flex;
-    flex-direction: column;
-  }
-
-  .garantias i {
-    margin-bottom: 5px;
-    font-size: 20px;
-    margin-top: 14px;
-    color: #0b7701c9;
-  }
-
-  /*  -------------------------Especificaciones------------------------- */
-  .informacion {
-    width: 500px;
-    border-top: solid 1px rgb(117, 117, 117); /* Grosor del borde superior */
-    border-right: solid 0px rgb(117, 117, 117); /* Sin borde en el lado derecho */
-    border-bottom: solid 1px rgbrgb(117, 117, 117); /* Sin borde en la parte inferior */
-    border-left: solid 0px rgb(117, 117, 117); /* Sin borde en el lado izquierdo */
-  }
-
-  .informacion h3 {
-    display: flex;
-    justify-content:first baseline;
-  }
-          
-  .generacion{
-    background-color: rgba(199, 199, 199, 0.479);
-    margin-top: -37px;
-    display: flex;
-    justify-content: end;
-  }
-  .capacidad{
-    background-color: rgba(199, 199, 199, 0.479);
-    margin-top: -37px;
-    display: flex;
-    justify-content: end;
-  }
-  .velocidad{
-    background-color: rgb(255, 255, 255);
-    margin-top: -37px;
-    display: flex;
-    justify-content: end;
-  }
-  .latencia{
-    background-color: rgba(199, 199, 199, 0.479);
-    margin-top: -37px;
-    display: flex;
-    justify-content: end;
-  }
-  .tipoDeModulo{
-    background-color: rgb(255, 255, 255);
-    margin-top: -37px;
-    display: flex;
-    justify-content: end;
-  }
-  
-
-  .cardDetalle {
-    width: 500px;
-    border-top: solid 1px rgb(179, 179, 179); /* Grosor del borde superior */
-    border-right: solid 0px rgb(255, 255, 255); /* Sin borde en el lado derecho */
-    border-bottom: solid 1px rgb(117, 117, 117); /* Sin borde en la parte inferior */
-    border-left: solid 0px rgb(255, 255, 255); /* Sin borde en el lado izquierdo */
-    margin-left: 650px;
-    
-  }
-
-  .tituloDetalle {
-    margin-left: 650px;
-    margin-top: -265px;
-  }
-
-  .especificaciones {
-    border-top: solid 1px rgb(179, 179, 179); /* Grosor del borde superior */
-    border-right: solid 0px rgb(255, 255, 255); /* Sin borde en el lado derecho */
-    border-bottom: solid 1px rgb(117, 117, 117); /* Sin borde en la parte inferior */
-    border-left: solid 0px rgb(255, 255, 255); /* Sin borde en el lado izquierdo */
-    font-size: 15px;
-    margin-left: 350px;
-    width: 800px;
-    margin-top: 50px;
-  }
-
-.letrasEspe {
-  background-color: rgb(255, 255, 255);
-  font-size: 25px;
-  
-}
-
-.info {
-  background-color: rgba(199, 199, 199, 0.479);
-  font-size: 20px;
-    
-}
-
-.logo {
-  position: relative;
-  overflow: hidden;
-  margin-top: -400px;
-}
-
-.logo img {
-  position: relative;
-  width: 300px;
-  height: auto;
-  filter: blur(1px);
-  opacity: 0.10;
-  margin-top: -500;
-
-}
-
-.logo2 {
-  margin-left: 900px;
-}
-
-.atras {
-  font-size: 50px;
-  text-decoration: none;
+.infoContainer {
   display: flex;
-  justify-content: end;
-  margin-right: 50px;
-  margin-top: 20px;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+#imagen {
+  width: 400px;
+  margin-left: 5%;
+}
+
+#atras{
+  font-size: 70px;
+  color: #aa00ff;
+}
+
+.contenedorInfo {
+  width: 700px;
+  margin-left: 100px;
+  padding: 10px;
+  border-bottom: 2px solid rgb(176, 176, 176);
+}
+#categoria{
+  border-bottom: 2px solid rgb(176, 176, 176);
+  padding-bottom: 10px;
+}
+#garantias{
+  display: flex;
+  flex-direction: column;
+  margin-left: -35px;
+}
+#garantias i{
+  margin-bottom: 10px;
+  color: green;
+}
+#subTitulo{
+  font-size: 20px;
+  text-align: center;
+  border-bottom: 4px solid #aa00ff;
+}
+.especificaciones{
+  font-size: 20px;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: start;
+  margin-left: 20%;
+  margin-right: 20%;
+  border-bottom: 2px solid rgb(176, 176, 176);
+}
+
+#carrito{
+  float: right;
+  left: 20%;
+}
+
+/*------- botonees---------- */
+.botones {
+  text-decoration: none;
+  --color: #aa00ff;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15em;
+  height: 3em;
+  line-height: 2.5em;
+  overflow: hidden;
+  margin: 20px;
+  font-size: 17px;
+  z-index: 1;
+  color: var(--color);
+  border: 2px solid var(--color);
+  border-radius: 6px;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.botones::before {
+  position: absolute;
+  content: "";
+  background: var(--color);
+  width: 500px;
+  height: 400px;
+  z-index: -1;
+  border-radius: 20%;
+}
+
+.botones:hover {
+  color: white;
+}
+
+.botones:before {
+  top: 100%;
+  left: 100%;
+  transition: .3s all;
+}
+
+.botones:hover::before {
+  top: -30px;
+  left: -30px;
+}
+
+.comentsConteiner{
+  margin-top: 100px;
+  font-size: 20px;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+.comentarios{
+  border-left: 2px solid rgb(176, 176, 176);
+  padding-left: 10px;
+}
+.commentInputContainer {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgb(176, 176, 176);
+}
+
+.commentInputContainer input {
+  width: 100%;
+  height: 30px;
+  margin-right: 5px;
+}
+.commentInputContainer input:hover{
+  border:2px solid #aa00ff;
+}
+
+.commentInputContainer button {
+  width: auto;
+  height: 37px;
+  left: 2%;
+  border-radius: 2px;
+  white-space: nowrap;
 }
