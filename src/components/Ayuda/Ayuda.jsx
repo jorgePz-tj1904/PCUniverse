@@ -1,9 +1,9 @@
-// Ayuda.js
+// Ayuda.jsx
 import { NavLink } from 'react-router-dom';
 import React, { useState } from 'react';
-import styles from './ayuda.module.css'; // Importa los estilos CSS
+import styles from './ayuda.module.css';
 
-const Ayuda = () => {
+const ayuda = () => {
   // Estado para controlar la expansión de cada caja
   const [expandedBox, setExpandedBox] = useState(null);
 
@@ -56,18 +56,18 @@ const Ayuda = () => {
           PC Universe te ayuda. ¿Cuál es tu consulta?
         </h3>
         <p>
+          {/* Contenido adicional */}
+          {expandedBox === null && (
+            <div className={styles['log-box']}>
+              <NavLink to="/login" className={styles.navLink} style={{ textDecoration: 'none' }}>
+                <span onClick={() => handleBoxClick(null)}>
+                  <i className='bx bxs-user'></i>
+                </span>
+                <span className={styles.linkText}>Iniciar Sesión</span>
+              </NavLink>
+            </div>
+          )}
         </p>
-        {/* Contenido adicional */}
-        {expandedBox === null && (
-          <div className={styles['log-box']}>
-          <NavLink to="/login" className={styles.navLink} style={{ textDecoration: 'none' }}>
-            <span onClick={() => handleBoxClick(null)}>
-              <i className='bx bxs-user'></i>
-            </span>
-            <span className={styles.linkText}>Iniciar Sesión</span>
-          </NavLink>
-        </div>
-        )}
       </div>
     </div>
   );
@@ -109,4 +109,4 @@ const preguntas = [
   // Agrega más preguntas y respuestas aquí
 ];
 
-export default Ayuda;
+export default ayuda;
