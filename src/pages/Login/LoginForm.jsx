@@ -13,18 +13,17 @@ function LoginForm({ setShowLoginForm }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const userData = {
       email,
       password,
     };
+    
 
     try {
       const response = await dispatch(loginUser(userData)); // Llama a la acción de inicio de sesión
       if (!response.error) {
-        setShowLoginForm(false); // Cierra el formulario de inicio de sesión
-        // Redirige al usuario a la página deseada después del inicio de sesión exitoso
-        // En este caso, se redirige a la página de componentes
+        setShowLoginForm(false);
+        localStorage.setItem('usuario', JSON.stringify(userData))
         window.location.href = "/componentes";
       }
     } catch (error) {
@@ -97,6 +96,7 @@ function LoginForm({ setShowLoginForm }) {
               </button>
             </div>
           </div>
+
         </form>
       </div>
     </div>

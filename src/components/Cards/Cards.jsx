@@ -2,7 +2,7 @@
 import React, { useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../Card/Card';
-import { addToCart, applyPriceOrder, filterProductsByCategory, getAllComponents} from '../../redux/actions';
+import { applyPriceOrder, filterProductsByCategory, getAllComponents} from '../../redux/actions';
 import './Cards.css';
 
 const Cards = () => {
@@ -17,10 +17,6 @@ const Cards = () => {
   useEffect(()=> {
   dispatch(getAllComponents());
   }, []);
-  
-  const handleAddToCart = (id) => {
-    dispatch(addToCart(id));
-  };
   ///////
   const priceOrderDirection = useSelector((state) => state.priceOrderDirection);
   const handlePriceOrderChange = (order) => {
@@ -85,13 +81,6 @@ function handleFilterStatus(e) {
               precio={precio}
               tipo={tipo}
             />
-            {cartItems.some((item) => item.id === id) ? (
-              <p className='succes'>Ya está en el carrito</p>
-              ) : (
-                <button className='boton1' onClick={() => handleAddToCart(id)}>
-                Añadir al carrito
-              </button>
-            )}
           </div>
         ))}
       </div>

@@ -13,7 +13,13 @@ import {
   REMOVE_FOR_CART,
   EMPTY_CART,
   REGISTER_SUCCESS,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  GET_COMENTARIOS,
+  POST_COMENTARIO
+  GET_USERS,
+  GET_ALL_COMMENTS,
+  UPDATE_COMMENTS,
+  UPDATE_USER_ROLE
 } from "./actions-types";
 
 // import { buildFilterQueryString } from "./actionUtils";
@@ -181,6 +187,42 @@ export function getDetailById(id) {
   };
 }
 
+export function postComentario(data, compId) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post('http://localhost:3001/comentarios',{
+        comentario: data,
+        userId: null,
+        perifericoId:null,
+        componenteId: compId
+      });
+      console.log(response.data);
+      return dispatch({
+        type: POST_COMENTARIO,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export function getComentarios(compId) {
+  console.log(compId);
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`http://localhost:3001/getcoments?commentComponenteId=${compId}`);
+      console.log(response.data);
+      return dispatch({
+        type: GET_COMENTARIOS,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
 //------------------------------------------------------------
 
 export function postComponents(data) {
@@ -251,4 +293,71 @@ export const loginUser = (userData) => {
       throw error;
     }
   }
+};
+
+export function getAllusers() {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/getUsers`
+      );
+      const data = response.data;
+      return dispatch({
+        type: GET_USERS,
+        payload: data,
+      });
+    } catch (error) {
+      console.error("Error en acceder a get components");
+      console.log(error);
+    }
+  };
+}
+
+export function getAllComments() {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/allcoments`
+      );
+      const data = response.data;
+      return dispatch({
+        type: GET_ALL_COMMENTS,
+        payload: data,
+      });
+    } catch (error) {
+      console.error("Error en acceder a get components");
+      console.log(error);
+    }
+  };
+};
+
+
+export const updateComments = (comments) => {
+  return {
+    type: UPDATE_COMMENTS,
+    payload: comments,
+  };
+};
+
+export const updateUserRole = (id, newRole) => {
+  return async function (dispatch) {
+    try {
+      // Realizar una solicitud PUT para actualizar el rol del usuario
+      const response = await axios.put('http://localhost:3001/putrole', {
+        id: id, // Cambia 'userId' a 'id'
+        newRole: newRole,
+      });
+
+      // Si la solicitud fue exitosa, actualizar el estado en Redux
+      if (response.status === 200) {
+        dispatch({
+          type: UPDATE_USER_ROLE,
+          userId: id, // Cambia 'userId' a 'id'
+          newRole: newRole,
+        });
+      }
+    } catch (error) {
+      console.error('Error updating user role:', error);
+    }
+  };
 };

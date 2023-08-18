@@ -10,10 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.5",
     "@mercadopago/sdk-react": "^0.0.13",
+    "antd": "^5.8.3",
     "axios": "^1.4.0",
+    "chart.js": "^4.3.3",
     "emailjs-com": "^3.2.0",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-datepicker": "^4.16.0",
     "react-dom": "^18.2.0",
     "react-modal": "^3.16.1",

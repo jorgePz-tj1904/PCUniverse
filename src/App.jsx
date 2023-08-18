@@ -9,8 +9,10 @@ import Builds from "./pages/pcFinals/Builds";
 import Contacto from "./pages/Contacto/Contacto";
 import Carrito from "./components/Carrito/Carrito";
 import RegistrationForm from "./pages/Register/RegistrationForm";
+import Nosotros from "./pages/Nosotros/Nosotros";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import Admin from "./components/Admin/Admin";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <Route path="/contactanos" element={<Contacto />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/registration" element={<RegistrationForm />} />
+        <Route path="/admin/*" element={<Admin/>} />
+        <Route path="/nosotros" element={<Nosotros/>} />
       </Routes>
     </div>
   );
