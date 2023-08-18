@@ -12,6 +12,9 @@ import {
   REGISTER_SUCCESS,
   LOGIN_SUCCESS,
   ALL_PC,
+  GET_USERS,
+  GET_ALL_COMMENTS,
+  UPDATE_USER_ROLE, 
 } from './actions-types';
 
 const initialState = {
@@ -22,7 +25,9 @@ const initialState = {
   allComponentsF: [],
   detail: [],
   cartItems: [],
-  users: []
+  users: [],
+  allUsers: [],
+  allComments: []
 };
 
 function reducer(state = initialState, action) {
@@ -118,7 +123,32 @@ function reducer(state = initialState, action) {
         ...state,
         users: action.payload
       };
-
+      case GET_USERS:
+        return {
+          ...state,
+          allUsers: action.payload
+        };
+        case GET_ALL_COMMENTS:
+          return {
+            ...state,
+            allComments: action.payload
+          };
+          case 'UPDATE_COMMENTS':
+      return {
+        ...state,
+        allComments: action.payload,
+      }; 
+      case UPDATE_USER_ROLE:
+  const updatedAllUsers = state.allUsers.map((user) => {
+    if (user.id === action.userId) {
+      return { ...user, roleId: action.newRole }; // Cambia 'role' a 'roleId'
+    }
+    return user;
+  });
+  return {
+    ...state,
+    allUsers: updatedAllUsers,
+  };
     default:
       return state;
   }

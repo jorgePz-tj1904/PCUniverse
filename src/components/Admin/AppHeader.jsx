@@ -1,30 +1,49 @@
-import logo from "../../assets/logo.png";
-import { Badge, Drawer, Image, List, Space, Typography, notification } from "antd";
+import React, { useState, useEffect } from "react";
+import { Badge, Drawer, Image, List, Space, Typography } from "antd";
 import { BellFilled, MailOutlined } from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllComments } from "../../redux/actions";
+import logo from "../../assets/logo.png";
 import "./Admin.css";
-import { useEffect, useState } from "react";
-import { getComments, getOrders } from "../API";
+import { getOrders } from "../API";
+
 const AppHeader = () => {
-  const [comments, setComments] = useState([]);
   const [orders, setOrders] = useState([]);
   const [commentsOpen, setCommentsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
 
+  const allComments = useSelector((state) => state.allComments);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    getComments().then((res) => {
-      setComments(res.comments);
-    });
-    getOrders().then((res) => {
-      setOrders(res.products);
-    });
-  }, []);
+    dispatch(getAllComments());
+    getOrders()
+      .then((res) => {
+        setOrders(res.products);
+      })
+      .catch((error) => {
+        console.error("Error fetching orders:", error);
+      });
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getAllComments());
+    const commentsInterval = setInterval(() => {
+      dispatch(getAllComments());
+    }, 30000);
+
+    return () => {
+      clearInterval(commentsInterval);
+    };
+  }, [dispatch]);
+
 
   return (
     <div className="AppHeader">
-      <Image width={40} src={logo}></Image>
+      <Image width={40} src={logo} />
       <Typography.Title>Admin Dashboard</Typography.Title>
       <Space>
-        <Badge count={comments.length} dot>
+        <Badge count={allComments.comment?.comentarios} dot>
           <MailOutlined
             style={{ fontSize: 24 }}
             onClick={() => {
@@ -33,9 +52,12 @@ const AppHeader = () => {
           />
         </Badge>
         <Badge count={orders.length}>
-          <BellFilled style={{ fontSize: 24 }} onClick={() => {
+          <BellFilled
+            style={{ fontSize: 24 }}
+            onClick={() => {
               setNotificationsOpen(true);
-            }} />
+            }}
+          />
         </Badge>
       </Space>
       <Drawer
@@ -46,9 +68,12 @@ const AppHeader = () => {
         }}
         maskClosable
       >
-        <List dataSource={comments} renderItem={(item)=>{
-          return <List.Item>{item.body}</List.Item>
-        }}></List>
+        <List
+          dataSource={allComments.comment}
+          renderItem={(item) => {
+            return <List.Item>{item.comentarios}</List.Item>;
+          }}
+        />
       </Drawer>
       <Drawer
         title="Notificaciones"
@@ -58,9 +83,17 @@ const AppHeader = () => {
         }}
         maskClosable
       >
-        <List dataSource={orders} renderItem={(item)=>{
-          return <List.Item><Typography.Text strong>{item.title}</Typography.Text> se ha pedido!</List.Item>
-        }}></List>
+        <List
+          dataSource={orders}
+          renderItem={(item) => {
+            return (
+              <List.Item>
+                <Typography.Text strong>{item.title}</Typography.Text>{" "}
+                se ha pedido!
+              </List.Item>
+            );
+          }}
+        />
       </Drawer>
     </div>
   );
