@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './Header.module.css';
 import logo from "../../assets/logo.png";
 import { NavLink } from 'react-router-dom';
@@ -7,10 +7,21 @@ import LoginForm from '../../pages/Login/LoginForm';
 
 const Header = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
+  const [loged, setLoged] = useState(false);
+
+  useEffect(()=>{
+    loginHandler()
+  },[loged]);
 
   const handleLoginButtonClick = () => {
     setShowLoginForm(!showLoginForm);
   };
+  const loginHandler=()=>{
+    const usuarioJSON = localStorage.getItem('usuario');
+    if(usuarioJSON){
+      setLoged(true);
+    }
+  }
 
   return (
     <div>
@@ -27,8 +38,9 @@ const Header = () => {
           className={style.navbarButton}
           onClick={handleLoginButtonClick}
         >
-          <i className='bx bxs-log-in'></i>
+          {loged?<i class='bx bxs-log-out'></i>:<i className='bx bxs-log-in'></i>}
         </button>
+        {loged?<><p>sesion iniciada</p></>:<><p>iniciar sesion</p></>}
         <NavLink className={style.nav} to='/carrito'>
           <button className={style.navbarButton}>
             <i className='bx bxs-cart'></i>

@@ -13,7 +13,9 @@ import {
   REMOVE_FOR_CART,
   EMPTY_CART,
   REGISTER_SUCCESS,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  GET_COMENTARIOS,
+  POST_COMENTARIO
 } from "./actions-types";
 
 // import { buildFilterQueryString } from "./actionUtils";

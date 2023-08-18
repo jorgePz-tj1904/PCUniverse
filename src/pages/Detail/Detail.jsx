@@ -3,6 +3,8 @@ import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./Detail.module.css";
 import { getDetailById, postComentario, addToCart, getComentarios } from "../../redux/actions";
+import { Rate, Button,Input,Space,Card, Col, Row} from 'antd';
+
 
 function Detail() {
   const dispatch = useDispatch();
@@ -15,6 +17,8 @@ function Detail() {
 
   useEffect(() => {
     dispatch(getDetailById(id));
+    console.log(data.especificaciones);
+    console.log(Object.entries(data.especificaciones));
     if (data.id) {
       dispatch(getComentarios(data.id));
     }
@@ -27,9 +31,6 @@ function Detail() {
   const pushData = () => {
     dispatch(postComentario(comentarios, data.id));
     setComentarios("");
-  };
-  const handleRatingChange = (event) => {
-    setRating(parseInt(event.target.value));
   };
 
   return (
@@ -56,6 +57,7 @@ function Detail() {
                 <i className="bx bx-check"> Stock Disponible</i>
                 <i className="bx bx-shield-quarter"> Con garantias</i>
               </ul>
+              <Rate defaultValue={5} disabled/>
               {!done ? (
                 <button
                 id={style.carrito}
@@ -79,40 +81,58 @@ function Detail() {
         </div>
           <h4 id={style.subTitulo}>ESPECIFICACIONES: </h4>
 
-          <div className={style.especificaciones}>
-            {data.especificaciones &&
-              Object.entries(data.especificaciones).map(([key, value]) => (
-                <div className={style.info} key={key}>
-                  <p className={style.letrasEspe}>{key} : {value}</p>
-                </div>
-              ))}
-          </div>
+         <Card id={style.cardEspecificaciones} className={style.cardsClass} style={{ maxWidth:'900px', fontSize:'20px',marginBottom:'20px', }}>
+         <div className={style.especificaciones}>
+          {data.especificaciones && (
+          Object.entries(JSON.parse(data.especificaciones)).map(([key, value]) => (
+          <div className={style.info} key={key}>
+          <p className={style.letrasEspe}>{key} : {value}</p>
+         </div>
+          ))
+         )}
+         </div>
+         </Card>
 
 
           <div className={style.comentsConteiner}>
-          <option value="">-- Qualification --</option>
-                  <option value="1">⭐ ☆ ☆ ☆ ☆</option>
-                  <option value="2">⭐⭐ ☆ ☆ ☆</option>
-                  <option value="3">⭐⭐⭐ ☆ ☆</option>
-                  <option value="4">⭐⭐⭐⭐ ☆</option>
-                  <option value="5">⭐⭐⭐⭐⭐</option>
 
-            <h4>Opiniones y preguntas:</h4>
+            <h4>Preguntas:</h4>
+            <p>Realiza cualquier pregunta respecto al producto, y se la contestaremos a la brevedad! <i class='bx bx-down-arrow-alt'></i></p><br />
             <div className={style.commentInputContainer}>
-               <input onChange={loadInfo} type="text" value={comentarios} onKeyDown={(e) => e.key === "Enter"?pushData():null}/>
-               <button className={style.botones} onClick={pushData}>comentar</button>
+            <Space.Compact block>
+             <Input onChange={loadInfo} value={comentarios} style={{ width: 'calc(100% - 100px)', fontSize:'20px' }} placeholder="pregunta aqui" onKeyDown={(e) => e.key === "Enter"?pushData():null} />
+             <Button style={{ backgroundColor:'#aa00ff', fontSize:'20px',height:'50px' }} type="primary">enviar</Button>
+           </Space.Compact>
             </div>
+               {/* <Rate onChange={(value)=>setRating(value)}/> */}
             <div>
             {comments && comments.comment ? (
               comments.comment.map((com) => (
-              <p className={style.comentarios} key={com.id}>{com.comentarios}</p>
+                <Card style={{ maxWidth:'900px', fontSize:'15px',marginTop:'30px', boxShadow:'0px 0px 12px 0px rgba(0,0,0,0.5)'}} bordered={false}>
+                <p  key={com.id}>{com.comentarios}</p>
+                </Card>
              ))
             ) : (
             <h3>todavía nadie ha comentado, ¡sé el primero!</h3>
             )}
             </div>
           </div>
-          <NavLink className={style.botones} to="/componentes">
+
+             <div className={style.opiniones}>
+             <h3>Opiniones</h3>
+             <p>Mira las opiniones dejadas por los compradores del producto</p>
+          <Card id={style.cardOpiniones} className={style.cardsClass} style={{maxWidth:'900px',}} title={<><Rate defaultValue={5} disabled/><h4>5 Estrellas!</h4></>}>
+            <div>
+              <Card >
+              <Rate defaultValue={3} disabled/>
+                <p>esta es una opinion harcodeada</p>
+              </Card>
+            </div>
+          </Card>
+             </div>
+
+
+          <NavLink id={style.back} className={style.botones} to="/componentes">
             Back
           </NavLink>
 
@@ -130,5 +150,4 @@ function Detail() {
     </div>
   );
 }
-
 export default Detail;
