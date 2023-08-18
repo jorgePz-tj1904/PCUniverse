@@ -1,0 +1,141 @@
+.cards{
+    display: grid; /* Utilizando CSS Grid */
+    grid-template-columns: repeat(4, 1fr); /* Tres columnas de tamaño flexible */
+    grid-gap: 50px; /* Espacio entre las cards */
+    margin-left: 55px;
+    margin-top: 50px;
+}
+
+
+.imgRo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 2px solid gray;
+    border-radius: 200px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    margin-left: 22px;
+    margin-top: 22px;
+    transition: border-color 0.3s ease;
+    
+}
+
+.imgRo:hover {
+    border-color: rgba(164, 0, 197, 0.856);
+}
+
+.cardRodry {
+    width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    border-bottom: solid 1px gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    transition: color 0.3s ease;
+}
+
+.title:hover {
+color:rgb(189, 4, 189)
+}
+
+.nombre {
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.nombre:hover {
+    color: rgb(189, 4, 189);
+}
+
+.cards p {
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: solid 1px gray;
+}
+
+.linkedin {
+    font-size: 35px;
+    margin-left: 22%;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Transición suave del cambio de color */
+    color: rgba(128, 128, 128, 0.315);
+}
+
+.linkedin:hover {
+    color: blue
+}
+
+.github {
+    font-size: 35px;
+    margin-left: 25%;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Transición suave del cambio de color */
+    color: rgba(128, 128, 128, 0.315);
+}
+
+.github:hover {
+    color: rgb(26, 26, 26);
+}
+
+.back {
+    text-decoration-line: none;
+  }
+
+
+  .back {
+   --color: #aa00ff;
+   font-family:Arial, Helvetica, sans-serif;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 6em;
+   height: 2.6em;
+   line-height: 2.5em;
+   overflow: hidden;
+   margin: 20px;
+   font-size: 17px;
+   z-index: 1;
+   color: var(--color);
+   border: 2px solid var(--color);
+   border-radius: 6px;
+   position: relative;
+   margin-left: 650px;
+   margin-top: 50px;
+ }
+ 
+ .back::before {
+   position: absolute;
+   content: "";
+   background: var(--color);
+   width: 150px;
+   height: 200px;
+   z-index: -1;
+   border-radius: 50%;
+ }
+ 
+ .back:hover {
+   color: white;
+ }
+ 
+ .back:before {
+   top: 100%;
+   left: 100%;
+   transition: .3s all;
+ }
+ 
+ .back:hover::before {
+   top: -30px;
+   left: -30px;
+ }
