@@ -185,6 +185,42 @@ export function getDetailById(id) {
   };
 }
 
+export function postComentario(data, compId) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post('http://localhost:3001/comentarios',{
+        comentario: data,
+        userId: null,
+        perifericoId:null,
+        componenteId: compId
+      });
+      console.log(response.data);
+      return dispatch({
+        type: POST_COMENTARIO,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export function getComentarios(compId) {
+  console.log(compId);
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`http://localhost:3001/getcoments?commentComponenteId=${compId}`);
+      console.log(response.data);
+      return dispatch({
+        type: GET_COMENTARIOS,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
 //------------------------------------------------------------
 
 export function postComponents(data) {

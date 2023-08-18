@@ -15,6 +15,9 @@ import {
   GET_USERS,
   GET_ALL_COMMENTS,
   UPDATE_USER_ROLE, 
+  POST_COMENTARIO,
+  GET_COMENTARIOS
+
 } from './actions-types';
 
 const initialState = {
@@ -27,7 +30,9 @@ const initialState = {
   cartItems: [],
   users: [],
   allUsers: [],
-  allComments: []
+  allComments: [],
+  review: [],
+  comments:[]
 };
 
 function reducer(state = initialState, action) {
@@ -66,6 +71,16 @@ function reducer(state = initialState, action) {
         componentsP: action.payload,
         allComponents: action.payload,
       };
+      case POST_COMENTARIO:
+        return{
+          ...state,
+          review: action.payload
+        }
+      case GET_COMENTARIOS:
+        return{
+          ...state,
+          comments: action.payload
+        }
     case GET_COMPONENTS_FINAL:
       return {
         ...state,
