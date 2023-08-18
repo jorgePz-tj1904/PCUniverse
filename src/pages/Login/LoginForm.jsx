@@ -1,14 +1,15 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import styles from "./LoginForm.module.css";
 import { NavLink } from "react-router-dom";
 import { loginUser } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function LoginForm({ setShowLoginForm }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const { loginWithRedirect } = useAuth0(); // Agrega el hook useAuth0
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,6 +43,7 @@ function LoginForm({ setShowLoginForm }) {
   const handleRegisterClick = () => {
     setShowLoginForm(false); // Cierra el formulario de inicio de sesión al hacer clic en "regístrate aquí"
   };
+
 
   return (
     <div className={styles.loginOverlay}>
@@ -84,16 +86,21 @@ function LoginForm({ setShowLoginForm }) {
               </NavLink>
             </h4>
           </div>
-          <button
-            type="submit"
-            className={styles.loginButton}
-            onClick={handleSubmit}
-          >
-            Iniciar sesión
-          </button>
+          <div className={styles.loginButtonContainer}>
+            <button type="submit" className={styles.loginButton}>
+              Iniciar sesión
+            </button>
+            <p>O</p>
+            <div className={styles.buttonContainer}>
+              <button onClick={() => { loginWithRedirect() }} className={styles.button1}>
+                Iniciar sesión con Google
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </div>
   );
 }
+
 export default LoginForm;

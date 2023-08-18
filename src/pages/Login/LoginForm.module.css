@@ -16,7 +16,7 @@
 .loginContainer {
   background-color: #fff;
   width: 500px;
-  height: 400px;
+  height: 450px;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.299);
@@ -114,4 +114,16 @@
 
 .registerLink:hover {
   color: #aa00ff; /* Cambiar el color al pasar el mouse sobre el enlace */
+}
+
+.button1 {
+  align-items: center;
+  border-radius: 8px;
+  width: 40%;
+  padding: 10px;
+  background-color: #4285F4;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+
 }
