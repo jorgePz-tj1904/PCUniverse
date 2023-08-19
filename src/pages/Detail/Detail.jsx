@@ -17,12 +17,8 @@ function Detail() {
 
   useEffect(() => {
     dispatch(getDetailById(id));
-    console.log(data.especificaciones);
-    console.log(Object.entries(data.especificaciones));
-    if (data.id) {
       dispatch(getComentarios(data.id));
-    }
-  }, [dispatch, id,comments]);
+  }, [dispatch, comentarios]);
 
   const loadInfo = (event) => {
     setComentarios(event.target.value);
