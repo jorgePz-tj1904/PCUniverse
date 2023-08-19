@@ -17,12 +17,8 @@ function Detail() {
 
   useEffect(() => {
     dispatch(getDetailById(id));
-    console.log(data.especificaciones);
-    console.log(Object.entries(data.especificaciones));
-    if (data.id) {
-      dispatch(getComentarios(data.id));
-    }
-  }, [dispatch, id,comments]);
+    dispatch(getComentarios(data.id));
+  }, [comentarios]);
 
   const loadInfo = (event) => {
     setComentarios(event.target.value);
@@ -81,7 +77,7 @@ function Detail() {
         </div>
           <h4 id={style.subTitulo}>ESPECIFICACIONES: </h4>
 
-         <Card id={style.cardEspecificaciones} className={style.cardsClass} style={{ maxWidth:'900px', fontSize:'20px',marginBottom:'20px', }}>
+         <Card id={style.cardEspecificaciones} className={style.cardsClass} style={{ maxWidth: 900, fontSize:'20px',marginBottom:'20px', }}>
          <div className={style.especificaciones}>
           {data.especificaciones && (
           Object.entries(JSON.parse(data.especificaciones)).map(([key, value]) => (
@@ -108,7 +104,7 @@ function Detail() {
             <div>
             {comments && comments.comment ? (
               comments.comment.map((com) => (
-                <Card style={{ maxWidth:'900px', fontSize:'15px',marginTop:'30px', boxShadow:'0px 0px 12px 0px rgba(0,0,0,0.5)'}} bordered={false}>
+                <Card id={style.cardComentario} style={{ maxWidth:'900px', fontSize:'15px',marginTop:'30px', boxShadow:'0px 0px 12px 0px rgba(0,0,0,0.5)'}} bordered={false}>
                 <p  key={com.id}>{com.comentarios}</p>
                 </Card>
              ))

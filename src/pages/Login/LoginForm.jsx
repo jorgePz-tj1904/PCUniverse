@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./LoginForm.module.css";
 import { NavLink } from "react-router-dom";
 import { loginUser } from "../../redux/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function LoginForm({ setShowLoginForm }) {
@@ -10,15 +10,14 @@ function LoginForm({ setShowLoginForm }) {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { loginWithRedirect } = useAuth0(); // Agrega el hook useAuth0
-
+  const { logout } = useAuth0();
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userData = {
       email,
       password,
     };
-    
-
     try {
       const response = await dispatch(loginUser(userData)); // Llama a la acción de inicio de sesión
       if (!response.error) {
@@ -30,7 +29,6 @@ function LoginForm({ setShowLoginForm }) {
       console.error("Error en el inicio de sesión:", error);
     }
     console.log("Iniciar sesión con:", email, password);
-
     //
     setShowLoginForm(false);
   };
@@ -42,6 +40,10 @@ function LoginForm({ setShowLoginForm }) {
   const handleRegisterClick = () => {
     setShowLoginForm(false); // Cierra el formulario de inicio de sesión al hacer clic en "regístrate aquí"
   };
+
+  const loginHandler=(data)=>{
+    localStorage.setItem('login', data);
+  }
 
 
   return (
@@ -91,7 +93,7 @@ function LoginForm({ setShowLoginForm }) {
             </button>
             <p>O</p>
             <div className={styles.buttonContainer}>
-              <button onClick={() => { loginWithRedirect() }} className={styles.button1}>
+              <button onClick={() => { loginWithRedirect(); loginHandler(true);}} className={styles.button1}>
                 Iniciar sesión con Google
               </button>
             </div>

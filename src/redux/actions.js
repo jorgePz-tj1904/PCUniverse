@@ -15,17 +15,14 @@ import {
   REGISTER_SUCCESS,
   LOGIN_SUCCESS,
   GET_COMENTARIOS,
-  POST_COMENTARIO
+  POST_COMENTARIO,
   GET_USERS,
   GET_ALL_COMMENTS,
   UPDATE_COMMENTS,
-  UPDATE_USER_ROLE
+  UPDATE_USER_ROLE,
 } from "./actions-types";
 
 // import { buildFilterQueryString } from "./actionUtils";
-
-
-
 export function getComponentsFinal() {
   return async function (dispatch) {
     try {

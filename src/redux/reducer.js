@@ -16,8 +16,7 @@ import {
   GET_ALL_COMMENTS,
   UPDATE_USER_ROLE, 
   POST_COMENTARIO,
-  GET_COMENTARIOS
-
+  GET_COMENTARIOS,
 } from './actions-types';
 
 const initialState = {
@@ -32,7 +31,7 @@ const initialState = {
   allUsers: [],
   allComments: [],
   review: [],
-  comments:[]
+  comments:[],
 };
 
 function reducer(state = initialState, action) {
