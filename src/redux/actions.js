@@ -25,9 +25,6 @@ import {
 } from "./actions-types";
 
 // import { buildFilterQueryString } from "./actionUtils";
-
-
-
 export function getComponentsFinal() {
   return async function (dispatch) {
     try {

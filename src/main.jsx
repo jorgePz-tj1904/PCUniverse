@@ -12,12 +12,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <React.StrictMode>
         <Auth0Provider
-          domain="dev-s48x33wnlzxvxpd5.us.auth0.com"
-          clientId="4ckavR8gWL16JoYygEPxyYoU7UXN9Sf6"
+          domain="dev-6uw2wgx220l4o1ht.us.auth0.com"
+          clientId="OJiXVtKBTpQgz9DEnoKnICMcmWlg4mUC"
           authorizationParams={{
             redirect_uri: window.location.origin
           }}>
-          
           <App />
         </Auth0Provider>
       </React.StrictMode>

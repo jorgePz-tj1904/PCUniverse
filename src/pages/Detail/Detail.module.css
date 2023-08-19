@@ -153,3 +153,7 @@
 #back{
   margin-top: 100px;
 }
+#cardComentario{
+  min-height: 40px;
+  overflow-x: auto;
+}

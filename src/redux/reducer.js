@@ -19,7 +19,6 @@ import {
   GET_COMENTARIOS,
   UPDATE_PRICE,
   UPDATE_STOCK,
-
 } from './actions-types';
 
 const initialState = {
