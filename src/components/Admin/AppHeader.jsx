@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Badge, Drawer, Image, List, Space, Typography } from "antd";
 import { BellFilled, MailOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllComments } from "../../redux/actions";
+import { getAllComments, getAllOrders } from "../../redux/actions";
 import logo from "../../assets/logo.png";
 import "./Admin.css";
 import { getOrders } from "../API";
@@ -13,17 +13,18 @@ const AppHeader = () => {
   const [notificationsOpen, setNotificationsOpen] = useState(false);
 
   const allComments = useSelector((state) => state.allComments);
+  const allOrders = useSelector((state) => state.allOrders)
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllComments());
-    getOrders()
-      .then((res) => {
-        setOrders(res.products);
-      })
-      .catch((error) => {
-        console.error("Error fetching orders:", error);
-      });
+    dispatch(getAllOrders());
+    const ordersInterval = setInterval(() => {
+      dispatch(getAllOrders());
+    }, 30000);
+
+    return () => {
+      clearInterval(ordersInterval);
+    };
   }, [dispatch]);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ const AppHeader = () => {
             }}
           />
         </Badge>
-        <Badge count={orders.length}>
+        <Badge count={allOrders ? allOrders.length : 0}>
           <BellFilled
             style={{ fontSize: 24 }}
             onClick={() => {
@@ -84,11 +85,11 @@ const AppHeader = () => {
         maskClosable
       >
         <List
-          dataSource={orders}
+          dataSource={allOrders}
           renderItem={(item) => {
             return (
               <List.Item>
-                <Typography.Text strong>{item.title}</Typography.Text>{" "}
+                <Typography.Text strong>{item.products.join(" - ")}</Typography.Text>{" "}
                 se ha pedido!
               </List.Item>
             );
