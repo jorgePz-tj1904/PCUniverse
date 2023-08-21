@@ -19,6 +19,7 @@ import {
   GET_COMENTARIOS,
   UPDATE_PRICE,
   UPDATE_STOCK,
+  ALL_ORDERS,
 } from './actions-types';
 
 const initialState = {
@@ -34,6 +35,8 @@ const initialState = {
   allComments: [],
   review: [],
   comments:[],
+  allOrders: [],
+  amountTotal: [],
 };
 
 function reducer(state = initialState, action) {
@@ -191,6 +194,12 @@ function reducer(state = initialState, action) {
           return component;
         }),
       };
+      case ALL_ORDERS:
+        return {
+          ...state,
+          allOrders: action.payload.response,
+          amountTotal: action.payload.amountTotal
+        };
     default:
       return state;
   }
