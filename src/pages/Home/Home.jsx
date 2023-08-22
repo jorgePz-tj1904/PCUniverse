@@ -4,11 +4,11 @@ import Slider from 'react-slick';
 import './styles.css';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css"; 
-import foto1 from "../../assets/foto1.jpg";
-import foto2 from "../../assets/foto2.jpg";
-import foto3 from "../../assets/foto3.jpg";
-import foto4 from "../../assets/foto4.jpg";
-import foto5 from "../../assets/foto5.jpg";
+import foto1 from "../../assets/foto1.jpeg";
+import foto2 from "../../assets/foto2.jpeg";
+import foto3 from "../../assets/foto3.jpeg";
+import foto4 from "../../assets/foto4.jpeg";
+import foto5 from "../../assets/foto5.jpeg";
 
 const Home = () => {
 
@@ -18,7 +18,13 @@ const Home = () => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        autoplay: true,
+        _autoplay: true,
+        get autoplay() {
+          return this._autoplay;
+        },
+        set autoplay(value) {
+          this._autoplay = value;
+        },
         autoplaySpeed: 3000,
       };
     const Footer = () => {

@@ -1,45 +1,50 @@
 /* Importa la fuente Montserrat desde Google Fonts o cualquier otra fuente que desees utilizar */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
+/* Estilos base para el cuerpo del documento */
 body {
-  overflow-x: hidden; /* Evita desbordamiento horizontal en toda la página */
-  margin: 0; /* Asegura que no haya márgenes alrededor del body */
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Estilos para el contenedor del contenido */
 .content {
   margin-top: 100px;
-  margin-bottom: 100px; /* Agrega espacio entre el contenido y el footer */
+  margin-bottom: 70px;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
 .content h2 {
   font-size: 20px;
   text-align: center;
-  margin-left: -1170px;
   margin-bottom: 20px;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: 'Montserrat', sans-serif;
   color: #494949;
 }
 
 .divider {
-  width: 700%;
+  width: 100%;
   border: none;
   border-top: 1px solid #ccc;
   margin: 10px 0;
 }
 
 /* Estilos para el contenedor de las cards */
-.cards-container {
+.cardsContainer {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 100%; /* Agregado para asegurar que los elementos no excedan el ancho */
+  max-width: 100%;
 }
 
 /* Estilos para cada card */
 .card {
-  width: 250px;
-  margin: 20px;
+  width: 200px;
+  margin: 10px;
   text-align: center;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -55,29 +60,31 @@ body {
 
 /* Estilos para el título dentro de cada card */
 .card h3 {
-  font-size: 17px;
+  font-size: 16px;
   margin-top: 10px;
-  font-family: 'Montserrat', sans-serif !important;
-  font-weight: 390;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
 }
 
 /* Estilos para la descripción dentro de cada card */
 .card p {
-  font-size: 16px;
+  font-size: 14px;
   margin-top: 5px;
 }
 
+
 /* Estilos para el carrusel */
-.carousel-container {
-  margin-top: 0px; /* Ajusta el espacio entre el carrusel y la barra de navegación principal */
-  margin-bottom: 60px; /* Ajusta el espacio entre el carrusel y el footer */
+.carouselContainer {
+  margin-top: 0;
+  max-width: 100%;
   width: 100%;
+  z-index: 1;
 }
 
 /* Estilos para los slides del carrusel */
 .slick-slide img {
   width: 100%;
-  max-height: 500px;
+  max-height: 600px; /* Ajusta la altura máxima de las imágenes */
   object-fit: cover;
 }
 
@@ -86,10 +93,10 @@ body {
   background-color: #aa00ff;
   color: #ffffff;
   padding: 5px 10px;
-  border: 2px solid #ffffff; /* Añadimos un borde de 2px del mismo color del botón */
+  border: 2px solid #ffffff;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 10px;
 }
 
@@ -98,21 +105,21 @@ body {
   color: #aa00ff;
 }
 
-/* Estilos para el footer */
 .footer {
-  position: relative;
-  bottom: -100px;
+  position: fixed; /* Cambiado a fixed para mantener el footer siempre en la parte inferior */
+  bottom: 0;
   left: 0;
   right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 70px;
+  height: 50px;
   background-color: #aa00ff;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
   z-index: 100;
+  padding: 0;
   margin: 0;
-  margin-top: -100px;
 }
 
 .footer p {
@@ -120,3 +127,43 @@ body {
   margin: 10px;
 }
 
+/* Estilos para pantallas medianas */
+@media (max-width: 768px) {
+  .content {
+    margin: 50px;
+    width: 50%;
+  }
+
+  .footer {
+    padding: 10px 0;
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .carouselContainer {
+    margin-bottom: 30px;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 1360px) and (min-width: 768px) {
+  .slick-slide img {
+
+    object-fit: cover;
+    height: 350px;
+  }
+}
+
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 576px) {
+
+
+  .carouselContainer {
+
+    max-width: 100%;
+    width: 90%;
+  }
+}

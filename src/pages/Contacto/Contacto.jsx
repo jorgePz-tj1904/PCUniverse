@@ -60,11 +60,9 @@ export default function Contacto() {
     <div className="contact-form">
       <form ref={form} onSubmit={sendEmail}>
         <h2 className="heading">Queremos saber tu opinion</h2>
-   
-        <h3 className="italic">PcUniverse</h3>
-
+        <h6 className="italic">¡Aceptamos criticas constructivas para mejorar nuestro servicio!</h6>
         <div>
-          <label htmlFor="name">Name *</label>
+          <h4 className="name" htmlFor="name">Your name: </h4>
           <input
             className={`${error.name ? 'border-red-500' : ''}`}
             id="name"
@@ -72,11 +70,11 @@ export default function Contacto() {
             value={userData.from_name}
             onChange={handleChange}
             type="text"
-            placeholder="Name"
+            placeholder="Fist name and second name"
           />
         </div>
         <div>
-          <label htmlFor="email">Email address *</label>
+          <h4 className="name" htmlFor="email">Email address </h4>
           <input
             className={`${error.email ? 'border-red-500' : ''}`}
             id="email"
@@ -84,11 +82,11 @@ export default function Contacto() {
             value={userData.to_email}
             onChange={handleChange}
             type="email"
-            placeholder="Email address"
+            placeholder="example@example.com"
           />
         </div>
         <div>
-          <label htmlFor="message">Message *</label>
+          <h4 className="name" htmlFor="message">Message</h4>
           <textarea
             className={`${error.message ? 'border-red-500' : ''}`}
             id="message"
@@ -99,8 +97,6 @@ export default function Contacto() {
             placeholder="Your message"
           />
         </div>
-
-        <span>Required fields *</span>
         <button type="submit">Send</button>
       </form>
     </div>

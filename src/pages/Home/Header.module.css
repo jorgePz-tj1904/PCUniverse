@@ -1,59 +1,59 @@
-
 body {
-  overflow-x: hidden; /* Evita desbordamiento horizontal en toda la página */
-  margin: 0; /* Asegura que no haya márgenes alrededor del body */
+  margin: 0;
 }
+
 /* Estilos para la barra de navegación superior */
 .navbar {
-    position: flex;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
-    height: 0px; /* Ajusta la altura de la barra de navegación según tus necesidadess */
-    background-color: #ffffff;
-    z-index: 100;
-    font-family: 'Montserrat', sans-serif !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  background-color: #ffffff;
+  z-index: 100;
+  font-family: 'Montserrat', sans-serif !important;
+  width: 100%;
 }
+
 /* Estilos para el logo */
 .logo {
-    max-height: 160px;
-    margin-right: 10px;
-    margin-left: -90px;
-    transition: transform 0.3s ease;
+  max-height: 160px;
+  margin-right: 10px;
+  margin-left: -90px;
+  transition: transform 0.3s ease;
 }
 
 .logo:hover {
-  transform: rotate(360deg);;
+  transform: rotate(360deg);
 }
 
+/* Estilos para el campo de búsqueda */
 .navbarSearch {
-    flex: 1; /* Ocupa todo el espacio disponible */
-    max-width: 400px; /* Establece un ancho máximo */
-    display: flex;
-    align-items: center;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
+
 /* Estilos para el campo de búsqueda */
 .navbarSearch input[type="text"] {
-    all: unset;
-    flex: 1;
-    padding: 8px;
+  all: unset;
+  flex: 1;
+  padding: 8px;
 }
+
+/* Estilos para los botones de la barra de navegación */
 .navbarButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff; /* Color de fondo transparente del botón de carrito */
+  background-color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 8px 12px; /* Espaciado interior del botón */
-  color: #aa00ff; /* Color del texto del botón */
+  padding: 8px 12px;
+  color: #aa00ff;
   font-size: 24px;
   cursor: pointer;
   transition: background-color 0.2s ease;
@@ -61,83 +61,34 @@ body {
 
 /* Estilo específico para el botón de carrito */
 .navbarButton.cart {
-  margin-right: 10px; /* Márgenes para separar los botones */
+  margin-right: 10px;
 }
 
-
-
-
-.botones {
-  text-decoration: none;
-  --color: #aa00ff;
-  font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 10em;
-  height: 2em;
-  line-height: 2.5em;
-  overflow: hidden;
-  margin: 20px;
-  font-size: 16px;
-  z-index: 1;
-  color: var(--color);
-  border: 2px solid var(--color);
-  border-radius: 6px;
-  position: relative;
-  left: 7%;
-  margin-top: 60px;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-}
-
-.botones::before {
-  position: absolute;
-  content: "";
-  background: var(--color);
-  width: 500px;
-  height: 400px;
-  z-index: -1;
-  border-radius: 20%;
-}
-
-.botones:hover {
-  color: white;
-}
-
-.botones:before {
-  top: 100%;
-  left: 100%;
-  transition: .3s all;
-}
-
-.botones:hover::before {
-  top: -30px;
-  left: -30px;
-}
-.nav{
+/* Estilo específico para los enlaces de navegación */
+.nav {
   text-decoration: none;
 }
 
 /* Estilo específico para el botón de inicio de sesión */
 .navbarButton.login {
-  background-color: #aa00ff; /* Color de fondo violeta para el botón de inicio de sesión */
-  color: white; /* Color del texto del botón de inicio de sesión */
-  font-size: 21px; /* Tamaño del texto del botón de inicio de sesión */
-  margin-right: 10px; /* Márgenes para separar el botón de inicio de sesión del carrito */
+  background-color: #aa00ff;
+  color: white;
+  font-size: 21px;
+  margin-right: 10px;
 }
 
 /* Estilos de los iconos dentro de los botones */
 .navbarButton i {
-  margin-right: 15px; /* Espaciado entre el ícono y el texto del botón */
+  margin-right: 15px;
   margin-left: 10px;
 }
 
 /* Animación al hacer clic */
 .navbarButton:active {
-  transform: translateY(5px); /* Mueve el botón hacia abajo 1px al hacer clic */
-  transition: transform 0.3s ease; /* Transición para la animación */
+  transform: translateY(5px);
+  transition: transform 0.3s ease;
 }
+
 /* Estilos para el ícono de lupa */
 .navbarSearch .search-icon {
   background: none;
@@ -154,9 +105,9 @@ body {
 
 /* Estilos para el logo */
 .logo {
-  max-height: 100px; /* Reduce la altura máxima del logo */
+  max-height: 100px;
   margin-right: 10px;
-  margin-left: -70px; /* Ajusta el margen izquierdo para evitar que oculte la barra de navegación principal */
+  margin-left: -70px;
 }
 
 /* Estilos para la barra de navegación principal */
@@ -165,13 +116,15 @@ body {
   color: #fff;
   display: flex;
   justify-content: center;
-  padding: 20px 0;
+  padding: 30px 0;
   font-family: 'Montserrat', sans-serif !important;
+  margin-top: 40px;
   font-size: 17px;
   font-weight: 460;
-  z-index: 10; /* Asegura que la barra de navegación esté por encima del carrusel */
-  margin-top: 50px;
+  z-index: 10;
+  width: 100%;
 }
+
 /* Estilos para la lista de la barra de navegación */
 .mainNav ul {
   display: flex;
@@ -197,3 +150,124 @@ body {
   color: #ffffff;
 }
 
+.mobileMenu {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+/* Estilo específico para el icono de hamburguesa */
+.mobileMenu i {
+  font-size: 24px;
+  color: #000;
+  transition: color 0.2s ease;
+}
+
+/* Estilo específico para el icono de hamburguesa cuando se activa */
+.mobileMenu.active i {
+  color: #aa00ff;
+}
+@media screen and (min-width: 1920px) {
+  .mainNav {
+    text-align: center;
+    font-size: 15px;
+    width: 100%;
+  }
+
+  .mainNav li {
+    margin: 4px;
+  }
+}
+
+@media screen and (max-width: 1360px) and (min-width: 768px) {
+  .mainNav {
+    text-align: center;
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .mainNav li {
+    margin: 4px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .mainNav {
+    text-align: center;
+    font-size: 13px;
+    width: auto;
+  }
+  
+
+  .mainNav li {
+    margin: 4px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  
+  .navbar {
+    text-align: center;
+    display: fixed;
+    margin-top: 40px;
+    width: 50%;
+    margin-left: 170px;
+  }
+
+  /* Mostrar el botón hamburguesa en dispositivos móviles */
+  .mobileMenu {
+    display: flex;
+    z-index: 1;
+  }
+  /* Estilo específico para el botón de cerrar el menú hamburguesa */
+  .closeButton {
+    position: flex; /* Cambia a posición absoluta */
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    color: #ffffff;
+    z-index: 1300; /* Asegura que esté por encima de mainNav.active */
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  /* Ocultar la barra de navegación principal por defecto en dispositivos móviles */
+  .mainNav {
+    display: none;
+  }
+
+  .mainNav.active {
+    display: inline-block;
+    position: absolute;
+    margin-top: 40px;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #aa00ff;
+    z-index: 1000; /* Asegura que esté por debajo del closeButton */
+  }
+
+  
+  /* Mover el botón de cierre más abajo para que no se superponga con el contenido */
+  .closeButton {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
+  .closeButton:hover {
+    color: #ff0000; /* Cambia el color al pasar el mouse por encima */
+  }
+
+  .mainNav ul {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .mainNav li {
+    margin-bottom: 10px;
+    align-items: center;
+    color: #ffffff;
+  }
+}
