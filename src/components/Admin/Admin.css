@@ -57,3 +57,13 @@
     }
   }
   
+
+  .App img {
+    margin-left: 35%;
+    margin-top: 20px;
+    width: 600px;
+  }
+
+  .App h1 {
+    margin-left: 35% ;
+  }
