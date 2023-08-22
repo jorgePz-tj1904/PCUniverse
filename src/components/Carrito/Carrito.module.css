@@ -48,11 +48,11 @@
     color:#aa00ff
 }
 .botonContenedor{
-  width: 15em;
-  height: 3em;
-  margin-left: 40%;
-  margin-top: -23%;
-  margin-bottom: 10%;
+  width: 50em;
+    height: 5em;
+    margin-left: 50%;
+    margin-bottom: 30%;
+    margin-top: -26em;
 }
 .boton {
   --color: #aa00ff;
@@ -73,7 +73,6 @@
   position: relative;
   margin-top: 50px;
   text-decoration: none;
-  margin-left: 250px;
 }
   
   .boton::before {
@@ -186,7 +185,7 @@
   .contenedorBuy{
     width: 15em;
     height: 3em;
-    margin-left: 20%;
+    margin-left: 32%;
     margin-bottom: 20%;
     
     
@@ -212,7 +211,6 @@
     margin-top: 50px;
     text-decoration: none;
     background: none;
-    margin-left: 240px;
   }
   
   .buy::before {
