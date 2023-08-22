@@ -77,7 +77,7 @@ const Carrito = () => {
       </NavLink>
       <div className={style.vaciar}>
         {cartItems.length > 0 && (
-          <button className={style.vaciarCarrito} onClick={handleEmptyCart}> ♻️Vaciar Carrito</button>
+          <button className={style.vaciarCarrito} onClick={handleEmptyCart}> <i class='bx bxs-trash-alt'></i>Vaciar Carrito</button>
         )}
       </div>
       <div className={style.carritoContainer}>
