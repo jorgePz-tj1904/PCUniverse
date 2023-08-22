@@ -51,8 +51,8 @@
   width: 50em;
     height: 5em;
     margin-left: 50%;
-    margin-bottom: 30%;
-    margin-top: -26em;
+    margin-bottom: 15%;
+    margin-top: -14em;
 }
 .boton {
   --color: #aa00ff;
@@ -186,7 +186,7 @@
     width: 15em;
     height: 3em;
     margin-left: 32%;
-    margin-bottom: 20%;
+    margin-bottom: 10%;
     
     
   }
