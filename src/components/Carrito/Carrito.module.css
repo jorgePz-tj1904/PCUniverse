@@ -48,9 +48,11 @@
     color:#aa00ff
 }
 .botonContenedor{
-  margin-left: 750px;
-  margin-top: -100px;
-  
+  width: 15em;
+  height: 3em;
+  margin-left: 40%;
+  margin-top: -23%;
+  margin-bottom: 10%;
 }
 .boton {
   --color: #aa00ff;
@@ -185,6 +187,7 @@
     width: 15em;
     height: 3em;
     margin-left: 20%;
+    margin-bottom: 20%;
     
     
   }
@@ -246,4 +249,20 @@
       margin-left: -90px;
     }
   }
+
+  .mensaje {
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+    font-size: 20px ;
+    transform: color 0.1s;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mensaje:hover {
+    color:#aa00ff
+  }
+  
   
