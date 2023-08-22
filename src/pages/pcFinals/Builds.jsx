@@ -1,6 +1,7 @@
 import { getAllPc, deletePc } from "../../redux/actions";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import FooterMain from '../../pages/Footer/FooterMain'
 import style from './builds.module.css'
 
 const Builds = () => {
@@ -86,11 +87,7 @@ const deletePCHandler = (id) => {
        </div>)}
        <button className={style.botones}>ir al carrito</button>
       </div>
-      <footer className="footer">
-      <p>Si tenés sugerencias o comentarios</p>
-      <a href="/contactanos">Contactanos</a>
-      <p>© 2023 PC Universe. Todos los derechos reservados.</p>
-    </footer>
+      <FooterMain/>
     </div>
   );
 };

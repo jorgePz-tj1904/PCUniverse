@@ -48,9 +48,11 @@
     color:#aa00ff
 }
 .botonContenedor{
-  margin-left: 750px;
-  margin-top: -100px;
-  
+  width: 50em;
+    height: 5em;
+    margin-left: 50%;
+    margin-bottom: 15%;
+    margin-top: -14em;
 }
 .boton {
   --color: #aa00ff;
@@ -71,7 +73,6 @@
   position: relative;
   margin-top: 50px;
   text-decoration: none;
-  margin-left: 250px;
 }
   
   .boton::before {
@@ -168,6 +169,7 @@
     font-size: 15px;
     transform: color 1sg;
     border-bottom: 1px solid gray;
+    font-size: 25px;
   }
 
   .vaciarCarrito:hover {
@@ -184,7 +186,8 @@
   .contenedorBuy{
     width: 15em;
     height: 3em;
-    margin-left: 450px;
+    margin-left: 32%;
+    margin-bottom: 10%;
     
     
   }
@@ -209,7 +212,6 @@
     margin-top: 50px;
     text-decoration: none;
     background: none;
-    margin-left: 240px;
   }
   
   .buy::before {
@@ -246,4 +248,20 @@
       margin-left: -90px;
     }
   }
+
+  .mensaje {
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+    font-size: 20px ;
+    transform: color 0.1s;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mensaje:hover {
+    color:#aa00ff
+  }
+  
   

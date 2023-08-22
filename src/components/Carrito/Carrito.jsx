@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../Card/Card';
 import { removeFromCart, emptyCart } from '../../redux/actions';
+import FooterMain from '../../pages/Footer/FooterMain'
 import style from './Carrito.module.css';
 import { NavLink } from 'react-router-dom';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
@@ -76,12 +77,13 @@ const Carrito = () => {
       </NavLink>
       <div className={style.vaciar}>
         {cartItems.length > 0 && (
-          <button className={style.vaciarCarrito} onClick={handleEmptyCart}> ♻️Vaciar Carrito</button>
+          <button className={style.vaciarCarrito} onClick={handleEmptyCart}> <i class='bx bxs-trash-alt'></i>Vaciar Carrito</button>
         )}
       </div>
       <div className={style.carritoContainer}>
+        <div className={style.validacion}>
         {cartItems.length === 0 ? (
-          <p className={style.mensaje}>No hay productos en el carrito</p>
+          <h4 className={style.mensaje}>❌ ¡No hay productos en el carrito! ❌</h4>
         ) : (
           <div className={style.cartItems}>
             {cartItems.map((item) => (
@@ -98,19 +100,25 @@ const Carrito = () => {
             ))}
           </div>
         )}
+        </div>
       </div>
       <div className={style.contenedorPrecio}>
         <p className={style.precio}>Total: ${totalPrice.toFixed(2)}</p>
       </div>
-      <div className={style.contenedorBuy}>
-          <button className={style.buy} onClick={handleBuy}>Comprar</button>
-          {preferenceId && <Wallet initialization={{ preferenceId }} />}
+      <div className={style.botonesFinales}>
+
+          <div className={style.contenedorBuy}>
+              <button className={style.buy} onClick={handleBuy}>Comprar</button>
+              {preferenceId && <Wallet initialization={{ preferenceId }} />}
+          </div>
+          <div className={style.botonContenedor}>
+            <NavLink className={style.boton} to='/componentes'>
+              Seguir Comprando
+            </NavLink>
+          </div>
+
       </div>
-      <div className={style.botonContenedor}>
-        <NavLink className={style.boton} to='/componentes'>
-          Seguir Comprando
-        </NavLink>
-      </div>
+      <FooterMain/>
     </div>
   );
 };

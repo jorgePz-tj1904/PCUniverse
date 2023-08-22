@@ -90,7 +90,7 @@
   height: 3em;
   line-height: 2.5em;
   overflow: hidden;
-  margin: 20px;
+  margin: 50px;
   font-size: 17px;
   z-index: 1;
   color: var(--color);
@@ -175,25 +175,5 @@
   flex-wrap: wrap;
   flex-direction: row; 
   width: 100%;
-}
-
-.footer {
-  position: relative;
-  bottom: -100px;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 70px;
-  background-color: #aa00ff;
-  font-family: 'Montserrat', sans-serif !important;
-  z-index: 100;
-  margin: 0;
-}
-
-.footer p {
-  color: #fff;
-  margin: 10px;
 }
 

@@ -76,7 +76,6 @@ const Header = () => {
           <li><NavLink to='/form'>ARMA TU PC</NavLink></li>
           <li><NavLink to='/ayuda'>AYUDA</NavLink></li>
           <li><NavLink to='/contactanos'>CONTACTANOS</NavLink></li>
-          <li><NavLink to='/ofertas'>OFERTAS</NavLink></li>
           <li><NavLink to='/nosotros'>¿QUIENES SOMOS?</NavLink></li>
           <li><NavLink to='/pcs'>BUILDS</NavLink></li>
           {admin ? <li><NavLink to='/admin'>PANEL DE CONTROL</NavLink></li> : null}
