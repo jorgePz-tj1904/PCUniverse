@@ -65,10 +65,8 @@ const Header = () => {
         cerrar sesion <i class='bx bxs-log-out'></i></button></>:
         <></>}
 
-        <NavLink className={style.nav} to='/carrito'>
-          <button className={style.navbarButton}>
+        <NavLink id={style.carrito} to='/carrito'>
             <i className='bx bxs-cart'></i>
-          </button>
         </NavLink>
       </div>
 

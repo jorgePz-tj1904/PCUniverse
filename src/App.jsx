@@ -13,6 +13,7 @@ import Nosotros from "./pages/Nosotros/Nosotros";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Admin from "./components/Admin/Admin";
+import FooterMain from './pages/Footer/FooterMain'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/admin/*" element={<Admin/>} />
         <Route path="/nosotros" element={<Nosotros/>} />
       </Routes>
+      <FooterMain/>
     </div>
   );
 }
