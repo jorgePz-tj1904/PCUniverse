@@ -33,21 +33,25 @@ const Create = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("Datos a enviar al servidor:", newComponent);
-
-    const form = new FormData()
-
-  for (const key in newComponent) {
-    form.append(key, newComponent[key])
-  }
-  form.append("img", file)
-  console.log(form.get("modelo"));
+  
+    const form = new FormData();
+    
+    // Convierte los campos a formato JSON usando JSON.stringify
+    form.append("modelo", JSON.stringify(newComponent.modelo));
+    form.append("especificaciones", JSON.stringify(newComponent.especificaciones));
+    form.append("precio", newComponent.precio);
+    form.append("stock", newComponent.stock);
+    form.append("img", file);
+    form.append("categoria", JSON.stringify(newComponent.categoria));
+    form.append("cantidad", newComponent.cantidad);
+  
     setLoading(true);
     try {
       const response = await axios.post("http://localhost:3001/newcomponente", form, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
-      })
+      });
       console.log("Respuesta del servidor:", response.data);
       setLoading(false);
       setNewComponent({
