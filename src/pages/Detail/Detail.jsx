@@ -11,22 +11,42 @@ function Detail() {
   const [rating, setRating] = useState(0);
   const { id } = useParams();
   const [done, setDone] = useState(false);
-  const [comentarios, setComentarios] = useState("");
+  const [loged, setLoged]=useState(false);
+  const [comentarios, setComentarios] = useState({
+    comentario:'',
+    rating:0
+  });
   const data = useSelector((state) => state.detail);
   const comments = useSelector((state) => state.comments);
+
 
   useEffect(() => {
     dispatch(getDetailById(id));
     dispatch(getComentarios(data.id));
-  }, [comentarios]);
+    changeLogin();
+  }, [comments]);
+
+  const changeLogin=async()=>{
+    const storedValue  = await localStorage.getItem('login');
+    const isUserLoggedIn = storedValue === 'true';
+    setLoged(isUserLoggedIn);
+  }
 
   const loadInfo = (event) => {
     setComentarios(event.target.value);
   };
 
   const pushData = () => {
-    dispatch(postComentario(comentarios, data.id));
-    setComentarios("");
+    dispatch(postComentario(comentarios,rating,data.id));
+    setComentarios({
+      comentario:'',
+      rating:0
+    });
+  };
+
+  const rateHandler = (value) => {
+    console.log(value);
+    setRating(value);
   };
 
   return (
@@ -53,25 +73,29 @@ function Detail() {
                 <i className="bx bx-check"> Stock Disponible</i>
                 <i className="bx bx-shield-quarter"> Con garantias</i>
               </ul>
-              <Rate defaultValue={5} disabled/>
-              {!done ? (
-                <button
-                id={style.carrito}
-                className={style.botones}
-                onClick={() => {
-                  dispatch(addToCart(data.id));
-                  setDone(true);
-                }}
-                >
-                  Añadir al carrito
-                </button>
-              ) : (
-                <img
-                src="https://i.ibb.co/jVtJDr8/icons8-marca-de-verificaci-n-52.png"
-                alt="icons8-marca-de-verificaci-n-52"
-                width={50}
-                />
-                )}
+              {comments.weightedAverageRatingN?<Rate defaultValue={comments.weightedAverageRatingN} disabled/>:null}
+              {loged ? (
+      !done ? (
+        <button
+          id={style.carrito}
+          className={style.botones}
+          onClick={() => {
+            dispatch(addToCart(data.id));
+            setDone(true);
+          }}
+        >
+          Añadir al carrito
+        </button>
+      ) : (
+        <img
+          src="https://i.ibb.co/jVtJDr8/icons8-marca-de-verificaci-n-52.png"
+          alt="icons8-marca-de-verificaci-n-52"
+          width={50}
+        />
+      )
+    ) : (
+      <h3>Inicia sesión para poder comprar este producto.<i class='bx bxs-error-alt'></i></h3>
+    )}
            </div>
           </div>
         </div>
@@ -92,51 +116,39 @@ function Detail() {
 
           <div className={style.comentsConteiner}>
 
-            <h4>Preguntas:</h4>
+            <h4>Preguntas y opiniones:</h4>
             <p>Realiza cualquier pregunta respecto al producto, y se la contestaremos a la brevedad! <i class='bx bx-down-arrow-alt'></i></p><br />
-            <div className={style.commentInputContainer}>
-            <Space.Compact block>
-             <Input onChange={loadInfo} value={comentarios} style={{ width: 'calc(100% - 100px)', fontSize:'20px' }} placeholder="pregunta aqui" onKeyDown={(e) => e.key === "Enter"?pushData():null} />
-             <Button style={{ backgroundColor:'#aa00ff', fontSize:'20px',height:'50px' }} type="primary">enviar</Button>
-           </Space.Compact>
-            </div>
-               {/* <Rate onChange={(value)=>setRating(value)}/> */}
+         
+
+              <Card style={{maxWidth:900, boxShadow:'0px 0px 12px 0px rgba(0,0,0,0.5)'}}>
+
+        
+               <Input onChange={loadInfo} value={comentarios.comentario} style={{ width: 'calc(100% - 100px)', fontSize:'20px' }} placeholder="pregunta aqui" onKeyDown={(e) => e.key === "Enter"?pushData():null} />
+               <Button onClick={()=>{pushData();dispatch(getComentarios(data.id));}} style={{ backgroundColor:'#aa00ff', fontSize:'20px',height:'50px' }} type="primary">enviar</Button>
+               <p>si tienes algo que opinar sobre el producto puedes ponerle una puntuación!</p>
+               <Rate onChange={rateHandler} />
+               <p>{rating}</p>
+
+              </Card>
+          
             <div>
-            {comments && comments.comment ? (
-              comments.comment.map((com) => (
+            {comments && comments.ratings ? (
+              comments.ratings.slice(0).reverse().map((com) => (  // Invierte el orden aquí
                 <Card id={style.cardComentario} style={{ maxWidth:'900px', fontSize:'15px',marginTop:'30px', boxShadow:'0px 0px 12px 0px rgba(0,0,0,0.5)'}} bordered={false}>
-                <p  key={com.id}>{com.comentarios}</p>
+                <p  key={com.id}>{com.opinion}</p>
+                <Rate defaultValue={com.rating} disabled/>
                 </Card>
-             ))
-            ) : (
-            <h3>todavía nadie ha comentado, ¡sé el primero!</h3>
+              ))
+              ) : (
+              <></>
             )}
             </div>
           </div>
-
-             <div className={style.opiniones}>
-             <h3>Opiniones</h3>
-             <p>Mira las opiniones dejadas por los compradores del producto</p>
-          <Card id={style.cardOpiniones} className={style.cardsClass} style={{maxWidth:'900px',}} title={<><Rate defaultValue={5} disabled/><h4>5 Estrellas!</h4></>}>
-            <div>
-              <Card >
-              <Rate defaultValue={3} disabled/>
-                <p>esta es una opinion harcodeada</p>
-              </Card>
-            </div>
-          </Card>
-             </div>
 
 
           <NavLink id={style.back} className={style.botones} to="/componentes">
             Back
           </NavLink>
-
-          <footer className="footer">
-            <p>Si tienes sugerencias o comentarios</p>
-            <NavLink to="/contactanos">Contáctanos</NavLink>
-            <p>© 2023 PC Universe. Todos los derechos reservados.</p>
-          </footer>
         </div>
       ) : (
         <div>

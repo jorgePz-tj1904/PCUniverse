@@ -4,7 +4,6 @@ import style from './Form.module.css';
 import { getAllComponents, postComponents, getAllPc} from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import FooterMain from '../../pages/Footer/FooterMain'
 
 const Form = () => {
   const componentes = useSelector((state)=> state.allComponents);
@@ -277,7 +276,7 @@ const categoryHandler=(category)=>{
                   </div>))}
   
                   </div>
-                {counter>=0&&<button onClick={()=>setDone(true)} className={style.botones}>Listo?</button>}
+                  {counter >= 0 && computer.componentes.length > 0 ? <button onClick={() => setDone(true)} className={style.botones}>Listo?</button> : null}
            </div>
               ): (<><h1>Listo!</h1> <img src="https://i.ibb.co/P51w3NG/icons8-hecho-96.png" alt="icons8-hecho-96" border="0"/></>)
             }
@@ -299,7 +298,6 @@ const categoryHandler=(category)=>{
             <p id={style.total}>total: {total} $</p> 
             {done&&(<NavLink to='/pcs' className={style.botones} onClick={()=>dispatch(postComponents(computer))}>Builds</NavLink>)}
         </div>
-            <FooterMain/>
         </div>
     );
 };

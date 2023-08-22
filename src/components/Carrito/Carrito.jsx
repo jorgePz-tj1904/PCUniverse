@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../Card/Card';
 import { removeFromCart, emptyCart } from '../../redux/actions';
-import FooterMain from '../../pages/Footer/FooterMain'
 import style from './Carrito.module.css';
 import { NavLink } from 'react-router-dom';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
@@ -118,7 +117,6 @@ const Carrito = () => {
           </div>
 
       </div>
-      <FooterMain/>
     </div>
   );
 };
