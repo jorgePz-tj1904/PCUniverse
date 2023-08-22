@@ -9,6 +9,7 @@ import foto2 from "../../assets/foto2.jpeg";
 import foto3 from "../../assets/foto3.jpeg";
 import foto4 from "../../assets/foto4.jpeg";
 import foto5 from "../../assets/foto5.jpeg";
+import FooterMain from '../Footer/FooterMain';
 
 const Home = () => {
 
@@ -92,11 +93,7 @@ const Home = () => {
         </div>
 
         {/* Carrusel */}
-        <footer className="footer">
-      <p>Si tenés sugerencias o comentarios</p>
-      <a href="/contactanos">Contactanos</a>
-      <p>© 2023 PC Universe. Todos los derechos reservados.</p>
-    </footer>
+        <FooterMain/>
       </div>
       </div>
   );
