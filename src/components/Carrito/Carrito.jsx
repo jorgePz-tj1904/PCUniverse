@@ -81,8 +81,9 @@ const Carrito = () => {
         )}
       </div>
       <div className={style.carritoContainer}>
+        <div className={style.validacion}>
         {cartItems.length === 0 ? (
-          <p className={style.mensaje}>No hay productos en el carrito</p>
+          <h4 className={style.mensaje}>❌ ¡No hay productos en el carrito! ❌</h4>
         ) : (
           <div className={style.cartItems}>
             {cartItems.map((item) => (
@@ -99,18 +100,23 @@ const Carrito = () => {
             ))}
           </div>
         )}
+        </div>
       </div>
       <div className={style.contenedorPrecio}>
         <p className={style.precio}>Total: ${totalPrice.toFixed(2)}</p>
       </div>
-      <div className={style.contenedorBuy}>
-          <button className={style.buy} onClick={handleBuy}>Comprar</button>
-          {preferenceId && <Wallet initialization={{ preferenceId }} />}
-      </div>
-      <div className={style.botonContenedor}>
-        <NavLink className={style.boton} to='/componentes'>
-          Seguir Comprando
-        </NavLink>
+      <div className={style.botonesFinales}>
+
+          <div className={style.contenedorBuy}>
+              <button className={style.buy} onClick={handleBuy}>Comprar</button>
+              {preferenceId && <Wallet initialization={{ preferenceId }} />}
+          </div>
+          <div className={style.botonContenedor}>
+            <NavLink className={style.boton} to='/componentes'>
+              Seguir Comprando
+            </NavLink>
+          </div>
+
       </div>
       <FooterMain/>
     </div>
