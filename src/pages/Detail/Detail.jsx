@@ -11,6 +11,7 @@ function Detail() {
   const [rating, setRating] = useState(0);
   const { id } = useParams();
   const [done, setDone] = useState(false);
+  const [loged, setLoged]=useState(false);
   const [comentarios, setComentarios] = useState({
     comentario:'',
     rating:0
@@ -18,11 +19,18 @@ function Detail() {
   const data = useSelector((state) => state.detail);
   const comments = useSelector((state) => state.comments);
 
+
   useEffect(() => {
     dispatch(getDetailById(id));
     dispatch(getComentarios(data.id));
-    console.log(comments);
-  }, [comentarios]);
+    changeLogin();
+  }, [comments]);
+
+  const changeLogin=async()=>{
+    const storedValue  = await localStorage.getItem('login');
+    const isUserLoggedIn = storedValue === 'true';
+    setLoged(isUserLoggedIn);
+  }
 
   const loadInfo = (event) => {
     setComentarios(event.target.value);
@@ -65,25 +73,29 @@ function Detail() {
                 <i className="bx bx-check"> Stock Disponible</i>
                 <i className="bx bx-shield-quarter"> Con garantias</i>
               </ul>
-              <Rate defaultValue={5} disabled/>
-              {!done ? (
-                <button
-                id={style.carrito}
-                className={style.botones}
-                onClick={() => {
-                  dispatch(addToCart(data.id));
-                  setDone(true);
-                }}
-                >
-                  Añadir al carrito
-                </button>
-              ) : (
-                <img
-                src="https://i.ibb.co/jVtJDr8/icons8-marca-de-verificaci-n-52.png"
-                alt="icons8-marca-de-verificaci-n-52"
-                width={50}
-                />
-                )}
+              {comments.weightedAverageRatingN?<Rate defaultValue={comments.weightedAverageRatingN} disabled/>:null}
+              {loged ? (
+      !done ? (
+        <button
+          id={style.carrito}
+          className={style.botones}
+          onClick={() => {
+            dispatch(addToCart(data.id));
+            setDone(true);
+          }}
+        >
+          Añadir al carrito
+        </button>
+      ) : (
+        <img
+          src="https://i.ibb.co/jVtJDr8/icons8-marca-de-verificaci-n-52.png"
+          alt="icons8-marca-de-verificaci-n-52"
+          width={50}
+        />
+      )
+    ) : (
+      <h3>Inicia sesión para poder comprar este producto.<i class='bx bxs-error-alt'></i></h3>
+    )}
            </div>
           </div>
         </div>
@@ -110,9 +122,9 @@ function Detail() {
 
               <Card style={{maxWidth:900, boxShadow:'0px 0px 12px 0px rgba(0,0,0,0.5)'}}>
 
-              
+        
                <Input onChange={loadInfo} value={comentarios.comentario} style={{ width: 'calc(100% - 100px)', fontSize:'20px' }} placeholder="pregunta aqui" onKeyDown={(e) => e.key === "Enter"?pushData():null} />
-               <Button style={{ backgroundColor:'#aa00ff', fontSize:'20px',height:'50px' }} type="primary">enviar</Button>
+               <Button onClick={()=>{pushData();dispatch(getComentarios(data.id));}} style={{ backgroundColor:'#aa00ff', fontSize:'20px',height:'50px' }} type="primary">enviar</Button>
                <p>si tienes algo que opinar sobre el producto puedes ponerle una puntuación!</p>
                <Rate onChange={rateHandler} />
                <p>{rating}</p>
@@ -121,15 +133,15 @@ function Detail() {
           
             <div>
             {comments && comments.ratings ? (
-  comments.ratings.slice(0).reverse().map((com) => (  // Invierte el orden aquí
-    <Card id={style.cardComentario} style={{ maxWidth:'900px', fontSize:'15px',marginTop:'30px', boxShadow:'0px 0px 12px 0px rgba(0,0,0,0.5)'}} bordered={false}>
-    <p  key={com.id}>{com.opinion}</p>
-    <Rate defaultValue={com.rating} disabled/>
-    </Card>
- ))
-) : (
-<h3>todavía nadie ha comentado, ¡sé el primero!</h3>
-)}
+              comments.ratings.slice(0).reverse().map((com) => (  // Invierte el orden aquí
+                <Card id={style.cardComentario} style={{ maxWidth:'900px', fontSize:'15px',marginTop:'30px', boxShadow:'0px 0px 12px 0px rgba(0,0,0,0.5)'}} bordered={false}>
+                <p  key={com.id}>{com.opinion}</p>
+                <Rate defaultValue={com.rating} disabled/>
+                </Card>
+              ))
+              ) : (
+              <></>
+            )}
             </div>
           </div>
 
@@ -137,12 +149,6 @@ function Detail() {
           <NavLink id={style.back} className={style.botones} to="/componentes">
             Back
           </NavLink>
-
-          <footer className="footer">
-            <p>Si tienes sugerencias o comentarios</p>
-            <NavLink to="/contactanos">Contáctanos</NavLink>
-            <p>© 2023 PC Universe. Todos los derechos reservados.</p>
-          </footer>
         </div>
       ) : (
         <div>

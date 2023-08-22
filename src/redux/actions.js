@@ -210,15 +210,16 @@ export function postComentario(data,rate, compId) {
 }
 
 export function getComentarios(compId) {
-  console.log(compId);
+
   return async function (dispatch) {
     try {
       const response = await axios.get(`http://localhost:3001/getratings?componenteId=${compId}`);
-      console.log(response.data);
+      
       return dispatch({
         type: GET_COMENTARIOS,
         payload: response.data
       })
+      return
     } catch (error) {
       console.log(error);
     }

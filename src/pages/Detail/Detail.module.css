@@ -106,6 +106,12 @@
   left: -30px;
 }
 
+#verOpiniones{
+  left: 20%;
+  top: 70%;
+  font-size: 14px;
+}
+
 
 .comentsConteiner{
   margin-top: 100px;
