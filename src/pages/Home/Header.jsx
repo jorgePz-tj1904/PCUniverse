@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './Header.module.css';
 import logo from "../../assets/logo.png";
 import { NavLink } from 'react-router-dom';
@@ -7,19 +7,18 @@ import LoginForm from '../../pages/Login/LoginForm';
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
-  const { logout } = useAuth0();
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const [loged, setLoged] = useState(false);
+  const [loged, setLoged]=useState(false);
   const [admin, setAdmin] = useState(false);
-  const [showMenu, setShowMenu] = useState(false); // Agrega el estado para el menú
+  const { logout } = useAuth0();
 
   useEffect(() => {
     changeLogin();
     loginHandle();
   }, []);
 
-  const changeLogin = async () => {
-    const storedValue = await localStorage.getItem('login');
+  const changeLogin=async()=>{
+    const storedValue  = await localStorage.getItem('login');
     const isUserLoggedIn = storedValue === 'true';
     setLoged(isUserLoggedIn);
   }
@@ -41,10 +40,12 @@ const Header = () => {
       setLoged(true);
     }
   }
-
-  const handleMenuToggle = () => {
-    setShowMenu(!showMenu);
-  };
+  // const logOut = () => {
+  //   logout({ returnTo: window.location.origin })
+  //   localStorage.removeItem('usuario');
+  //   setLoged(false);
+  //   setAdmin(false);
+  // }
 
   return (
     <div>
@@ -56,28 +57,22 @@ const Header = () => {
         <NavLink to={'/'}>
           <img src={logo} alt="Logo" className={style.logo} />
         </NavLink>
-        <SearchBar />
-        <button
-          className={style.navbarButton}
-          onClick={handleLoginButtonClick}
-        >
-          {loged ? <i class='bx bxs-log-out'></i> : <i className='bx bxs-log-in'></i>}
-        </button>
-        {loged ? <><p>sesion iniciada</p></> : <><p>iniciar sesion</p></>}
+        <SearchBar/> 
+
+        {!loged&&<button id={style.iniciarSesion} className={style.botones} onClick={handleLoginButtonClick}><i class='bx bxs-log-out'></i>iniciar sesion</button>}
+
+        {loged ? <><button className={style.botones} onClick={() => {logout ({returnTo: window.location.origin}); localStorage.removeItem('usuario'); localStorage.removeItem('login');}}>
+        cerrar sesion <i class='bx bxs-log-out'></i></button></>:
+        <></>}
+
         <NavLink className={style.nav} to='/carrito'>
           <button className={style.navbarButton}>
             <i className='bx bxs-cart'></i>
           </button>
         </NavLink>
       </div>
-      <div className={`${style.mobileMenu} ${showMenu ? style.active : ''}`} onClick={handleMenuToggle}>
-        <i className={showMenu ? 'bx bx-x' : 'bx bx-menu'}></i>
-      </div>
 
-      <nav className={`${style.mainNav} ${showMenu ? style.active : ''}`}>
-        <div className="closeButton" onClick={handleMenuToggle}>
-          <i className="fas fa-times"></i>
-        </div>
+      <nav className={style.mainNav}>
         <ul>
           <li><NavLink to='/componentes'>PRODUCTOS</NavLink></li>
           <li><NavLink to='/form'>ARMA TU PC</NavLink></li>
@@ -86,7 +81,7 @@ const Header = () => {
           <li><NavLink to='/ofertas'>OFERTAS</NavLink></li>
           <li><NavLink to='/nosotros'>¿QUIENES SOMOS?</NavLink></li>
           <li><NavLink to='/pcs'>BUILDS</NavLink></li>
-          <li><NavLink to='/admin'>PANEL DE CONTROL</NavLink></li>
+          {admin ? <li><NavLink to='/admin'>PANEL DE CONTROL</NavLink></li> : null}
         </ul>
       </nav>
 
@@ -102,3 +97,4 @@ const Header = () => {
 };
 
 export default Header;
+
