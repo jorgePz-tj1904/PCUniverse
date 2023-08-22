@@ -1,6 +1,6 @@
 import { Menu } from "antd"
 import "./Admin.css"
-import { AppstoreOutlined, ShopOutlined, ShoppingCartOutlined, UserOutlined } from "@ant-design/icons"
+import { AppstoreOutlined, ShopOutlined, ShoppingCartOutlined, UserOutlined, CloudUploadOutlined  } from "@ant-design/icons"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 const SideMenu = () => {
@@ -46,6 +46,11 @@ useEffect(() => {
             label: "Clientes",
             key: "/admin/customers",
             icon: <UserOutlined/>
+          },
+          {
+            label: "Subir componente",
+            key: "/admin/create",
+            icon: <CloudUploadOutlined />
           },
           ]}>
 

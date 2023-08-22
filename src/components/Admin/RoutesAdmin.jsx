@@ -5,6 +5,7 @@ import Inventory from "../../pages/DashBoardPages/Inventory/Inventory";
 import Orders from "../../pages/DashBoardPages/Orders/Orders";
 import Customers from "../../pages/DashBoardPages/Customers/Customers";
 import Dashboard from "../../pages/DashBoardPages/DashBoard/DashBoard";
+import Create from "../../pages/DashBoardPages/Create/Create";
 import "./Admin.css"
 
 
@@ -16,6 +17,7 @@ const AdminLayout = () => {
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/customers" element={<Customers />} />
+          <Route path="/create" element={<Create/>} />
         </Routes>
       
   </div>
