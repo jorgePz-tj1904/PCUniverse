@@ -20,6 +20,8 @@ import {
   GET_ALL_COMMENTS,
   UPDATE_COMMENTS,
   UPDATE_USER_ROLE,
+  UPDATE_PRICE,
+  UPDATE_STOCK,
 } from "./actions-types";
 
 // import { buildFilterQueryString } from "./actionUtils";
@@ -357,6 +359,49 @@ export const updateUserRole = (id, newRole) => {
       }
     } catch (error) {
       console.error('Error updating user role:', error);
+    }
+  };
+};
+
+
+export const updatePrice = (id, newPrice) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.put(`http://localhost:3001/putPrice`, {
+        id: id,
+        newPrice: newPrice,
+      });
+
+      if (response.status === 200) {
+        dispatch({
+          type: UPDATE_PRICE,
+          id: id,
+          newPrice: newPrice,
+        });
+      }
+    } catch (error) {
+      console.error('Error al cambiar el precio:', error);
+    }
+  };
+};
+
+export const updateStock = (id, newStock) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.put(`http://localhost:3001/putstock`, {
+        id: id,
+        newStock: newStock,
+      });
+
+      if (response.status === 200) {
+        dispatch({
+          type: UPDATE_STOCK,
+          id: id,
+          newStock: newStock,
+        });
+      }
+    } catch (error) {
+      console.error('Error al cambiar el Stock:', error);
     }
   };
 };

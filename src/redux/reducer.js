@@ -17,6 +17,8 @@ import {
   UPDATE_USER_ROLE, 
   POST_COMENTARIO,
   GET_COMENTARIOS,
+  UPDATE_PRICE,
+  UPDATE_STOCK,
 } from './actions-types';
 
 const initialState = {
@@ -163,6 +165,32 @@ function reducer(state = initialState, action) {
     ...state,
     allUsers: updatedAllUsers,
   };
+  case UPDATE_PRICE:
+      return {
+        ...state,
+        allComponents: state.allComponents.map(component => {
+          if (component.id === action.id) {
+            return {
+              ...component,
+              precio: action.newPrice,
+            };
+          }
+          return component;
+        }),
+      };
+  case UPDATE_STOCK:
+      return {
+        ...state,
+        allComponents: state.allComponents.map(component => {
+          if (component.id === action.id) {
+            return {
+              ...component,
+              precio: action.newStock,
+            };
+          }
+          return component;
+        }),
+      };
     default:
       return state;
   }
