@@ -7,6 +7,7 @@ import mateo from '../../images/mateo.jpg'
 import edu from '../../images/edu.jpg'
 import jorge from '../../images/jorge.jpg'
 import { NavLink } from 'react-router-dom'
+import FooterMain from '../../pages/Footer/FooterMain'
 
 import React from 'react'
 
@@ -75,11 +76,7 @@ const Nosotros = () => {
       <NavLink className={style.back} to='/'>
         Back
       </NavLink>
-            <footer className="footer">
-            <p>Si tenés sugerencias o comentarios</p>
-            <NavLink to="/contactanos">Contactanos</NavLink>
-            <p>© 2023 PC Universe. Todos los derechos reservados.</p>
-          </footer>
+            <FooterMain/>
     </div>
   )
 }

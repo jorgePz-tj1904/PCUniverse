@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../Card/Card';
 import { applyPriceOrder, filterProductsByCategory, getAllComponents} from '../../redux/actions';
+import FooterMain from '../../pages/Footer/FooterMain'
 import './Cards.css';
 
 const Cards = () => {
@@ -103,6 +104,7 @@ function handleFilterStatus(e) {
           <span className='text'>Siguiente</span>
         </button>
       </div>
+<FooterMain/>
     </div>
   );
 };
