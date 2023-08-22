@@ -17,6 +17,12 @@ const Carrito = () => {
   const [preferenceId, setPreferenceId] = useState(null)
   initMercadoPago('TEST-0fbd33da-2e66-4c43-934e-20958a309dee');
 
+  function obtenerUsuario() {
+    const usuarioJSON = localStorage.getItem('usuario');
+    return usuarioJSON ? JSON.parse(usuarioJSON): null;
+  }
+  const user = obtenerUsuario();
+
   const createPreference = async () => {
     try {
       const componentes = cartItems.map((item) => ({
@@ -31,6 +37,7 @@ const Carrito = () => {
       }));
       let objComp = {};
       objComp.componentes = componentes;
+      objComp.user = user;
       console.log(objComp);
       const response = await axios.post(
         "http://localhost:3001/payment",

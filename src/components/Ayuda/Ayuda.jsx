@@ -53,17 +53,17 @@ const ayuda = () => {
       {/* Caja adicional */}
       <div className={`${styles['ayuda-box']} ${styles['additional-box']}`}>
         <h3>
-          PC Universe te ayuda. ¿Cuál es tu consulta?
+          ¿Tienes alguna consulta mas especifica o critica?
         </h3>
         <p>
           {/* Contenido adicional */}
           {expandedBox === null && (
             <div className={styles['log-box']}>
-              <NavLink to="/login" className={styles.navLink} style={{ textDecoration: 'none' }}>
+              <NavLink to="/contactanos" className={styles.navLink} style={{ textDecoration: 'none' }}>
                 <span onClick={() => handleBoxClick(null)}>
                   <i className='bx bxs-user'></i>
                 </span>
-                <span className={styles.linkText}>Iniciar Sesión</span>
+                <span className={styles.linkText}>Contactanos</span>
               </NavLink>
             </div>
           )}

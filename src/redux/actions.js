@@ -22,6 +22,7 @@ import {
   UPDATE_USER_ROLE,
   UPDATE_PRICE,
   UPDATE_STOCK,
+  ALL_ORDERS,
 } from "./actions-types";
 
 // import { buildFilterQueryString } from "./actionUtils";
@@ -405,3 +406,21 @@ export const updateStock = (id, newStock) => {
     }
   };
 };
+
+export function getAllOrders() {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/getpayments`
+      );
+      const data = response.data;
+      return dispatch({
+        type: ALL_ORDERS,
+        payload: data,
+      });
+    } catch (error) {
+      console.error("Error en acceder a get components");
+      console.log(error);
+    }
+  };
+}

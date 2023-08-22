@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col, Card, Space, Statistic, Table, Typography } from "antd";
+import { Row, Col, Card, Space, Statistic, Typography, Table } from "antd";
 import {
   DollarCircleOutlined,
   ShoppingCartOutlined,
@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import { Bar } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllComponents, getAllusers } from "../../../redux/actions";
+import { getAllComponents, getAllOrders, getAllusers } from "../../../redux/actions";
 import { getOrders, getRevenue } from "../../../components/API/index";
 
 import {
@@ -38,12 +38,12 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const components = useSelector((state) => state.allComponents);
   const allUsers = useSelector((state) => state.allUsers);
+  const allOrders = useSelector((state) => state.allOrders);
+  const amountTotal = useSelector((state) => state.amountTotal);
+  console.log("productos", allOrders);
 
   useEffect(() => {
-    getOrders().then((res) => {
-      setOrders(res.total);
-      setRevenue(res.discountedTotal);
-    });
+    dispatch(getAllOrders())
     dispatch(getAllComponents());
     dispatch(getAllusers());
   }, []);
@@ -64,7 +64,7 @@ const Dashboard = () => {
               />
             }
             title={"Pedidos"}
-            value={orders}
+            value={allOrders.length}
           />
         </Col>
         <Col xs={24} sm={12} md={8} lg={6}>
@@ -115,7 +115,7 @@ const Dashboard = () => {
               />
             }
             title={"Ingresos"}
-            value={revenue}
+            value={amountTotal}
           />
         </Col>
         <Col xs={24} md={12}>
@@ -142,15 +142,15 @@ const DashBoardCard = ({ title, value, icon }) => {
 };
 
 const RecentOrders = () => {
-  const [dataSource, setDataSource] = useState([]);
   const [loading, setLoading] = useState(false);
+  const allOrders = useSelector((state) => state.allOrders)
+  const dispatch = useDispatch()
+
 
   useEffect(() => {
     setLoading(true);
-    getOrders().then((res) => {
-      setDataSource(res.products.splice(0, 3));
+    dispatch(getAllOrders())
       setLoading(false);
-    });
   }, []);
 
   return (
@@ -160,19 +160,20 @@ const RecentOrders = () => {
         columns={[
           {
             title: "Titulo",
-            dataIndex: "title",
-          },
-          {
-            title: "Cantidad",
-            dataIndex: "quantity",
+            dataIndex: "products",
+            render: (products => products.join(" - "))
           },
           {
             title: "Precio",
-            dataIndex: "discountedPrice",
+            dataIndex: "amount",
           },
+          {
+            title: "Cliente",
+            dataIndex: "userId"
+          }
         ]}
         loading={loading}
-        dataSource={dataSource}
+        dataSource={allOrders}
         pagination={false}
       ></Table>
     </div>
@@ -185,28 +186,29 @@ const DashBoardChart = () => {
     datasets: [],
   });
 
-  useEffect(() => {
-    getRevenue().then((res) => {
-      const labels = res.carts.map((cart) => {
-        return `User-${cart.userId}`;
-      });
-      const data = res.carts.map((cart) => {
-        return cart.discountedTotal;
-      });
-      const dataSource = {
-        labels,
-        datasets: [
-          {
-            label: "Ingresos",
-            data: data,
-            backgroundColor: "rgb(153, 0, 255)",
-          },
-        ],
-      };
+  const allOrders = useSelector((state) => state.allOrders);
 
-      setRevenuedata(dataSource);
+  useEffect(() => {
+    const labels = allOrders.map((order) => {
+      return `User-${order.userId}`;
     });
-  }, []);
+    const data = allOrders.map((order) => {
+      return order.amount;
+    });
+
+    const dataSource = {
+      labels,
+      datasets: [
+        {
+          label: 'Ingresos',
+          data,
+          backgroundColor: 'rgb(153, 0, 255)',
+        },
+      ],
+    };
+
+    setRevenuedata(dataSource);
+  }, [allOrders]);
 
   const options = {
     responsive: true,
@@ -223,7 +225,7 @@ const DashBoardChart = () => {
   };
 
   return (
-    <Card style={{ width: "100%", height: 350 }}>
+    <Card style={{ width: "100%", height: 500 }}>
       <Bar options={options} data={revenuedata} />
     </Card>
   );
