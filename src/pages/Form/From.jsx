@@ -276,7 +276,7 @@ const categoryHandler=(category)=>{
                   </div>))}
   
                   </div>
-                {counter>=0&&<button onClick={()=>setDone(true)} className={style.botones}>Listo?</button>}
+                  {counter >= 0 && computer.componentes.length > 0 ? <button onClick={() => setDone(true)} className={style.botones}>Listo?</button> : null}
            </div>
               ): (<><h1>Listo!</h1> <img src="https://i.ibb.co/P51w3NG/icons8-hecho-96.png" alt="icons8-hecho-96" border="0"/></>)
             }

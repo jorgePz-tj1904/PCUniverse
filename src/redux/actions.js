@@ -184,14 +184,16 @@ export function getDetailById(id) {
   };
 }
 
-export function postComentario(data, compId) {
+export function postComentario(data,rate, compId) {
   return async function (dispatch) {
     try {
-      const response = await axios.post('http://localhost:3001/comentarios',{
-        comentario: data,
+      console.log(data);
+      const response = await axios.post('http://localhost:3001/rating',{
+        rating: rate,
         userId: null,
         perifericoId:null,
-        componenteId: compId
+        componenteId: compId,
+        opinion:data
       });
       console.log(response.data);
       return dispatch({
@@ -208,7 +210,7 @@ export function getComentarios(compId) {
   console.log(compId);
   return async function (dispatch) {
     try {
-      const response = await axios.get(`http://localhost:3001/getcoments?commentComponenteId=${compId}`);
+      const response = await axios.get(`http://localhost:3001/getratings?componenteId=${compId}`);
       console.log(response.data);
       return dispatch({
         type: GET_COMENTARIOS,

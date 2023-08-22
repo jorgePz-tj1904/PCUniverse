@@ -31,7 +31,7 @@ const initialState = {
   allUsers: [],
   allComments: [],
   review: [],
-  comments:[],
+  comments:[]
 };
 
 function reducer(state = initialState, action) {
