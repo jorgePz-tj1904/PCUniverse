@@ -12,8 +12,38 @@ import foto4 from "../../assets/foto4.jpeg";
 import foto5 from "../../assets/foto5.jpeg";
 import FooterMain from '../Footer/FooterMain';
 import Card from "../../components/Card/Card";
+import axios from "axios"
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Home = () => {
+  const { user, isAuthenticated } = useAuth0();
+
+  // console.log(user);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     const userData = {
+  //       email: user.email,
+  //       name: user.given_name,
+  //       last_name: user.family_name,
+  //     };
+
+  //     const sendUserDataToBackend = async () => {
+  //       try {
+  //         const response = await axios.post(
+  //           "http://localhost:3001/signupauth0",
+  //           userData
+  //         );
+  //         console.log(response.data);
+  //       } catch (error) {
+  //         console.error("Error:", error);
+  //       }
+  //     };
+
+  //     sendUserDataToBackend();
+  //   }
+  // }, [isAuthenticated, user,]);
+
+
   const settings = {
     dots: true,
     infinite: true,
@@ -35,7 +65,28 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getAllComponents());
-  }, [dispatch]);
+    if (isAuthenticated) {
+      const userData = {
+        email: user.email,
+        name: user.given_name,
+        last_name: user.family_name,
+      };
+
+      const sendUserDataToBackend = async () => {
+        try {
+          const response = await axios.post(
+            "http://localhost:3001/signupauth0",
+            userData
+          );
+          console.log(response.data);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      };
+
+      sendUserDataToBackend();
+    }
+  }, [isAuthenticated, user, dispatch]);
 
   // Filtrar solo los componentes de la categoría 'perifericos'
   const selectedPeripherals = components.filter(component => component.categoria === 'periferico');

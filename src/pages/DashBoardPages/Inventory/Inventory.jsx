@@ -95,11 +95,6 @@ const Inventory = () => {
       ),
     },
     {
-      title: "Clasificación",
-      dataIndex: "rating",
-      render: (rating) => <Rate value={rating} allowHalf disabled />,
-    },
-    {
       title: "Stock",
       dataIndex: "stock",
       render: (value, record) => (
