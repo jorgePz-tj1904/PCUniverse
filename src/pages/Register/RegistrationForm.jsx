@@ -47,7 +47,7 @@ function RegistroFormulario() {
     };
     console.log(userData);
     try {
-      await dispatch(registerUser(userData));
+      dispatch(registerUser(userData));
       setIsRegistered(true);
     } catch (error) {
       console.error("Error en el registro:", error);
