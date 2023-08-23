@@ -48,7 +48,20 @@ const Inventory = () => {
     {
       title: "Imagen",
       dataIndex: "img",
-      render: (link) => <Avatar src={link} />,
+      render: (link) => {
+        return (
+          <Avatar
+            src={link}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "64px", // Establece el ancho deseado
+              height: "64px", // Establece la altura deseada
+            }}
+          />
+        );
+      },
     },
     {
       title: "Modelo",
