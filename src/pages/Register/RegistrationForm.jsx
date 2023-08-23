@@ -13,7 +13,7 @@ function RegistroFormulario() {
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
   const [postalCode, setPostalCode] = useState("");
-  const [birthdate, setBirthdate] = useState(null);
+  const [birthdateText, setBirthdateText] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [firstNameError, setFirstNameError] = useState("");
   const [lastNameError, setLastNameError] = useState("");
@@ -21,7 +21,6 @@ function RegistroFormulario() {
   const [cityError, setCityError] = useState("");
   const [postalCodeError, setPostalCodeError] = useState("");
   const [birthdateError, setBirthdateError] = useState("");
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,9 +30,9 @@ function RegistroFormulario() {
       }, 1000);
     }
   }, [isRegistered]);
+
   localStorage.setItem("usuario",JSON.stringify({ email: email, password: password }));
   localStorage.setItem('login', true)
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,17 +47,17 @@ function RegistroFormulario() {
     setBirthdateError("");
 
     if (password.length < 8 || password.length > 15) {
-      setPasswordError("La contraseña debe tener al menos 1 mayuscula, 1 numero y entre 8 y 15 caracteres.");
+      setPasswordError("La contraseña debe tener al menos 1 mayúscula, 1 número y entre 8 y 15 caracteres.");
       isValid = false;
     }
 
     if (firstName.length > 15 || firstName.trim() === "") {
-      setFirstNameError("El nombre debe tener un máximo 15 letras.");
+      setFirstNameError("El nombre debe tener un máximo de 15 letras.");
       isValid = false;
     }
 
     if (lastName.length > 15 || lastName.trim() === "") {
-      setLastNameError("El apellido debe tener máximo 15 letras.");
+      setLastNameError("El apellido debe tener un máximo de 15 letras.");
       isValid = false;
     }
 
@@ -77,14 +76,18 @@ function RegistroFormulario() {
       isValid = false;
     }
 
-    const today = new Date();
-    const minBirthdate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+    const minBirthdate = new Date("2005-01-01");
+    const userBirthdate = new Date(birthdateText);
+    const eighteenYearsAgo = new Date();
+    eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18);
 
-    if (!birthdate || birthdate < minBirthdate) {
-      setBirthdateError("Debes ser mayor de 18 años para registrarte.");
+    if (userBirthdate >= minBirthdate) {
+      setBirthdateError("Debes haber nacido antes de 2005.");
+      isValid = false;
+    } else if (userBirthdate >= eighteenYearsAgo) {
+      setBirthdateError("Debes tener al menos 18 años para registrarte.");
       isValid = false;
     }
-    
 
     if (isValid) {
       const userData = {
@@ -94,9 +97,9 @@ function RegistroFormulario() {
         password,
         city,
         postal_code: postalCode,
-        date_of_birth: birthdate,
+        date_of_birth: userBirthdate,
       };
-      
+
       try {
         dispatch(registerUser(userData));
         setIsRegistered(true);
@@ -104,14 +107,12 @@ function RegistroFormulario() {
         console.error("Error en el registro:", error);
       }
     }
-  };
-
+  }
 
   return (
     <form onSubmit={handleSubmit} className={styles.registrationForm}>
       <h2 className={styles.formTitle}>Sign in</h2>
       <div className={`${styles.card} ${styles.focusedContainer}`}>
-        {/* Agregar sección de motivos para registrarse */}
         <div className={styles.whyRegister}>
           <h3>¿Por qué debería registrarme?</h3>
           <h4>
@@ -193,15 +194,20 @@ function RegistroFormulario() {
         </div>
         <div className={`${styles.formGroup} ${styles.inlineForm}`}>
           <label className={styles.label}></label>
-          <DatePicker
-            selected={birthdate}
-            onChange={(date) => setBirthdate(date)}
-            dateFormat="dd/MM/yyyy"
-            className={styles.datePicker}
-            placeholderText="  Fecha de nacimiento"
+          <input
+            type="date"
+            value={birthdateText}
+            onChange={(e) => {
+              setBirthdateText(e.target.value);
+              setBirthdateError(""); // Clear the error when the input changes
+            }}
+            className={`${styles.input} input`}
+            placeholder="Fecha de nacimiento"
             required
           />
-          {birthdateError && <p className={styles.error}>{birthdateError}</p>}
+          {birthdateError && (
+            <p className={styles.error}>{birthdateError}</p>
+          )}
         </div>
         <div className={styles.submitContainer}>
           <button
