@@ -273,7 +273,7 @@ export const registerUser = (userData) => {
   return async (dispatch) => {
     console.log(userData);
     try {
-      const response = await axios.post(`http://localhost:3001/signup`, userData);
+      const response = await axios.post("http://localhost:3001/signup", userData);
       console.log(userData);
 
       dispatch({ type: REGISTER_SUCCESS, payload: response.data });
