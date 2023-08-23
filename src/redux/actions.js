@@ -23,6 +23,7 @@ import {
   UPDATE_PRICE,
   UPDATE_STOCK,
   ALL_ORDERS,
+  DELETE_PRODUCT_SUCCESS,
 } from "./actions-types";
 
 
@@ -31,7 +32,7 @@ import {
 export function getComponentsFinal() {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`http://localhost:3001/componentes`);
+      const response = await axios.get(`https://pcuniverseback2.onrender.com/componentes`);
       const data = response.data;
       console.log(data);
       return dispatch({
@@ -92,25 +93,18 @@ export const applyPriceOrder = (order) => ({
   type: "APPLY_PRICE_ORDER",
   payload: order,
 });
-//////////////////////lautaro
 
-// export function getAllComponents() {
-//   return async function (dispatch) {
-//     try {
-//       const response = await axios.get(
-//         `http://localhost:3001/allproducts`
-//       );
-//       const data = response.data;
-//       return dispatch({
-//         type: GET_COMPONENTS,
-//         payload: data,
-//       });
-//     } catch (error) {
-//       console.error("Error en acceder a get components");
-//       console.log(error);
-//     }
-//   };
-// }
+export const deleteProduct = (id) => async (dispatch) => {
+  try {
+    await axios.patch(`https://pcuniverseback2.onrender.com/producto/delete/${id}`); 
+    dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: id });
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    throw error;
+  }
+};
+
+
 export function deletePc(id) {
   return async function (dispatch) {
     console.log(id);

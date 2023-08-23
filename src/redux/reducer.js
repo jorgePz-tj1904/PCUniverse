@@ -20,6 +20,7 @@ import {
   UPDATE_PRICE,
   UPDATE_STOCK,
   ALL_ORDERS,
+  DELETE_PRODUCT_SUCCESS,
 } from './actions-types';
 
 const initialState = {
@@ -200,6 +201,14 @@ function reducer(state = initialState, action) {
           allOrders: action.payload.response,
           amountTotal: action.payload.amountTotal
         };
+        case DELETE_PRODUCT_SUCCESS:
+          return {
+            ...state,
+            allComponents: state.allComponents.map((component) =>
+              component.id === action.payload ? { ...component, ocultar: true } : component
+            ),
+          
+          };
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Avatar, Rate, Space, Table, Typography, Input, Button, message } from "antd";
-import { getAllComponents, updatePrice, updateStock } from "../../../redux/actions";
+import { getAllComponents, updatePrice, updateStock, deleteProduct } from "../../../redux/actions";
 
 const Inventory = () => {
   const dispatch = useDispatch();
@@ -14,6 +14,15 @@ const Inventory = () => {
     dispatch(getAllComponents());
     // Simulate loading delay for demonstration purposes
   }, [dispatch]);
+
+  const handleDelete = async (id) => {
+    try {
+      await dispatch(deleteProduct(id));
+      message.success("Producto eliminado correctamente.");
+    } catch (error) {
+      message.error("Error al eliminar el producto.");
+    }
+  };
 
   const handlePriceEdit = async (id, newPrice) => {
     try {
@@ -107,6 +116,15 @@ const Inventory = () => {
     {
       title: "Categoria",
       dataIndex: "categoria",
+    },
+    {
+      title: "Acciones",
+      dataIndex: "id",
+      render: (id) => (
+        <Space>
+          <Button onClick={() => handleDelete(id)}>Eliminar</Button>
+        </Space>
+      ),
     },
   ];
 
