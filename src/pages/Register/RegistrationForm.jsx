@@ -13,6 +13,7 @@ function RegistroFormulario() {
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
   const [postalCode, setPostalCode] = useState("");
+  const [birthdate, setBirthdate] = useState(null);
   const [passwordError, setPasswordError] = useState("");
   const [firstNameError, setFirstNameError] = useState("");
   const [lastNameError, setLastNameError] = useState("");
@@ -20,12 +21,7 @@ function RegistroFormulario() {
   const [cityError, setCityError] = useState("");
   const [postalCodeError, setPostalCodeError] = useState("");
   const [birthdateError, setBirthdateError] = useState("");
-  const [birthdate, setBirthdate] = useState(null);
 
-  const maxDate = new Date(); // Fecha máxima permitida (hoy)
-
-  // Establece el año mínimo a 2005
-  maxDate.setFullYear(maxDate.getFullYear() - 18);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,8 +31,6 @@ function RegistroFormulario() {
       }, 1000);
     }
   }, [isRegistered]);
-
-  
   localStorage.setItem("usuario",JSON.stringify({ email: email, password: password }));
   localStorage.setItem('login', true)
 
@@ -200,14 +194,13 @@ function RegistroFormulario() {
         <div className={`${styles.formGroup} ${styles.inlineForm}`}>
           <label className={styles.label}></label>
           <DatePicker
-        selected={birthdate}
-        onChange={(date) => setBirthdate(date)}
-        dateFormat="dd/MM/yyyy"
-        className={styles.datePicker}
-        placeholderText="Fecha de nacimiento"
-        maxDate={maxDate}
-        required
-      />
+            selected={birthdate}
+            onChange={(date) => setBirthdate(date)}
+            dateFormat="dd/MM/yyyy"
+            className={styles.datePicker}
+            placeholderText="  Fecha de nacimiento"
+            required
+          />
           {birthdateError && <p className={styles.error}>{birthdateError}</p>}
         </div>
         <div className={styles.submitContainer}>
