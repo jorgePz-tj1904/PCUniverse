@@ -33,12 +33,14 @@ function RegistroFormulario() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    localStorage.setItem("usuario",JSON.stringify({ email: email, password: password }));
+    localStorage.setItem('login', true)
     // Lógica para registrar al usuario
     const userData = {
       name: firstName,
       last_name: lastName,
       email,
-      password, // Agrega el nick_name si es necesario
+      password,
       city,
       postal_code: postalCode,
       date_of_birth: birthdate,

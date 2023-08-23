@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../Card/Card';
 import { removeFromCart, emptyCart } from '../../redux/actions';
@@ -10,17 +10,24 @@ import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 
 const Carrito = () => {
 
+  
   const cartItems = useSelector((state) => state.cartItems);
-  console.log(cartItems);
+  
   const dispatch = useDispatch();
-
+  
   const [preferenceId, setPreferenceId] = useState(null)
   initMercadoPago('TEST-0fbd33da-2e66-4c43-934e-20958a309dee');
+
+  useEffect(()=>{
+    console.log(cartItems);
+    console.log('nashjea');
+  },[])
 
   function obtenerUsuario() {
     const usuarioJSON = localStorage.getItem('usuario');
     return usuarioJSON ? JSON.parse(usuarioJSON): null;
   }
+  
   const user = obtenerUsuario();
 
   const createPreference = async () => {

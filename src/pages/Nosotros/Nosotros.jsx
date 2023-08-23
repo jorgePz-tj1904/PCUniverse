@@ -7,7 +7,6 @@ import mateo from '../../images/mateo.jpg'
 import edu from '../../images/edu.jpg'
 import jorge from '../../images/jorge.jpg'
 import { NavLink } from 'react-router-dom'
-import FooterMain from '../../pages/Footer/FooterMain'
 
 import React from 'react'
 
@@ -76,7 +75,6 @@ const Nosotros = () => {
       <NavLink className={style.back} to='/'>
         Back
       </NavLink>
-            <FooterMain/>
     </div>
   )
 }

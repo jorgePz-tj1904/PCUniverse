@@ -19,7 +19,7 @@ function LoginForm({ setShowLoginForm }) {
       password,
     };
     try {
-      const response = await dispatch(loginUser(userData)); // Llama a la acción de inicio de sesión
+      const response = await dispatch(loginUser(userData));
       if (!response.error) {
         setShowLoginForm(false);
         localStorage.setItem('usuario', JSON.stringify(userData))

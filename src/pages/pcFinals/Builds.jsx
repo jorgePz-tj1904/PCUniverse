@@ -1,7 +1,7 @@
-import { getAllPc, deletePc } from "../../redux/actions";
-import React, { useEffect, useState } from "react";
+import { getAllPc, deletePc, addToCart } from "../../redux/actions";
+import React, { useEffect, useState,} from "react";
+import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import FooterMain from '../../pages/Footer/FooterMain'
 import style from './builds.module.css'
 
 const Builds = () => {
@@ -13,7 +13,17 @@ const Builds = () => {
   useEffect(() => {
     dispatch(getAllPc());
     getBuilds();
-  }, [pc]);
+  }, []);
+
+const toCard=()=>{
+  detail.slice(0, detail.length - 2).map((com)=>{
+    console.log(com);
+    if (com.id !== undefined) {
+      dispatch(addToCart(com.id));
+      console.log(com.id);
+    }
+  })
+} 
 
 const getBuilds = () => {
   const buildsArray = [];
@@ -62,7 +72,7 @@ const deletePCHandler = (id) => {
                   <hr/>
                   <h2>Precio: {componente.precioTotal} $</h2>
   
-                  <a href="#details" id={style.detalles} className={style.botones} onClick={() => setDetail(pc)}>Detalles</a></>}
+                  <a href="#details" id={style.detalles} className={style.botones} onClick={() => {setDetail(pc);console.log(detail);}}>Detalles</a></>}
   
                   {compIndex === pc.length-1 && <img id={style.delete} width={30} src="https://img.icons8.com/ios-glyphs/30/FA5252/filled-trash.png" alt="filled-trash" onClick={() => {deletePCHandler(pc[pc.length-1].id)}}/>}
                 </div>
@@ -85,9 +95,8 @@ const deletePCHandler = (id) => {
            </div>
          ))}
        </div>)}
-       <button className={style.botones}>ir al carrito</button>
+       {detail.length > 0? <button onClick={()=>toCard()} className={style.botones}>ir al carrito</button>:null}
       </div>
-      <FooterMain/>
     </div>
   );
 };
