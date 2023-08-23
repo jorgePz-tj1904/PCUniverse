@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Badge, Drawer, Image, List, Space, Typography } from "antd";
 import { BellFilled, MailOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllComments, getAllOrders } from "../../redux/actions";
+import { getAllComments, getAllOrders, updateComments } from "../../redux/actions";
 import logo from "../../assets/logo.png";
 import "./Admin.css";
 import { getOrders } from "../API";
@@ -12,7 +12,7 @@ const AppHeader = () => {
   const [commentsOpen, setCommentsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
 
-  const allComments = useSelector((state) => state.allComments);
+  const allComments = useSelector((state) => state.comments);
   const allOrders = useSelector((state) => state.allOrders)
   const dispatch = useDispatch();
 
@@ -28,9 +28,9 @@ const AppHeader = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getAllComments());
+    dispatch(updateComments());
     const commentsInterval = setInterval(() => {
-      dispatch(getAllComments());
+      dispatch(updateComments());
     }, 30000);
 
     return () => {
@@ -44,14 +44,6 @@ const AppHeader = () => {
       <Image width={40} src={logo} />
       <Typography.Title>Admin Dashboard</Typography.Title>
       <Space>
-        <Badge count={allComments.comment?.comentarios} dot>
-          <MailOutlined
-            style={{ fontSize: 24 }}
-            onClick={() => {
-              setCommentsOpen(true);
-            }}
-          />
-        </Badge>
         <Badge count={allOrders ? allOrders.length : 0}>
           <BellFilled
             style={{ fontSize: 24 }}
