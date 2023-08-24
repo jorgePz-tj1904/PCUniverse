@@ -47,7 +47,7 @@ const Carrito = () => {
       objComp.user = user;
       console.log(objComp);
       const response = await axios.post(
-        "http://localhost:3001/payment",
+        "https://pcuniverseback2.onrender.com/payment",
         objComp
       );
 

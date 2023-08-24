@@ -1,13 +1,17 @@
 /* Estilos CSS */
 .formTitle,
 .label,
-.formGroup,
 .submitContainer {
   display: flex;
   justify-content: center;
 }
-
+.formGroup{
+  display: flex ;
+  flex-direction: column;
+  justify-content: center;
+}
 .button {
+  margin-bottom: 1em;
   padding: .5rem 1.5rem;
   background-color: #aa00ff;
   color: #fff;
@@ -49,9 +53,8 @@
 
 .inlineForm {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 15px;
 }
 
 .inlineForm .input {
@@ -91,70 +94,6 @@
   transition: opacity 0.3s;
 }
 
-  .datePicker {
-    align-items: center;
-    width: 80%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    color: #333;
-    font-size: 14px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-    margin: 10px;
-  }
-  
-  .datePicker:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-  
-  /* Estilos para el calendario emergente */
-  .react-datePicker {
-    font-family: inherit;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  }
-
-  .react-datePicker::placeholderText {
-    text-align: center;
-  }
-  
-  .react-datePicker__header {
-    background-color: #f0f0f0;
-    border-bottom: none;
-    padding-top: 8px;
-    border-radius: 4px 4px 0 0;
-  }
-  
-  .react-datePicker__current-month {
-    color: #333;
-    font-size: 16px;
-  }
-  
-  .react-datePicker__day-name {
-    color: #333;
-  }
-  
-  .react-datePicker__day--selected {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .react-datePicker__day--keyboard-selected {
-    background-color: rgba(0, 123, 255, 0.5);
-  }
-  
-  .react-datePicker__day--in-range {
-    background-color: rgba(0, 123, 255, 0.2);
-  }
-  
-  .react-datepPicker__day--today {
-    font-weight: bold;
-  }
   
   .whyRegister h3 {
     font-weight: 500;
@@ -168,13 +107,6 @@
 
   .error {
     color: red;
-    font-size: 10px;
-    margin-left: 690px;
-    margin-top: -430px;
-  }
+    font-size: 0.7em;
   
-  .errorBelowInput1 {
-    margin-top: 4px; /* Ajusta este valor según necesites para controlar el espaciado */
-    text-align: center; /* Alinea el mensaje al centro */
-    margin-right: 100px;
-  }  
+  }

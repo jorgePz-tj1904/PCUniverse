@@ -23,7 +23,8 @@ import {
   UPDATE_PRICE,
   UPDATE_STOCK,
   ALL_ORDERS,
-  EMAILS_ACCESS
+  EMAILS_ACCESS,
+  DELETE_PRODUCT_SUCCESS
 } from "./actions-types";
 
 export const postEmailsAccess=(email)=>{
@@ -46,7 +47,7 @@ export const postEmailsAccess=(email)=>{
 export function getComponentsFinal() {
   return async function (dispatch) {
     try {
-      const response = await axios.get(`http://localhost:3001/componentes`);
+      const response = await axios.get(`https://pcuniverseback2.onrender.com/componentes`);
       const data = response.data;
       console.log(data);
       return dispatch({
@@ -64,7 +65,7 @@ export function getComponents(page) {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/productos?page=${page}`
+        `https://pcuniverseback2.onrender.com/productos?page=${page}`
       );
       const data = response.data; // Extrae los datos del objeto de respuesta
 
@@ -84,7 +85,7 @@ export function getAllComponents() {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/allproducts`
+        `https://pcuniverseback2.onrender.com/allproducts`
       );
       const data = response.data;
       return dispatch({
@@ -107,30 +108,23 @@ export const applyPriceOrder = (order) => ({
   type: "APPLY_PRICE_ORDER",
   payload: order,
 });
-//////////////////////lautaro
 
-// export function getAllComponents() {
-//   return async function (dispatch) {
-//     try {
-//       const response = await axios.get(
-//         `http://localhost:3001/allproducts`
-//       );
-//       const data = response.data;
-//       return dispatch({
-//         type: GET_COMPONENTS,
-//         payload: data,
-//       });
-//     } catch (error) {
-//       console.error("Error en acceder a get components");
-//       console.log(error);
-//     }
-//   };
-// }
+export const deleteProduct = (id) => async (dispatch) => {
+  try {
+    await axios.patch(`https://pcuniverseback2.onrender.com/producto/delete/${id}`); 
+    dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: id });
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    throw error;
+  }
+};
+
+
 export function deletePc(id) {
   return async function (dispatch) {
     console.log(id);
     try {
-      await axios.delete(`http://localhost:3001/deletepc/${id}`);
+      await axios.delete(`https://pcuniverseback2.onrender.com/deletepc/${id}`);
 
     } catch (error) {
       console.log(error);
@@ -141,7 +135,7 @@ export function deletePc(id) {
 export function getAllPc() {
   return async function (dispatch) {
     try {
-      const response = await axios.get('http://localhost:3001/pc');
+      const response = await axios.get('https://pcuniverseback2.onrender.com/pc');
       console.log(response.data);
       return dispatch({
         type: ALL_PC,
@@ -173,9 +167,9 @@ export function getByName(name, page) {
     let response;
 
     if (name === "") {
-      response = await axios.get(`http://localhost:3001/allproducts`); //devuelve todo los productos
+      response = await axios.get(`https://pcuniverseback2.onrender.com/allproducts`); //devuelve todo los productos
     } else {
-      response = await axios.get(`http://localhost:3001/name?name=${name}`);
+      response = await axios.get(`https://pcuniverseback2.onrender.com/name?name=${name}`);
     }
 
     return dispatch({
@@ -189,7 +183,7 @@ export function getDetailById(id) {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/producto/${id}`
+        `https://pcuniverseback2.onrender.com/producto/${id}`
       );
       dispatch({
         type: DETAIL,
@@ -208,7 +202,7 @@ export function postComentario(data,rate, compId) {
   return async function (dispatch) {
     try {
       console.log(data);
-      const response = await axios.post('http://localhost:3001/rating',{
+      const response = await axios.post('https://pcuniverseback2.onrender.com/rating',{
         rating: rate,
         userId: null,
         perifericoId:null,
@@ -230,7 +224,7 @@ export function getComentarios(compId) {
 
   return async function (dispatch) {
     try {
-      const response = await axios.get(`http://localhost:3001/getratings?componenteId=${compId}`);
+      const response = await axios.get(`https://pcuniverseback2.onrender.com/getratings?componenteId=${compId}`);
       
       return dispatch({
         type: GET_COMENTARIOS,
@@ -248,7 +242,7 @@ export function getComentarios(compId) {
 export function postComponents(data) {
   return async function (dispatch) {
     try {
-      const response = await axios.post(`http://localhost:3001/postpc`, data);
+      const response = await axios.post(`https://pcuniverseback2.onrender.com/postpc`, data);
       console.log(data);
       return dispatch({
         type: POST_COMPONENTS,
@@ -290,7 +284,7 @@ export const registerUser = (userData) => {
   return async (dispatch) => {
     console.log(userData);
     try {
-      const response = await axios.post("http://localhost:3001/signup", userData);
+      const response = await axios.post("https://pcuniverseback2.onrender.com/signup", userData);
       console.log(userData);
 
       dispatch({ type: REGISTER_SUCCESS, payload: response.data });
@@ -305,7 +299,7 @@ export const registerUser = (userData) => {
 export const loginUser = (userData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(`http://localhost:3001/login`, userData);
+      const response = await axios.post(`hhttps://pcuniverseback2.onrender.com/login`, userData);
       dispatch({ type: LOGIN_SUCCESS, payload: response.data })
       return response.data
     } catch (error) {
@@ -319,7 +313,7 @@ export function getAllusers() {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/getUsers`
+        `https://pcuniverseback2.onrender.com/getUsers`
       );
       const data = response.data;
       return dispatch({
@@ -337,7 +331,7 @@ export function getAllComments() {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/allcoments`
+        `https://pcuniverseback2.onrender.com/allcoments`
       );
       const data = response.data;
       return dispatch({
@@ -363,7 +357,7 @@ export const updateUserRole = (id, newRole) => {
   return async function (dispatch) {
     try {
       // Realizar una solicitud PUT para actualizar el rol del usuario
-      const response = await axios.put('http://localhost:3001/putrole', {
+      const response = await axios.put('https://pcuniverseback2.onrender.com/putrole', {
         id: id, // Cambia 'userId' a 'id'
         newRole: newRole,
       });
@@ -386,7 +380,7 @@ export const updateUserRole = (id, newRole) => {
 export const updatePrice = (id, newPrice) => {
   return async function (dispatch) {
     try {
-      const response = await axios.put(`http://localhost:3001/putPrice`, {
+      const response = await axios.put(`https://pcuniverseback2.onrender.com/putPrice`, {
         id: id,
         newPrice: newPrice,
       });
@@ -407,7 +401,7 @@ export const updatePrice = (id, newPrice) => {
 export const updateStock = (id, newStock) => {
   return async function (dispatch) {
     try {
-      const response = await axios.put(`http://localhost:3001/putstock`, {
+      const response = await axios.put(`https://pcuniverseback2.onrender.com/putstock`, {
         id: id,
         newStock: newStock,
       });
@@ -429,7 +423,7 @@ export function getAllOrders() {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/getpayments`
+        `https://pcuniverseback2.onrender.com/getpayments`
       );
       const data = response.data;
       return dispatch({
