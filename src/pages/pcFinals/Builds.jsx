@@ -9,11 +9,12 @@ const Builds = () => {
   const [detail, setDetail] = useState([]);
   const pc = useSelector((state) => state.pcFinals);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllPc());
     getBuilds();
-  }, [pc]);
+  }, [pc]); 
 
 const toCard=()=>{
   detail.slice(0, detail.length - 2).map((com)=>{
@@ -95,7 +96,7 @@ const deletePCHandler = (id) => {
            </div>
          ))}
        </div>)}
-       {detail.length > 0? <button onClick={()=>toCard()} className={style.botones}>ir al carrito</button>:null}
+       {detail.length > 0? <button onClick={()=>{toCard();navigate('./carrito')}} className={style.botones}>ir al carrito</button>:null}
       </div>
     </div>
   );
