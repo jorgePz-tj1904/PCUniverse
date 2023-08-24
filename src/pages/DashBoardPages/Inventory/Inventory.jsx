@@ -17,7 +17,7 @@ const Inventory = () => {
 
   const handleDelete = async (id) => {
     try {
-      await dispatch(deleteProduct(id));
+      dispatch(deleteProduct(id));
       message.success("Producto eliminado correctamente.");
     } catch (error) {
       message.error("Error al eliminar el producto.");
@@ -26,7 +26,7 @@ const Inventory = () => {
 
   const handlePriceEdit = async (id, newPrice) => {
     try {
-      await dispatch(updatePrice(id, newPrice));
+      dispatch(updatePrice(id, newPrice));
       message.success("Precio actualizado exitosamente");
       console.log(`Precio actualizado para el ID ${id} a ${newPrice}`);
     } catch (error) {
@@ -36,7 +36,7 @@ const Inventory = () => {
 
   const handleStockEdit = async (id, newStock) => {
     try {
-      await dispatch(updateStock(id, newStock));
+      dispatch(updateStock(id, newStock));
       message.success("Stock actualizado exitosamente");
       console.log(`Stock actualizado para el ID ${id} a ${newStock}`);
     } catch (error) {
@@ -86,7 +86,7 @@ const Inventory = () => {
           <Button
             onClick={async () => {
               const newValue = parseFloat(localPrices[record.id]) || value;
-              await handlePriceEdit(record.id, newValue);
+              handlePriceEdit(record.id, newValue);
             }}
           >
             Guardar
@@ -113,7 +113,7 @@ const Inventory = () => {
           <Button
             onClick={async () => {
               const newValueStock = parseFloat(localStock[record.id]) || value;
-              await handleStockEdit(record.id, newValueStock);
+              handleStockEdit(record.id, newValueStock);
             }}
           >
             Guardar
@@ -140,7 +140,7 @@ const Inventory = () => {
     <Space size={20} direction="vertical">
       <Typography.Title level={4}>Inventario</Typography.Title>
       <Table
-        
+
         columns={columns}
         dataSource={allComponents}
         pagination={{

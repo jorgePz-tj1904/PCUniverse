@@ -213,8 +213,9 @@ function reducer(state = initialState, action) {
           return {
             ...state,
             allComponents: state.allComponents.map((component) =>
-              component.id === action.payload ? { ...component, ocultar: true } : component
+              component.id === action.payload ? { ocultar : true } : component
             ),
+    
           
           };
     default:
