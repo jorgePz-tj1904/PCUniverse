@@ -47,7 +47,7 @@ const Create = () => {
   
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:3001/newcomponente", form, {
+      const response = await axios.post("https://pc-universe.vercel.app/newcomponente", form, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
