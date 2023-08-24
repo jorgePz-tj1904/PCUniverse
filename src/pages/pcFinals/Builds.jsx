@@ -14,7 +14,11 @@ const Builds = () => {
   useEffect(() => {
     dispatch(getAllPc());
     getBuilds();
-  }, [pc]); 
+  }, [pc]);
+
+  const toCarrito = () => {
+    navigate('/carrito'); // Utiliza navigate para navegar a /carrito
+  };
 
 const toCard=()=>{
   detail.slice(0, detail.length - 2).map((com)=>{
@@ -64,7 +68,7 @@ const deletePCHandler = (id) => {
         {
           builds.length>0?builds.map((pc, index) => (
             <div className={style.cardBuild} key={index}>
-  
+
               {pc.map((componente, compIndex) => (
                 <div key={compIndex}>
                   <p><b>{componente.categoria}</b></p>
@@ -72,13 +76,13 @@ const deletePCHandler = (id) => {
                   {compIndex === pc.length - 2 && <>
                   <hr/>
                   <h2>Precio: {componente.precioTotal} $</h2>
-  
+
                   <a href="#details" id={style.detalles} className={style.botones} onClick={() => {setDetail(pc);console.log(detail);}}>Detalles</a></>}
-  
+
                   {compIndex === pc.length-1 && <img id={style.delete} width={30} src="https://img.icons8.com/ios-glyphs/30/FA5252/filled-trash.png" alt="filled-trash" onClick={() => {deletePCHandler(pc[pc.length-1].id)}}/>}
                 </div>
               ))}
-              
+
             </div>
           )):<div><h1 id={style.noBuilds}>Todavia no hay builds</h1> <img src="https://i.ibb.co/sP3y3K2/icons8-cancelar-2-128.png" alt="icons8-cancelar-2-128" border="0"/></div>
         }
@@ -96,7 +100,7 @@ const deletePCHandler = (id) => {
            </div>
          ))}
        </div>)}
-       {detail.length > 0? <button onClick={()=>{toCard();navigate('./carrito')}} className={style.botones}>ir al carrito</button>:null}
+       {detail.length > 0? <button onClick={(toCarrito)=>toCard()} className={style.botones}>ir al carrito</button>:null}
       </div>
     </div>
   );
