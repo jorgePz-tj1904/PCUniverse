@@ -25,7 +25,7 @@ function RegistroFormulario() {
   useEffect(() => {
     if (isRegistered) {
       setTimeout(() => {
-        window.location.href = "/componentes";
+        window.location.href = "https://pc-universe.vercel.app/";
       }, 1000);
     }
   }, [isRegistered]);
