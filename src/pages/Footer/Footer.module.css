@@ -24,4 +24,22 @@
         font-size: 15px;
         text-align: center;
       }
-      
+
+
+     
+      @media screen and (max-width: 768px) {
+        .footer {
+          position: fixed; /* Change position to fixed to keep it at the bottom */
+          width: 100%; /* Occupy full width */
+          bottom: 0; /* Stick to the bottom */
+          padding: 10px 0;
+          font-size: 12px; /* Adjust font size for smaller screens */
+          text-align: center;
+          background-color: #aa00ff; /* Change background color for mobile */
+          height: 40px; /* Adjust height for mobile */
+        }
+        
+        .footer p {
+          margin: 5px; /* Adjust margin for smaller screens */
+        }
+      }
