@@ -16,7 +16,7 @@ const Carrito = () => {
   const dispatch = useDispatch();
   
   const [preferenceId, setPreferenceId] = useState(null)
-  initMercadoPago('TEST-0fbd33da-2e66-4c43-934e-20958a309dee');
+  initMercadoPago("APP_USR-53b697af-0e10-45cb-aa90-011c312183a5");
 
   useEffect(()=>{
     console.log(cartItems);

@@ -13,7 +13,7 @@ const Builds = () => {
   useEffect(() => {
     dispatch(getAllPc());
     getBuilds();
-  }, []);
+  }, [pc]);
 
 const toCard=()=>{
   detail.slice(0, detail.length - 2).map((com)=>{
