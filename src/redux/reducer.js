@@ -39,7 +39,7 @@ const initialState = {
   comments:[],
   allOrders: [],
   amountTotal: [],
-  emailAdmins:['jlgames1904@gmail.com', 'jpayereshaidar@gmail.com'],
+  emailAdmins:['admin@admin.com'],
 };
 
 function reducer(state = initialState, action) {

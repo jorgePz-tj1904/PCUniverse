@@ -9,6 +9,7 @@
   .filters {
     flex: 1;
     padding: 20px;
+    margin-bottom: 900px;
   }
   .filters label {
     display: block;
