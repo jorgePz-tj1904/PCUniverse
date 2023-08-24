@@ -30,3 +30,10 @@
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
+
+@media (max-width: 768px) {
+    .navbarSearch {
+        width: 30%;
+        margin-right: 40px;
+    }
+}

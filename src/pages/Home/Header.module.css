@@ -64,9 +64,6 @@ body {
   margin-right: 10px; /* Márgenes para separar los botones */
 }
 
-
-
-
 .botones {
   text-decoration: none;
   --color: #aa00ff;
@@ -205,3 +202,82 @@ body {
   color: #ffffff;
 }
 
+@media (max-width: 768px) {
+  .navbar {
+    margin-left: 13rem;
+    width: 71%;
+    align-content: center;
+  }
+
+  .botones {
+    font-size: 12px;
+    width: 100px;
+    height: 30px;
+  }
+
+  /* Estilos para la barra de navegación principal */
+  .mainNav {
+    width: 100%;
+  }
+
+  /* Estilos para los elementos de la barra de navegación */
+  .mainNav li {
+    font-size: 15px;
+    margin: -3px;
+  }
+
+
+
+  #carrito i{
+    margin-top: 10px; /* Ajusta el margen superior según sea necesario */
+    margin-right: 100; /* Elimina el margen derecho */
+    margin-left: -100; /* Elimina el margen izquierdo */
+  }
+
+.logo {
+  max-height: 90px;
+  transition: transform 0.3s ease;
+}
+}
+
+@media (max-width: 686px) {
+  .navbar {
+    margin-left: 13rem;
+    width: 75%;
+    align-content: center;
+  }
+
+  .botones {
+    font-size: 12px;
+    width: 200px;
+    height: 40px;
+  }
+
+  .botones i {
+    font-size: 0px;
+  }
+
+  /* Estilos para la barra de navegación principal */
+  .mainNav {
+    width: 100%;
+  }
+
+  /* Estilos para los elementos de la barra de navegación */
+  .mainNav li {
+    font-size: 15px;
+    margin: -3px;
+  }
+
+
+
+  #carrito i{
+    margin-top: 10px; /* Ajusta el margen superior según sea necesario */
+    margin-right: 100; /* Elimina el margen derecho */
+    margin-left: -100; /* Elimina el margen izquierdo */
+  }
+
+.logo {
+  max-height: 90px;
+  transition: transform 0.3s ease;
+}
+}

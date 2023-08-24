@@ -59,15 +59,15 @@ const Header = () => {
 
         {loged ? (
           <button
-            className={style.botones}
-            onClick={() => {
-              logout({ returnTo: window.location.origin });
-              localStorage.removeItem('usuario');
-              localStorage.removeItem('login');
-            }}
-          >
-            Cerrar sesión <i className='bx bxs-log-out'></i>
-          </button>
+          className={`${style.botones} ${style.logoutButton}`}
+          onClick={() => {
+            logout({ returnTo: window.location.origin });
+            localStorage.removeItem('usuario');
+            localStorage.removeItem('login');
+          }}
+        >
+          Cerrar sesión <i className='bx bxs-log-out'></i>
+        </button>
         ) : null}
         <NavLink id={style.carrito} to='/carrito'>
           <i className='bx bxs-cart'></i>
