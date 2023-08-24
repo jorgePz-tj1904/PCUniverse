@@ -1,7 +1,7 @@
 // Ayuda.jsx
 import { NavLink } from 'react-router-dom';
 import React, { useState } from 'react';
-import styles from './ayuda.module.css';
+import styles from './Ayuda.module.css';
 
 const ayuda = () => {
   // Estado para controlar la expansión de cada caja

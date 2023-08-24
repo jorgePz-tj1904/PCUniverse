@@ -33,9 +33,10 @@ const Cards = () => {
       setCurrentPage(newPage);
     }
   };
-function handleFilterStatus(e) {
-  dispatch(filterProductsByCategory(e.target.value))
-}
+  function handleFilterStatus(e) {
+    dispatch(filterProductsByCategory(e.target.value));
+    setCurrentPage(1); 
+  }
 
   return (
     <div>

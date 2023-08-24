@@ -272,9 +272,9 @@ const categoryHandler=(category)=>{
                   <h3>{component.modelo}</h3>
                   <h4>stock</h4>
                   <h3>{component.precio} $</h3>
-                  <NavLink target="Blank" id={style.detalle} to={`/componentes/${component.id}`}>Detalles</NavLink>
+                  <NavLink target="Blank" id={style.detalle} to={`https://pc-universe.vercel.app/componentes/${component.id}`}>Detalles</NavLink>
                   </div>))}
-  
+                  
                   </div>
                   {counter >= 0 && computer.componentes.length > 0 ? <button onClick={() => setDone(true)} className={style.botones}>Listo?</button> : null}
            </div>
