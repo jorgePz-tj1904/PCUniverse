@@ -23,10 +23,25 @@ import {
   UPDATE_PRICE,
   UPDATE_STOCK,
   ALL_ORDERS,
-  DELETE_PRODUCT_SUCCESS,
+  EMAILS_ACCESS,
+  DELETE_PRODUCT_SUCCESS
 } from "./actions-types";
 
-
+export const postEmailsAccess=(email)=>{
+  return async function (dispatch) {
+    try {
+      const data = email;
+      console.log(data);
+      return dispatch({
+        type: EMAILS_ACCESS,
+        payload: data,
+      });
+    } catch (error) {
+      console.error("Error con los emails admins");
+      console.log(error);
+    }
+  };
+}
 
 // import { buildFilterQueryString } from "./actionUtils";
 export function getComponentsFinal() {

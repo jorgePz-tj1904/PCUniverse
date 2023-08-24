@@ -5,47 +5,48 @@ import { NavLink } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import LoginForm from '../../pages/Login/LoginForm';
 import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [loged, setLoged]=useState(false);
   const [admin, setAdmin] = useState(false);
   const { logout } = useAuth0();
+  const { user } = useAuth0();
+  const emailAdmins = useSelector((state)=> state.emailAdmins);
 
   useEffect(() => {
-    changeLogin();
+    // changeLogin();
     loginHandle();
+    console.log(emailAdmins);
   }, []);
 
-  const changeLogin=async()=>{
-    const storedValue  = await localStorage.getItem('login');
-    const isUserLoggedIn = storedValue === 'true';
-    setLoged(isUserLoggedIn);
-  }
+
+  
+
 
   const handleLoginButtonClick = () => {
     setShowLoginForm(!showLoginForm);
   };
 
+
   const loginHandle = async () => {
     const usuarioJSON = localStorage.getItem('usuario');
+  
     if (usuarioJSON) {
       setLoged(true);
     }
     const usuario = await JSON.parse(usuarioJSON);
-    console.log(usuario);
-    console.log(usuario.email);
-    if (usuario.email === 'somospixis123@gmail.com') {
+  
+    if (usuario && emailAdmins.includes(usuario.email)) {
+      setAdmin(true);
+      setLoged(true);
+    }
+    if (user && user.email === 'somospixis123@gmail.com') {
       setAdmin(true);
       setLoged(true);
     }
   }
-  // const logOut = () => {
-  //   logout({ returnTo: window.location.origin })
-  //   localStorage.removeItem('usuario');
-  //   setLoged(false);
-  //   setAdmin(false);
-  // }
 
   return (
     <div>
@@ -59,12 +60,20 @@ const Header = () => {
         </NavLink>
         <SearchBar/> 
 
-        {!loged&&<button id={style.iniciarSesion} className={style.botones} onClick={handleLoginButtonClick}><i class='bx bxs-log-out'></i>iniciar sesion</button>}
+        {!loged&&<button id={style.iniciarSesion} className={style.botones} onClick={handleLoginButtonClick}><i className='bx bxs-log-out'></i>iniciar sesion</button>}
 
-        {loged ? <><button className={style.botones} onClick={() => {logout ({returnTo: window.location.origin}); localStorage.removeItem('usuario'); localStorage.removeItem('login');}}>
-        cerrar sesion <i class='bx bxs-log-out'></i></button></>:
-        <></>}
-
+        {loged ? (
+  <button
+    className={style.botones}
+    onClick={() => {
+      logout({ returnTo: window.location.origin });
+      localStorage.removeItem('usuario');
+      localStorage.removeItem('login');
+    }}
+  >
+    Cerrar sesión <i className='bx bxs-log-out'></i>
+  </button>
+) : null}
         <NavLink id={style.carrito} to='/carrito'>
             <i className='bx bxs-cart'></i>
         </NavLink>
@@ -93,5 +102,4 @@ const Header = () => {
   );
 };
 
-export default Header;
-
+export default Header;

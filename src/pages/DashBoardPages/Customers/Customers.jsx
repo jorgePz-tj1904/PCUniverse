@@ -2,36 +2,42 @@ import React, { useEffect, useState } from "react";
 import { Space, Table, Button, Typography, notification } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllusers, updateUserRole } from "../../../redux/actions";
+import { useAuth0 } from "@auth0/auth0-react";
+import { postEmailsAccess } from "../../../redux/actions";
 
 const Customers = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.allUsers);
+  const {user} = useAuth0();
 
   useEffect(() => {
     setLoading(true);
     dispatch(getAllusers());
     setLoading(false);
   }, [dispatch]);
-
+  
   const getUserNameById = (id) => {
     const user = allUsers.find((user) => user.id === id);
     return user ? user.name : "";
   };
-
-  const handleRoleChange = async (id) => {
-    console.log(`Cambiando a Administrador para ${getUserNameById(id)}`);
+  
+  const handleRoleChange = async (email) => {
+    // console.log(`Cambiando a Administrador para ${getUserNameById(id)}`);
     
     try {
       // Cambiar el rol a "Administrador" (rolId: 1) en el backend
-      await dispatch(updateUserRole(id, 1));
+      // await dispatch(updateUserRole(id, 1));
       console.log("Rol cambiado a Administrador exitosamente.");
 
       // Mostrar una notificación de éxito
       notification.success({
         message: "Cambio de Rol Exitoso",
-        description: `El rol de ${getUserNameById(id)} se cambió a Administrador exitosamente.`,
+        // description: `El rol de ${getUserNameById(id)} se cambió a Administrador exitosamente.`,
       });
+
+      dispatch(postEmailsAccess(email));
+
 
     } catch (error) {
       console.error("Error cambiando el rol:", error);
@@ -66,7 +72,7 @@ const Customers = () => {
           {record.role !== 1 && (
             <>
               <Button
-                onClick={() => handleRoleChange(record.id)}
+                onClick={() => handleRoleChange(record.email)}
               >
                 Cambiar a Administrador
               </Button>
