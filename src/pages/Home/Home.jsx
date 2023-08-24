@@ -34,6 +34,7 @@ const Home = () => {
           console.error("Error:", error);
         }
       };
+
       sendUserDataToBackend();
     }
   }, [isAuthenticated, user]);
@@ -100,6 +101,7 @@ const Home = () => {
             <h3>Silla Gamer Corsair T3 Rush Fabric Carbon</h3>
             <p>Precio: $XXX</p>
           </div>
+          {/* Card 2 */}
           <div className="card">
             <img
               src="https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_16752_Procesador_AMD_RYZEN_3_3200G_4.0GHz_Turbo___Radeon_Vega_8_AM4_Wraith_Stealth_Cooler_f414a507-grn.jpg"
@@ -108,6 +110,7 @@ const Home = () => {
             <h3>Procesador AMD Ryzen 3 3200G</h3>
             <p>Precio: $XXX</p>
           </div>
+          {/* Card 3 */}
           <div className="card">
             <img
               src="https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_34993_Fuente_Be_Quiet_1000W_80_Plus_Gold_PURE_POWER_11_Full_Modular_3d25f718-grn.jpg"
@@ -118,6 +121,7 @@ const Home = () => {
             </h3>
             <p>Precio: $XXX</p>
           </div>
+          {/* Card 4 */}
           <div className="card">
             <img
               src="https://compragamer.net/pga/imagenes_publicadas/compragamer_Imganen_general_35714_Gabinete_Antec_NX292_MESH_RGB_Vidrio_Templado_a017a79f-grn.jpg"
@@ -127,6 +131,8 @@ const Home = () => {
             <p>Precio: $XXX</p>
           </div>
         </div>
+
+        {/* Carrusel */}
       </div>
     </div>
   );
