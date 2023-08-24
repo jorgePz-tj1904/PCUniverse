@@ -39,7 +39,7 @@ const initialState = {
   comments:[],
   allOrders: [],
   amountTotal: [],
-  emailAdmins:['jlgames1904@gmail.com',]
+  emailAdmins:['jlgames1904@gmail.com',"valenciaeduardo08@gmail.com",]
 };
 
 function reducer(state = initialState, action) {
@@ -213,8 +213,9 @@ function reducer(state = initialState, action) {
           return {
             ...state,
             allComponents: state.allComponents.map((component) =>
-              component.id === action.payload ? { ...component, ocultar: true } : component
+              component.id === action.payload ? { ocultar : true } : component
             ),
+    
           
           };
     default:
