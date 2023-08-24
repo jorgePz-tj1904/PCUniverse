@@ -100,7 +100,7 @@ const deletePCHandler = (id) => {
            </div>
          ))}
        </div>)}
-       {detail.length > 0? <button onClick={(toCarrito)=>toCard()} className={style.botones}>ir al carrito</button>:null}
+       {detail.length > 0? <button onClick={(toCarrito)=>toCard()} className={style.botones}>Añadir productos</button>:null}
       </div>
     </div>
   );
