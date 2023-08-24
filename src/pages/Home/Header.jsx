@@ -5,14 +5,14 @@ import { NavLink } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import LoginForm from '../../pages/Login/LoginForm';
 import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [loged, setLoged] = useState(false);
   const [admin, setAdmin] = useState(false);
   const { logout, isAuthenticated } = useAuth0(); // Obtener isAuthenticated
-  const { user } = useAuth0();
+
   const emailAdmins = useSelector((state) => state.emailAdmins);
 
   useEffect(() => {
@@ -41,10 +41,6 @@ const Header = () => {
       setAdmin(true);
       setLoged(true);
     }
-    if (user && user.email === 'somospixis123@gmail.com') {
-      setAdmin(true);
-      setLoged(true);
-    }
   }
 
   return (
@@ -57,24 +53,24 @@ const Header = () => {
         <NavLink to={'/'}>
           <img src={logo} alt="Logo" className={style.logo} />
         </NavLink>
-        <SearchBar/> 
+        <SearchBar />
 
-        {!loged&&<button id={style.iniciarSesion} className={style.botones} onClick={handleLoginButtonClick}><i className='bx bxs-log-out'></i>iniciar sesion</button>}
+        {!loged && <button id={style.iniciarSesion} className={style.botones} onClick={handleLoginButtonClick}><i className='bx bxs-log-out'></i>iniciar sesion</button>}
 
         {loged ? (
-  <button
-    className={style.botones}
-    onClick={() => {
-      logout({ returnTo: window.location.origin });
-      localStorage.removeItem('usuario');
-      localStorage.removeItem('login');
-    }}
-  >
-    Cerrar sesión <i className='bx bxs-log-out'></i>
-  </button>
-) : null}
+          <button
+            className={style.botones}
+            onClick={() => {
+              logout({ returnTo: window.location.origin });
+              localStorage.removeItem('usuario');
+              localStorage.removeItem('login');
+            }}
+          >
+            Cerrar sesión <i className='bx bxs-log-out'></i>
+          </button>
+        ) : null}
         <NavLink id={style.carrito} to='/carrito'>
-            <i className='bx bxs-cart'></i>
+          <i className='bx bxs-cart'></i>
         </NavLink>
       </div>
 
@@ -101,4 +97,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Header;
