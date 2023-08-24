@@ -10,7 +10,6 @@ function LoginForm({ setShowLoginForm }) {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { loginWithRedirect } = useAuth0(); // Agrega el hook useAuth0
-  const { logout } = useAuth0();
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,6 +17,7 @@ function LoginForm({ setShowLoginForm }) {
       email,
       password,
     };
+    
     try {
       const response = await dispatch(loginUser(userData));
       if (!response.error) {
@@ -44,7 +44,6 @@ function LoginForm({ setShowLoginForm }) {
   const loginHandler=(data)=>{
     localStorage.setItem('login', data);
   }
-
 
   return (
     <div className={styles.loginOverlay}>

@@ -3,15 +3,18 @@ import SideMenu from './SideMenu'
 import PageContent from './PageContent'
 import prohibido from '../../images/prohibido.png'
 import "./Admin.css"
-import { useEffect, useState } from 'react'
+import { useEffect, useState, } from 'react'
+import { useDispatch, useSelector } from "react-redux";
 
 const Admin = () => {
   const [access, setAccess]=useState(false);
+  const emailAdmins = useSelector((state)=> state.emailAdmins);
+  const dispatch = useDispatch();
 
   const handleAccess=async()=>{
     const usuarioJSON = localStorage.getItem('usuario');
     const usuario = await JSON.parse(usuarioJSON);
-    if(usuario.email==='somospixis123@gmail.com'){
+    if(emailAdmins.includes(usuario.email)){
       setAccess(true);
     }
   }

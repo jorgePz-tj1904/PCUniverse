@@ -33,14 +33,6 @@ body {
   margin: 10px 0;
 }
 
-/* Estilos para el contenedor de las cards */
-.cardsContainer {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 100%;
-}
-
 /* Estilos para cada card */
 .card {
   width: 200px;
@@ -83,7 +75,7 @@ body {
 /* Estilos para los slides del carrusel */
 .slick-slide img {
   width: 100%;
-  max-height: 600px; /* Ajusta la altura máxima de las imágenes */
+  max-height: 450px; /* Ajusta la altura máxima de las imágenes */
   object-fit: cover;
 }
 
@@ -102,6 +94,16 @@ body {
 .contact-button:hover {
   background-color: #ffffff;
   color: #aa00ff;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+.cards-c{
+  margin: 10px;
 }
 
 /* Estilos para el footer */
@@ -125,4 +127,12 @@ body {
 .footer p {
   color: #fff;
   margin: 10px;
+}
+
+@media screen and (max-width:1150px){
+  .cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
 }

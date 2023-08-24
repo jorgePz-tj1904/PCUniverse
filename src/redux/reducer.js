@@ -20,6 +20,7 @@ import {
   UPDATE_PRICE,
   UPDATE_STOCK,
   ALL_ORDERS,
+  EMAILS_ACCESS
 } from './actions-types';
 
 const initialState = {
@@ -37,10 +38,17 @@ const initialState = {
   comments:[],
   allOrders: [],
   amountTotal: [],
+  emailAdmins:['jlgames1904@gmail.com',]
 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
+    case EMAILS_ACCESS:
+      return {
+        ...state,
+        emailAdmins: [...state.emailAdmins, action.payload]
+      };
+
     case ALL_COMPONENTS:
         return {
           ...state,

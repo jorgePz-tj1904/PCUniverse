@@ -57,7 +57,8 @@ export default function Contacto() {
 
   console.log(error);
   return (
-    <div className="contact-form">
+    <div className='conteinerContactanos'>
+      <div className="contact-form">
       <form ref={form} onSubmit={sendEmail}>
         <h2 className="heading">Queremos saber tu opinion</h2>
         <h6 className="italic">¡Aceptamos criticas constructivas para mejorar nuestro servicio!</h6>
@@ -99,6 +100,7 @@ export default function Contacto() {
         </div>
         <button type="submit">Send</button>
       </form>
+    </div>
     </div>
   );
 }

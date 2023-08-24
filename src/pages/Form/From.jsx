@@ -272,7 +272,7 @@ const categoryHandler=(category)=>{
                   <h3>{component.modelo}</h3>
                   <h4>stock</h4>
                   <h3>{component.precio} $</h3>
-                  <NavLink id={style.detalle} to={`/componentes/${component.id}`}>Detalles</NavLink>
+                  <NavLink target="Blank" id={style.detalle} to={`/componentes/${component.id}`}>Detalles</NavLink>
                   </div>))}
   
                   </div>
