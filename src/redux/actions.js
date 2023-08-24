@@ -119,7 +119,6 @@ export const deleteProduct = (id) => async (dispatch) => {
   }
 };
 
-
 export function deletePc(id) {
   return async function (dispatch) {
     console.log(id);
@@ -146,21 +145,6 @@ export function getAllPc() {
     }
   }
 }
-
-
-// export function getByCategory(category) {
-//   return async function (dispatch) {
-//     const response = await axios.get(
-//       `http://localhost:3001/componentes/filter?categoria=${category}`
-//     );
-//     return dispatch({
-//       type: GET_BY_CATEGORY,
-//       payload: response.data,
-//     });
-//   };
-// }
-
-//---------------------------Por nombre---------------------------------
 
 export function getByName(name, page) {
   return async function (dispatch) {

@@ -9,35 +9,34 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const [loged, setLoged]=useState(false);
+  const [loged, setLoged] = useState(false);
   const [admin, setAdmin] = useState(false);
-  const { logout } = useAuth0();
+  const { logout, isAuthenticated } = useAuth0(); // Obtener isAuthenticated
   const { user } = useAuth0();
-  const emailAdmins = useSelector((state)=> state.emailAdmins);
+  const emailAdmins = useSelector((state) => state.emailAdmins);
 
   useEffect(() => {
-    // changeLogin();
+    if (isAuthenticated && !loged) {
+      setLoged(true); // Marcar como iniciado de sesión
+      window.location.reload(); // Recargar la página
+    }
+
     loginHandle();
     console.log(emailAdmins);
-  }, []);
-
-
-  
-
+  }, [isAuthenticated]);
 
   const handleLoginButtonClick = () => {
     setShowLoginForm(!showLoginForm);
   };
 
-
   const loginHandle = async () => {
     const usuarioJSON = localStorage.getItem('usuario');
-  
+
     if (usuarioJSON) {
       setLoged(true);
     }
     const usuario = await JSON.parse(usuarioJSON);
-  
+
     if (usuario && emailAdmins.includes(usuario.email)) {
       setAdmin(true);
       setLoged(true);
